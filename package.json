@@ -1,27 +1,35 @@
 {
-  "name": "frankenstein",
-  "version": "1.0.0",
-  "description": "Portfolio - collection of all my apps",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Yours Truly",
-  "license": "MIT",
-  "devDependencies": {
-    "concurrently": "^4.1.0",
-    "nodemon": "^1.19.1"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "date-fns": "^1.30.1",
-    "dotenv": "^8.0.0",
-    "esm": "^3.2.25",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.0",
-    "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0"
-  }
+   "name": "frankenstein",
+   "version": "1.0.0",
+   "description": "Portfolio - collection of all my apps",
+   "main": "index.js",
+   "scripts": {
+      "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+      "start:prod": "node index.js",
+      "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+      "client": "cd client && npm run start",
+      "seed": "node scripts/dbSeed.js",
+      "install": "cd client && npm install",
+      "build": "cd client && npm run build",
+      "heroku-postbuild": "npm run build",
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "author": "Yours Truly",
+   "license": "DBAD",
+   "devDependencies": {
+      "concurrently": "^4.1.0",
+      "nodemon": "^1.19.1"
+   },
+   "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "body-parser": "^1.19.0",
+      "date-fns": "^1.30.1",
+      "dotenv": "^8.0.0",
+      "esm": "^3.2.25",
+      "express": "^4.17.1",
+      "jsonwebtoken": "^8.5.1",
+      "mongoose": "^5.6.0",
+      "passport": "^0.4.0",
+      "passport-jwt": "^4.0.0"
+   }
 }

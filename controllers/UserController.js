@@ -32,6 +32,7 @@ export async function register(req, res) {
 }
 
 export async function login(req, res) {
+   console.log('Happening Two!');
    try {
       const response = await user_model.login(req.body);
       const { _id, username, email, first_name, last_name } = response.user;
