@@ -46,13 +46,13 @@ class User {
       return { token, user };
    }
 
-   async updateUser(req_body, user_id) {
+   async updateUser(req_body, req_user) {
       if (req_body.username || req_body.email) {
          this.validateInputs(req_body.username, req_body.email);
          await this.checkUserAvailable(req_body.username, req_body.email);
       }
 
-      const response = await this.User.findByIdAndUpdate(user_id, req_body, { new: true });
+      const response = await this.User.findByIdAndUpdate(req_user.id, req_body, { new: true });
 
       const { _id, username, email, first_name, last_name } = response;
 
@@ -108,7 +108,10 @@ class User {
       if (username_check)
          throw new Error('username taken');
 
-      const email_check = await this.User.findOne({ email });
+      let email_check;
+      if (email)
+         email_check = await this.User.findOne({ email });
+
       if (email_check)
          throw new Error('email has already been used');
 

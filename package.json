@@ -3,6 +3,7 @@
    "version": "1.0.0",
    "description": "Portfolio - collection of all my apps",
    "main": "index.js",
+   "proxy": "http://localhost:8080/",
    "scripts": {
       "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
       "start:prod": "node index.js",
@@ -21,6 +22,7 @@
       "nodemon": "^1.19.1"
    },
    "dependencies": {
+      "axios": "^0.19.0",
       "bcryptjs": "^2.4.3",
       "body-parser": "^1.19.0",
       "date-fns": "^1.30.1",

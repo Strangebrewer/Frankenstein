@@ -51,7 +51,7 @@ export async function login(req, res) {
 
 export async function put(req, res) {
    try {
-      const user = await user_model.updateUser(req.body, req.user.id);
+      const user = await user_model.updateUser(req.body, req.user);
       res.json(user);
    } catch (e) {
       console.log(e);

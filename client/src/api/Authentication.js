@@ -5,7 +5,6 @@ export default {
       return API().post('/users/register', credentials);
    },
    login(credentials) {
-      console.log('credentials:::', credentials);
       return API().post('/users/login', credentials);
    },
    getCurrentUser() {
