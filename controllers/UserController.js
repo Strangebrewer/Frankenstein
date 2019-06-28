@@ -54,6 +54,7 @@ export async function put(req, res) {
       const user = await user_model.updateUser(req.body, req.user);
       res.json(user);
    } catch (e) {
+      console.log('This is the shizzle');
       console.log(e);
       res.status(500).send({
          error: e.message

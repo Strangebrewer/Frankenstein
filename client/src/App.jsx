@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
+import DragEnd from './components/DragEnd';
+import Landing from './pages/Landing';
 
 import { login } from './redux/actions/auth_actions';
 
@@ -13,7 +15,19 @@ class App extends Component {
    render() {
 
       return (
-         <div></div>
+         <DragEnd>
+            {dragProps => (
+               <Router>
+                  <Switch>
+                     <Route exact path="/">
+                        {routeProps => (
+                           <Landing {...routeProps} {...dragProps} />
+                        )}
+                     </Route>
+                  </Switch>
+               </Router>
+            )}
+         </DragEnd>
       )
    }
 }

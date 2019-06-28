@@ -29,9 +29,11 @@ class User {
 
    async register(req_body) {
       const { username, email } = req_body;
-
-      this.validateInputs(username, email);
-      await this.checkUserAvailable(username, email);
+      
+      this.validateUsername(username);
+      this.checkUsernameAvailble(username);      
+      this.validateEmail(email);
+      this.checkEmailAvailable(email);
 
       const password = this.hashPassword(req_body.password);
       req_body.password = password;
@@ -47,15 +49,17 @@ class User {
    }
 
    async updateUser(req_body, req_user) {
-      if (req_body.username || req_body.email) {
-         this.validateInputs(req_body.username, req_body.email);
-         await this.checkUserAvailable(req_body.username, req_body.email);
+      if (req_body.username && req_body.username !== req_user.username) {
+         this.validateUsername(req_body.username);
+         this.checkUsernameAvailble(req_body.username);
+      }
+      if (req_body.email && req_body.email !== req_user.email) {
+         this.validateEmail(req_body.email);
+         this.checkEmailAvailable(req_body.email);
       }
 
       const response = await this.User.findByIdAndUpdate(req_user.id, req_body, { new: true });
-
       const { _id, username, email, first_name, last_name } = response;
-
       const user = { _id, username, email, first_name, last_name }
 
       return user;
@@ -69,53 +73,41 @@ class User {
       if (passwordValid) {
          const pw = this.hashPassword(new_password);
          const response = await this.User.findByIdAndUpdate(id, { password: pw });
-
          const { _id, username, email, first_name, last_name } = response;
-
-         const user = { _id, username, email, first_name, last_name }
-
+         const user = { _id, username, email, first_name, last_name };
          return user;
       } else {
          throw new Error('Current password provided is incorrect.')
       }
    }
 
-   validateInputs(username, email) {
-      let email_test;
-      email !== undefined
-         ? email_test = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email)
-         : email_test = true;
-
-      let user_test;
-      username !== undefined
-         ? user_test = /^[a-zA-Z0-9]+$/.test(username)
-         : user_test = true;
-
-      if (!user_test && !email_test)
-         throw new Error('username & email invalid')
-
-      if (!email_test)
-         throw new Error('email invalid');
-
-      if (!user_test)
+   validateUsername(username) {
+      const test = /^[a-zA-Z0-9]+$/.test(username);
+      if (!test)
          throw new Error('username invalid');
-
-      return true;
+      return;
    }
 
-   async checkUserAvailable(username, email) {
-      const username_check = await this.User.findOne({ username })
-      if (username_check)
+   async checkUsernameAvailble(username) {
+      const check = await this.User.findOne({ username })
+      if (check)
          throw new Error('username taken');
+      return;
+   }
 
-      let email_check;
-      if (email)
-         email_check = await this.User.findOne({ email });
+   validateEmail(email) {
+      const test = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email);
+      if (!test)
+         throw new Error('email invalid');
+      return;
+   }
 
-      if (email_check)
+   async checkEmailAvailable(email) {
+      const check = await this.User.findOne({ email });
+      console.log('check:::', check);
+      if (check)
          throw new Error('email has already been used');
-
-      return true;
+      return;
    }
 
    checkPassword(input_password, password) {
