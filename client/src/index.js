@@ -8,7 +8,7 @@ import store from './store';
 import App from './App';
 
 const render = (
-   <ThemeProvider theme={Themes.nightmode}>
+   <ThemeProvider theme={Themes.daymode}>
      <Provider store={store}>
        <GlobalStyle />
        <App />
