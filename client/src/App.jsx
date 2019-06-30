@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-d
 import { connect } from 'react-redux';
 import DragEnd from './Apps/DragonWriter/components/DragEnd';
 import Landing from './Apps/Portfolio/pages/Landing';
+import DragonWriter from './Apps/DragonWriter/pages/DragonWriter';
 
 import { login } from './redux/actions/auth_actions';
 
-class SwitchBoard extends Component {
+class App extends Component {
 
    componentDidMount() {
       this.props.login({ username: "Narf", password: '1234' });
@@ -22,6 +23,11 @@ class SwitchBoard extends Component {
                      <Route exact path="/">
                         {routeProps => (
                            <Landing {...routeProps} {...dragProps} />
+                        )}
+                     </Route>
+                     <Route exact path="/dragon-writer">
+                        {routeProps => (
+                           <DragonWriter {...routeProps} {...dragProps} />
                         )}
                      </Route>
                   </Switch>
@@ -46,4 +52,4 @@ function mapDispatchToProps(dispatch) {
    }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SwitchBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
