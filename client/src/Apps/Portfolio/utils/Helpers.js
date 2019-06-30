@@ -1,4 +1,5 @@
-import React, { Fragment } from "react"
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 export const Helpers = {
 
@@ -72,10 +73,9 @@ export const Helpers = {
                 target="_blank" rel="noopener noreferrer">
                 &#10511;  &nbsp;&nbsp;code on GitHub
               </a>
-              <a href="https://dragon-writer.herokuapp.com/"
-                target="_blank" rel="noopener noreferrer">
-                &#10511;  &nbsp;&nbsp;deployed on Heroku
-              </a>
+              <Link to="/dragon-writer">
+                &#10511;  &nbsp;&nbsp;check it out!
+              </Link>
             </div>
           </Fragment>;
         break;

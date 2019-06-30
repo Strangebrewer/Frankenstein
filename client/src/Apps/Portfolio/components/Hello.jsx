@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Greeting = () => (
-   <Container id="about" className="about-me-wrap">
+const Hello = () => (
+   <Container id="hello">
       <h2>Hello</h2>
       <p>
-         Thanks for checking out my website. I originally built it as a portfolio to help me land a web developer job. Now, it's just for fun and learning. And, since the creative impulse usually brings with it a desire to show off, I guess that's what it's for also.
+         Thanks for checking out my website. I originally built it as a portfolio to help me land a web developer job. Now, it's just for fun and learning. And since the creative impulse usually brings with it a desire to show off, I guess that's what it's for, too.
       </p>
    </Container>
 );
 
-export default Greeting;
+export default Hello;
 
 const Container = styled.section`
    line-height: 1.5;

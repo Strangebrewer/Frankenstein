@@ -2,13 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AboutMe = () => (
-   <Container>
+   <Container id="about">
       <h3>About Me</h3>
       <p>
-         I completed a six-month web development bootcamp at the University of Utah in July 2018. Along the way, I discovered that I really enjoy coding. After graduation, I spent 8 months building web apps, learning new things, and refining my skills before finally being picked up as a junior dev at a local company. If you're not a dev and don't care to read about my tech stack, you might want to scroll down where you can try out some of the apps I've built--this part will still be here when you get back.
-         </p>
+         I completed a six-month web development bootcamp at the University of Utah in July 2018 and then spent the next 8 months building web apps, learning new things, and refining my skills before being hired by by a local digital signage company. I've been lucky enough to land a job using exactly the skills I learned in bootcamp, and then some.
+      </p>
       <p>
-         I'm primarily a <span className="skill-text">MERN</span> stack developer, but I have a  few other tricks up my sleeve as well. I can work with <span className="skill-text">relational databases</span> (<span className="skill-text">Firebase</span>, too), <span className="skill-text">Bootstrap</span> or <span className="skill-text">Materialize</span> (I prefer  plain <span className="skill-text">CSS</span>), <span className="skill-text">jQuery</span> if you're  using it, <span className="skill-text">React</span> if you're not (or just JS if you prefer), <span className="skill-text">REST APIs</span> &amp; <span className="skill-text">JSON</span>, all organized  in an MVC architecture. And as mentioned above, I've recently learned a lot about SVG.
+         I'm primarily a <span>MERN</span> stack developer, but in the last three months at my new job, I've learned to use <span>Redux</span>, <span>Vue.js</span> and <span>Vuex</span> along with more in-depth parts of many other things, like Git, Linux, testing, agile, debugging, and better research habits. It's really awesome to work in a team of super smart, curious, and skilled coders with a big fat silly streak (buncha fuggin' NERDBAGS!)
+      </p>
+      <p>
+         The rest of my skills include <span>MongoDB</span>, Mongoose, Sequelize, MySQL, Bootstrap, Materialize, <span>HTML &amp; CSS</span>, jQuery, Swagger, <span>Node</span>, and Vanilla (and <span>ES6+</span>) JavaScript.
       </p>
    </Container>
 );
@@ -26,7 +29,7 @@ const Container = styled.section`
       font-weight: bold;
       color: var(--other);
    }
-   .skill-text {
+   span {
       color: var(--main);
       font-weight: bold;
    }

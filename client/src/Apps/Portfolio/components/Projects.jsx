@@ -14,19 +14,18 @@ const Projects = () => (
          (And if you're actually interested in using one for real,<br /> let me know - it might be fun to set up.)
       </p>
 
-      {
-         projects
-            .filter(project => project.identifier !== "starwars")
-            .map((project, i) => (
-               <Project key={`${project.identifier}-${i}`}>
-                  <h1>{project.title}</h1>
-                  <a href={project.linkto} target="_blank" rel="noopener noreferrer">
-                     <img src={project.background} alt="project website" />
-                  </a>
-                  <h2>Made with {project.lineOne} {project.lineTwo}</h2>
-                  {Helpers.projectModals(project.identifier)}
-               </Project>
-            ))
+      {projects
+         .filter(project => project.identifier !== "starwars")
+         .map((project, i) => (
+            <Project key={`${project.identifier}-${i}`}>
+               <h1>{project.title}</h1>
+               <Link to={project.linkto}>
+                  <img src={project.background} alt="project website" />
+               </Link>
+               <h2>Made with {project.lineOne} {project.lineTwo}</h2>
+               {Helpers.projectModals(project.identifier)}
+            </Project>
+         ))
       }
    </Container>
 );
@@ -101,4 +100,4 @@ const Project = styled.div`
          font-size: 1.8rem;
       }
    }
-   `;
+`;

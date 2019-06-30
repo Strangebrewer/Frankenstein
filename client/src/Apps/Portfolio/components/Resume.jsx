@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AnchorLink from "react-anchor-link-smooth-scroll"
 import styled from 'styled-components';
 
-const Bio = props => (
+const Resume = props => (
    <Container>
       <h2>the DIGITAL</h2>
       <h2>&nbsp;RESUME of</h2>
@@ -11,12 +11,15 @@ const Bio = props => (
          <h1>KEITH</h1>
          <h1>&nbsp;ALLMON</h1>
       </div>
-      <p>Web developer, amateur artist, DIY dabbler, and occasional advocate of the Oxford comma</p>
+      <p>
+         Web developer, amateur artist, DIY dabbler, and occasional advocate of the Oxford comma
+      </p>
       <div className="menu">
          <h3>menu:</h3>
          <ul>
+            <li><AnchorLink href="#hello">Hello</AnchorLink></li>
+            <li><AnchorLink href="#projects">Projects</AnchorLink></li>
             <li><AnchorLink href="#about">About Me</AnchorLink></li>
-            <li><AnchorLink href="#projects">My Projects</AnchorLink></li>
             {props.loggedIn
                ? (
                   <>
@@ -47,7 +50,7 @@ const Bio = props => (
    </Container>
 );
 
-export default Bio;
+export default Resume;
 
 const Container = styled.section`
    font-family: 'Lato', Arial, Helvetica, sans-serif;
