@@ -19,10 +19,8 @@ export const GlobalStyle = createGlobalStyle`
       box-sizing: inherit;
    }
    body {
-      background: #000;
       border: 0;
       color: #000;
-      /* font-family: Arial, Helvetica, sans-serif; */
       font-family: 'Roboto', Arial, Helvetica, sans-serif;
       line-height: 1;
       margin: 0;
@@ -70,18 +68,6 @@ export const GlobalStyle = createGlobalStyle`
       opacity: .6;
    }
 
-   .sticky-footer-container {
-      display: flex;
-      flex-direction: column;
-      min-height: calc(100vh - 1px);
-   }
-
-   .main-container {
-      flex: 1 0 auto;
-      background: #000;
-      position: relative;
-   }
-
    input[disabled] {
       opacity: .6;
    }
@@ -89,5 +75,9 @@ export const GlobalStyle = createGlobalStyle`
    input[disabled]:hover {
       cursor: not-allowed;
       opacity: .6;
+   }
+   :root {
+      --main: #182094;
+      --other: #188c94;   
    }
 `;

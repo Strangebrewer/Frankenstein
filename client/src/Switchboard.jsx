@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
-import DragEnd from './components/DragEnd';
-import Landing from './pages/Landing';
+import DragEnd from './Apps/DragonWriter/components/DragEnd';
+import Landing from './Apps/Portfolio/pages/Landing';
 
 import { login } from './redux/actions/auth_actions';
 
-class App extends Component {
+class SwitchBoard extends Component {
 
    componentDidMount() {
       this.props.login({ username: "Narf", password: '1234' });
@@ -46,4 +46,4 @@ function mapDispatchToProps(dispatch) {
    }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(SwitchBoard);

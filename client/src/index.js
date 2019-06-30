@@ -5,13 +5,13 @@ import { Provider } from 'react-redux';
 import { Themes } from './styles/Themes';
 import { GlobalStyle } from './styles/GlobalStyle';
 import store from './store';
-import App from './App';
+import Switchboard from './Switchboard';
 
 const render = (
    <ThemeProvider theme={Themes.daymode}>
      <Provider store={store}>
        <GlobalStyle />
-       <App />
+       <Switchboard />
      </Provider>
    </ThemeProvider>
  )
