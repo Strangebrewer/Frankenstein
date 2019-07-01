@@ -1,9 +1,103 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { PageContainer, Main, Sidebar, Content, ContentMain }
    from '../components/LayoutExample';
 
+class DragonWriter extends Component {
+   state = {
+      all: false,
+      sidebar: false,
+      content_header: false,
+      content_main: false,
+      header: false,
+   }
+
+   testOn = name => {
+      this.setState({ [name]: true })
+   }
+
+   testOff = name => {
+      this.setState({ [name]: false })
+   }
+
+   getTestProps = name => {
+      return {
+         test: this.state[name] || this.state.all,
+         onMouseOver: () => this.testOn(name),
+         onMouseLeave: () => this.testOff(name)
+      }
+   }
+
+   render() {
+      return (
+         <PageContainer>
+            <Header {...this.getTestProps('header')}>
+               <h1>DRAGON WRITER</h1>
+               <h3>Drag n Drop Storyboarding for Writers</h3>
+            </Header>
+
+            <Main>
+               <Sidebar {...this.getTestProps('sidebar')}>
+
+               </Sidebar>
+
+               <Content {...this.getTestProps('content_main')}>
+                  <ProjectList>
+                     <div>
+                        <span>
+                           <span><i className="fab fa-accessible-icon" /></span>
+                           <span><i className="fab fa-500px" /></span>
+                           <span><i className="far fa-alarm-clock" /></span>
+                           <span><i className="fas fa-alicorn" /></span>
+                        </span>
+                        <h2>
+                           <Link to="/dragon-writer/narfing">Narfing for Biscuits!</Link>
+                        </h2>
+                        <p>That project you started to make the dogs happy...</p>
+                     </div>
+
+                     <div>
+                        <span>
+                           <span><i className="fab fa-accessible-icon" /></span>
+                           <span><i className="fab fa-500px" /></span>
+                           <span><i className="far fa-alarm-clock" /></span>
+                           <span><i className="fas fa-alicorn" /></span>
+                        </span>
+                        <h2>Shitting!</h2>
+                        <p>It's not really something that needs a writing project.</p>
+                     </div>
+
+                     <div>
+                        <span>
+                           <span><i className="fab fa-accessible-icon" /></span>
+                           <span><i className="fab fa-500px" /></span>
+                           <span><i className="far fa-alarm-clock" /></span>
+                           <span><i className="fas fa-alicorn" /></span>
+                        </span>
+                        <h2>A New Novel</h2>
+                        <p>This is kind of what this app is for.</p>
+                     </div>
+                  </ProjectList>
+               </Content>
+
+               <Sidebar {...this.getTestProps('sidebar')}>
+
+               </Sidebar>
+            </Main>
+
+            <Footer {...this.getTestProps('all')}>
+               copyright and stuff
+            </Footer>
+         </PageContainer>
+      );
+   }
+}
+
+export default DragonWriter;
+
 const Header = styled.header`
+   background: ${props => props.test ? '#42f6ff15' : 'transparent'};
    text-align: center;
    padding: 10px;
    h1 {
@@ -18,7 +112,13 @@ const Header = styled.header`
 `;
 
 const Footer = styled.footer`
+   background: ${props => props.test ? '#4696af15' : 'transparent'};
+   text-align: center;
+   padding: 10px;
    height: 120px;
+   p {
+      font-size: 1.1rem;
+   }
 `;
 
 const ProjectList = styled.div`
@@ -34,79 +134,22 @@ const ProjectList = styled.div`
          right: 5px;
          > span {
             display: inline-block;
-            width: 25px;
+            width: 20px;
             font-size: 14px;
-            text-align: right;
+            i {
+               cursor: pointer;
+            }
          }
+      }
+      h2 {
+         font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
+         font-size: 1.8rem;
+         font-weight: bold;
+         margin-bottom: 5px;
+      }
+      p {         
+         font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+         text-indent: 20px;
       }
    }
 `;
-
-const SidebarInner = styled.div`
-   background: black;
-   width: 100%;
-   height: 100%;
-`;
-
-class DragonWriter extends Component {
-
-   render() {
-      const { props } = this;
-      return (
-         <PageContainer>
-            <Header>
-               <h1>DRAGON WRITER</h1>
-               <h3>Drag n Drop Storyboarding for Writers</h3>
-            </Header>
-            <Main>
-               <Sidebar test>
-                  
-               </Sidebar>
-               <Content>
-
-                  <ContentMain test>
-                     <ProjectList>
-                        <div>
-                           <span>
-                              <span><i className="fab fa-accessible-icon" /></span>
-                              <span><i className="fab fa-500px" /></span>
-                              <span><i className="far fa-alarm-clock" /></span>
-                              <span><i className="fas fa-alicorn" /></span>
-                           </span>
-                           <h2>Narfing for Biscuits!</h2>
-                           <p>That project you started to make the dogs happy...</p>
-                        </div>
-
-                        <div>
-                           <span>
-                              <span><i className="fab fa-accessible-icon" /></span>
-                              <span><i className="fab fa-500px" /></span>
-                              <span><i className="far fa-alarm-clock" /></span>
-                              <span><i className="fas fa-alicorn" /></span>
-                           </span>
-                           <h2>Shitting!</h2>
-                           <p>It's not really something that needs a writing project.</p>
-                        </div>
-
-                        <div>
-                           <span>
-                              <span><i className="fab fa-accessible-icon" /></span>
-                              <span><i className="fab fa-500px" /></span>
-                              <span><i className="far fa-alarm-clock" /></span>
-                              <span><i className="fas fa-alicorn" /></span>
-                           </span>
-                           <h2>A New Novel</h2>
-                           <p>This is kind of what this app is for.</p>
-                        </div>
-                     </ProjectList>
-                  </ContentMain>
-               </Content>
-               <Sidebar test></Sidebar>
-            </Main>
-            <Footer></Footer>
-         </PageContainer>
-      );
-   }
-}
-
-export default DragonWriter;

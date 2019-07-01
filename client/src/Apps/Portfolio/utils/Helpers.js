@@ -9,9 +9,9 @@ export const Helpers = {
       case "vandelay":
         body =
           <Fragment>
-            <p>Vandelay Rentals is a rental reservations and inventory management app built with a local kayak and paddleboard rental business in mind. It incorporates payments via Stripe, legal documentation via Hello Sign, inventory and user data management via React Table, user authentication (server-side and client-side), a custom calendar, and advanced CSS techniques. This was my group's final project for coding boot camp.</p>
-            <p>To avoid interfering with each other or inadvertently modifying (i.e. breaking) working code, we created sandbox page components for each of us to work in. These sandboxes are still present in the project for demo purposes, but they can only be accessed if you're signed in as a dev.</p>
-            <p>Login info:</p>
+            <p>Vandelay Rentals is a rental reservations and inventory management app built for a local rental business. It incorporates payments via Stripe, waivers via Hello Sign, data management via React Table, user authentication, a custom calendar, and advanced CSS techniques. This was my group's final project for coding boot camp.</p>
+            <p>To avoid interfering with each other or inadvertently modifying working code, we created sandbox page components for each of us to work in. These sandboxes are still there, but they can only be accessed if you're signed in as a dev.</p>
+            <p style={{ lineHeight: '1', marginBottom: '10px', fontWeight: 'bold' }}>Login info:</p>
             <ul>
               <li>User: 'UserDemo' pw: 'usergetin'</li>
               <li>Admin: 'Demo' pw: 'cangetin'</li>
@@ -74,7 +74,7 @@ export const Helpers = {
                 &#10511;  &nbsp;&nbsp;code on GitHub
               </a>
               <Link to="/dragon-writer">
-                &#10511;  &nbsp;&nbsp;check it out!
+                &#10511;  &nbsp;&nbsp;deployed here - check it out!
               </Link>
             </div>
           </Fragment>;

@@ -13,10 +13,8 @@ const PageContainer = styled.div`
 const ScrollContainer = styled.div`
    padding: 0 30px;
    font-family: 'Lato', Arial, Helvetica, sans-serif;
-   font-size: .9rem;
    @media (min-width: 650px) {
       padding: 0 30px;
-      font-size: 1.1rem;
    }
 `;
 

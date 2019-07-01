@@ -54,16 +54,15 @@ export default Resume;
 
 const Container = styled.section`
    font-family: 'Lato', Arial, Helvetica, sans-serif;
-   width: 100%;
    margin: auto;
    padding-left: 30px;
    padding-right: 30px;
    text-align: center;
+   width: 100%;
    h2 {
       font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
       color: var(--other);
       font-weight: bold;
-      font-size: 1.2rem;
       padding-top: 20px;
       display: inline-block;
    }
@@ -74,7 +73,7 @@ const Container = styled.section`
       font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
       color: var(--main);
       font-weight: bold;
-      font-size: 2.2rem;
+      font-size: 3.5rem;
       display: inline-block;
    }
    h1:last-of-type {
@@ -90,7 +89,7 @@ const Container = styled.section`
       margin-bottom: 15px;
    }
    li {
-      line-height: 1.5rem;
+      line-height: 2.5rem;
    }
    .menu a:hover {
       color: var(--main);
@@ -114,10 +113,10 @@ const Container = styled.section`
    }
    @media (min-width: 400px) {
       h2 {
-         font-size: 1.3rem;
+         font-size: 2.2rem;
       }
       h1 {
-         font-size: 2.4rem;
+         font-size: 4rem;
       }
    }
    @media (min-width: 650px) {
@@ -139,7 +138,7 @@ const Container = styled.section`
          padding-top: unset;
       }
       .menu li {
-         line-height: 1.3rem;
+         line-height: 2.2rem;
       }
    }
 `;
