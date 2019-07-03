@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
-import { PageContainer, Main, Sidebar, Content, ContentMain }
-   from '../components/LayoutExample';
+import { PageContainer, Main, Sidebar, Content, ContentMain } from '../components/LayoutExample';
+import Editor from '../components/Slate/Editor';
 
 import texts from '../utils/texts.json';
 
@@ -58,7 +58,7 @@ class DragonProject extends Component {
                </Sidebar>
 
                <Content {...this.getTestProps('content_main')}>
-                  <Column>
+                  {/* <Column>
                      <h2>Thoughts &amp; Ideas</h2>
                      <p>Bursts of Creativity and/or Stupidity</p>
                      {texts.map(text => {
@@ -70,15 +70,10 @@ class DragonProject extends Component {
                         )
                      })}
 
-                  </Column>
-
-                  <Column>
-
-                  </Column>
-
-                  <Column>
-
-                  </Column>
+                  </Column>                  
+                  <Column></Column>
+                  <Column></Column> */}
+                  <Editor/>
                </Content>
 
                <Sidebar {...this.getTestProps('sidebar')}></Sidebar>
