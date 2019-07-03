@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { PageContainer, Main, Sidebar, Content, ContentMain }
    from '../components/LayoutExample';
 
+import texts from '../utils/texts.json';
+
 class DragonProject extends Component {
    state = {
       all: false,
@@ -56,7 +58,27 @@ class DragonProject extends Component {
                </Sidebar>
 
                <Content {...this.getTestProps('content_main')}>
-                  Here, there be dragons!
+                  <Column>
+                     <h2>Thoughts &amp; Ideas</h2>
+                     <p>Bursts of Creativity and/or Stupidity</p>
+                     {texts.map(text => {
+                        return (
+                           <Item>
+                              <h2>{text.title}</h2>
+                              <p>{text.subtitle}</p>
+                           </Item>
+                        )
+                     })}
+
+                  </Column>
+
+                  <Column>
+
+                  </Column>
+
+                  <Column>
+
+                  </Column>
                </Content>
 
                <Sidebar {...this.getTestProps('sidebar')}></Sidebar>
@@ -108,6 +130,43 @@ const SidebarLeft = styled.section`
       line-height: 1.5;
       list-style: disc;
       margin-left: 25px;
+   }
+`;
+
+const Column = styled.div`
+   width: ${props => props.theme.column_width};
+   height: 100%;
+   /* border: 1px solid aqua; */
+   padding: 10px;
+   > h2 {
+      font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
+      text-align: center;
+      font-size: 2.6rem;
+      padding: 5px 0 8px 0;
+   }
+   > p {
+      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+      font-size: 1.3rem;
+      text-align: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #4666ff;
+   }
+`;
+
+const Item = styled.div`
+   height: 80px;
+   border: 1px solid #4666ff;;
+   margin: 8px 5px;
+   padding: 5px;
+   > h2 {
+      font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
+      font-size: 1.8rem;
+      padding: 5px 0 8px 0;
+   }
+   > p {
+      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+      font-size: 1.2rem;
+      text-indent: 20px;
    }
 `;
 

@@ -16,7 +16,7 @@ export const Main = styled.div`
 export const Sidebar = styled.section`
    align-self:  stretch;
    background: ${props => props.test ? '#bc13fe12' : 'transparent'};
-   width: 200px;
+   width: ${props => props.theme.sidebar_width};
 `;
 
 export const Content = styled.section`
