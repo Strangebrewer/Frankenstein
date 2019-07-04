@@ -5,7 +5,7 @@ const EditorBtnArray = styled.div`
   cursor: default;
   margin: 0px 0 0 0;
   opacity:  ${props => props.inline ? '.01' : '1'};
-  padding: 10px 0 6px 12%;
+  padding: 10px 0 6px 0;
   padding-left: ${props => props.inline && '15px'};
   padding-top: ${props => props.inline && '0px'};
   position: ${props => props.inline && 'absolute'};

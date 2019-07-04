@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { PageContainer, Main, Sidebar, Content, ContentMain } from '../components/LayoutExample';
-import Editor from '../components/Slate/Editor';
+import EditorLogic from '../components/Slate/EditorLogic';
+import EditorSingleNew from '../components/Slate/EditorSingleNew';
 
 import texts from '../utils/texts.json';
 
@@ -73,7 +74,11 @@ class DragonProject extends Component {
                   </Column>                  
                   <Column></Column>
                   <Column></Column> */}
-                  <Editor/>
+                  <EditorLogic>
+                     {editor_props => (
+                        <EditorSingleNew {...editor_props} />
+                     )}
+                  </EditorLogic>
                </Content>
 
                <Sidebar {...this.getTestProps('sidebar')}></Sidebar>
