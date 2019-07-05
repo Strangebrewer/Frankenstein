@@ -45,7 +45,7 @@ const EditorBtn = styled.button`
   }
 `;
 
-const RenderButtons = props => {
+const EditorButtons = props => {
 
   const renderMarkButton = (type, icon) => {
     const isActive = props.hasMark(type);
@@ -164,4 +164,4 @@ const RenderButtons = props => {
   );
 }
 
-export default RenderButtons;
+export default EditorButtons;

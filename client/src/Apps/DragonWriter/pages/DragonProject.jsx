@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { PageContainer, Main, Sidebar, Content, ContentMain } from '../components/LayoutExample';
 import EditorLogic from '../components/Slate/EditorLogic';
-import EditorSingleNew from '../components/Slate/EditorSingleNew';
+import NewTextEditor from '../components/Slate/NewTextEditor';
 
 import texts from '../utils/texts.json';
 
@@ -13,7 +13,7 @@ class DragonProject extends Component {
       sidebar: false,
       content_header: false,
       content_main: false,
-      header: false,
+      header: false
    }
 
    testOn = name => {
@@ -59,26 +59,72 @@ class DragonProject extends Component {
                </Sidebar>
 
                <Content {...this.getTestProps('content_main')}>
-                  {/* <Column>
-                     <h2>Thoughts &amp; Ideas</h2>
-                     <p>Bursts of Creativity and/or Stupidity</p>
-                     {texts.map(text => {
-                        return (
-                           <Item>
-                              <h2>{text.title}</h2>
-                              <p>{text.subtitle}</p>
-                           </Item>
-                        )
-                     })}
+                  <Column>
+                     <div>
+                        <h2>Thoughts &amp; Ideas</h2>
+                        <p>Bursts of Creativity and/or Stupidity</p>
+                     </div>
+                     <Texts>
+                        {texts.map((text, index) => {
+                              return (
+                                 <>
+                                    <Item key={index}>
+                                       <h2>{text.title}</h2>
+                                       <p>{text.subtitle}</p>
+                                    </Item>
+                                    <Item key={index}>
+                                       <h2>{text.title}</h2>
+                                       <p>{text.subtitle}</p>
+                                    </Item>
+                                 </>
+                              )
+                        })}
+                     </Texts>
+                  </Column>
 
-                  </Column>                  
-                  <Column></Column>
-                  <Column></Column> */}
-                  <EditorLogic>
+                  <Column>
+                     <div>
+                        <h2>Chapter 1</h2>
+                        <p>Where Shall I Begin?</p>
+                     </div>
+
+                     <Texts>
+                        {texts.map((text, index) => {
+                           if (index > 3)
+                              return (
+                                 <Item key={index}>
+                                    <h2>{text.title}</h2>
+                                    <p>{text.subtitle}</p>
+                                 </Item>
+                              )
+                        })}
+                     </Texts>
+                  </Column>
+
+                  <Column>
+                     <div>
+                        <h2>Philosophy</h2>
+                        <p>Philosophical Underpinnings of the story or its elements.</p>
+                     </div>
+                     <Texts>
+                        {texts.map((text, index) => {
+                           if (index === 2 || index === 3 || index === 5)
+                              return (
+                                 <Item key={index}>
+                                    <h2>{text.title}</h2>
+                                    <p>{text.subtitle}</p>
+                                 </Item>
+                              )
+                        })}
+                     </Texts>
+                  </Column>
+
+
+                  {/* <EditorLogic>
                      {editor_props => (
-                        <EditorSingleNew {...editor_props} />
+                        <NewTextEditor {...editor_props} />
                      )}
-                  </EditorLogic>
+                  </EditorLogic> */}
                </Content>
 
                <Sidebar {...this.getTestProps('sidebar')}></Sidebar>
@@ -117,7 +163,7 @@ const SidebarLeft = styled.section`
       font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
       margin-bottom: 10px;
       > i {
-         color: #4666ff;
+         color: #62c2ee ;
          cursor: pointer;
          font-size: 2rem;
          position: absolute;
@@ -134,34 +180,64 @@ const SidebarLeft = styled.section`
 `;
 
 const Column = styled.div`
+   /* align-self:  stretch; */
    width: ${props => props.theme.column_width};
-   height: 100%;
-   /* border: 1px solid aqua; */
    padding: 10px;
-   > h2 {
-      font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
-      text-align: center;
-      font-size: 2.6rem;
-      padding: 5px 0 8px 0;
-   }
-   > p {
-      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-      font-size: 1.3rem;
-      text-align: center;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #4666ff;
+   > div:first-of-type {
+      height: 80px;
+      > h2 {
+         font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
+         text-align: center;
+         font-size: 2.6rem;
+         padding: 5px 0 8px 0;
+         /* text-shadow: 0 0 1px #000,
+            0 0 2px #000,
+            0 0 3px #000,
+            0 0 4px #000,
+            0 0 5px #fff,
+            0 0 8px #fff,
+            0 0 10px #fff; */
+      }
+      > p {
+         font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+         font-size: 1.3rem;
+         text-align: center;
+         padding-bottom: 10px;
+      }
    }
 `;
 
+const Texts = styled.div`
+   background: linear-gradient(150deg, #000, 60%, #680000);
+   border: 2px solid #2b3834;
+   border-radius: 20px;
+   box-shadow: inset 3px 3px 10px #000,
+      inset -3px -3px 25px #000,
+      inset -3px -3px 50px #000;
+   height: calc(100% - 80px);
+   display: flex;
+   flex-direction: column;
+   padding-bottom: 15px;
+`;
+
 const Item = styled.div`
-   height: 80px;
-   border: 1px solid #4666ff;;
-   margin: 8px 5px;
-   padding: 5px;
+   background: #c5c5c5;
+   border-radius: 10px;
+   box-shadow: inset 3px 3px 3px #fff,
+      inset -3px -3px 3px #000,
+      inset 3px 3px 6px 3px #999,
+      inset -3px -3px 6px 3px #fafafa;
+   color: #000;
+   margin: 15px;
+   margin-bottom: 0;
+   padding: 10px 15px;
+   > :last-of-type {
+      margin-bottom: 15px; 
+   }
    > h2 {
       font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
       font-size: 1.8rem;
-      padding: 5px 0 8px 0;
+      /* padding: 5px 0 8px 0; */
    }
    > p {
       font-family: 'Open Sans', Arial, Helvetica, sans-serif;

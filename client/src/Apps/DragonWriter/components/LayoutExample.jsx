@@ -6,6 +6,8 @@ export const PageContainer = styled.div`
    display: flex;
    flex-direction: column;
    min-height: 100vh;
+   color: #fff;
+   background: #195781;
 `;
 
 export const Main = styled.div`
