@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-// Exported components are useful for layout
+// Exported components - useful for layout
 export const PageContainer = styled.div`
    display: flex;
    flex-direction: column;
    min-height: 100vh;
    color: #fff;
-   background: #195781;
+   background: linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
+     linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
+     url('/static/assets/images/background-two.jpg');
+   background-repeat: repeat;
+   background-attachment: fixed;
+   font-family: ${props => props.theme.font_opensans};
 `;
 
 export const Main = styled.div`
@@ -27,12 +32,7 @@ export const Content = styled.section`
    flex: 1 0 auto;
 `;
 
-export const ContentMain = styled.div`
-   display: flex;
-   flex: 1 0 auto;
-`;
-
-class LayoutExample extends Component {
+class Layout extends Component {
    render() {
       return (
          <PageContainer>
@@ -66,7 +66,7 @@ class LayoutExample extends Component {
    }
 }
 
-export default LayoutExample;
+export default Layout;
 
 // locally used - not exported, useful only as examples.
 const Header = styled.header`

@@ -1,13 +1,52 @@
 export const Themes = {
-   nightmode: {
-      bg: '#000'
-   },
-   daymode: {
+   portfolio: {
       bg: '#fbfbfb',
       main: '#182094',
-      secondary: '#188c94',
-      money_bg: '#2c80e7',
+      secondary: '#188c94'
+   },
+   dragons: {
       sidebar_width: '200px',
       column_width: '320px',
+      font_playfair: '"Playfair Display SC", "Times New Roman", Times, serif',
+      font_fatface: '"Abril Fatface", "Times New Roman", Times, serif',
+      font_opensans: '"Open Sans", Arial, Helvetica, sans-serif',
+      font_roboto: '"Roboto", Arial, Helvetica, sans-serif',
+      
+
+      bannerBG: '#ededed',
+      bannerColor: '#062333',
+      black: '#111111',
+      buttonBG: '#0b4a47',
+      buttonColor: '#fff',
+      buttonHoverBG: '#fff',
+      buttonHoverColor: '#000',
+      colorTrans: 'color 0.15s ease-in-out',
+      columnBS: '0 0 20px #0892D0, 0 0 15px #0892D0, 0 0 10px #0892D0, 0 0 5px #0892D0, 0 0 2px #0892D0, inset 0 0 5px 0 #0892D0',
+      columnDragBorder: '#0892D0',
+      deleteLinkHover: '#a80b0b',
+      editorBG: '#ededed',
+      editorColor: '#c0c0c0',
+      fieldBG: '#ededed',
+      fieldColor: '#062333',
+      fieldShadow: 'inset 3px 3px 2px 0 #666, inset -3px -3px 2px 0 #fff',
+      fieldShine: 'inset 3px 3px 2px 0 #fff, inset -3px -3px 2px 0 #666, inset -1px -1px 1px 0 #062333',
+      headingColor: '#d7d7d7',
+      homeBannerBG: '#ededed',
+      homeBannerColor: '#062333',
+      inlineEditorBG: `linear-gradient(#d7d7d7, #062333)`,
+      itemBG: '#d7d7d7',
+      itemColor: '#062333',
+      itemDragBG:'#87b3b0',
+      links: '#87b3b0',
+      linkHover: '#0892D0',
+      mainColor: '#d7d7d7',
+      midGrey: '#b3b3b3',
+      modalBG: '#ededed',
+      modalColor: '#062333',
+      pageBG: '#062333',
+      pageBGLite: '#17303d',
+      projectItemBG: '#062333',
+      projectItemColor: '#d7d7d7',
+      titleColor: '#ededed',
    }
 }

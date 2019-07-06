@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-d
 import { connect } from 'react-redux';
 import DragEnd from './Apps/DragonWriter/components/DragEnd';
 import Landing from './Apps/Portfolio/pages/Landing';
-import DragonWriter from './Apps/DragonWriter/pages/DragonWriter';
-import DragonProject from './Apps/DragonWriter/pages/DragonProject';
+import DragonWriter from './Apps/DragonWriter/pages/Home';
+import DragonProject from './Apps/DragonWriter/pages/Project';
 
 import { login } from './redux/actions/auth_actions';
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Themes } from '../../../styles/Themes';
 import Resume from '../components/Resume';
 import Hello from '../components/Hello';
 import Projects from '../components/Projects';
@@ -19,19 +20,21 @@ const ScrollContainer = styled.div`
 `;
 
 const Landing = () => (
-   <PageContainer className="plain-page">
-      <Resume />
+   <ThemeProvider theme={Themes.portfolio}>
+      <PageContainer className="plain-page">
+         <Resume />
 
-      <ScrollContainer className="thing">
+         <ScrollContainer className="thing">
 
-         <Hello id="about" className="about-me-wrap" />
+            <Hello id="about" className="about-me-wrap" />
 
-         <Projects id="projects" />
+            <Projects id="projects" />
 
-         <AboutMe />
+            <AboutMe />
 
-      </ScrollContainer>
-   </PageContainer>
+         </ScrollContainer>
+      </PageContainer>
+   </ThemeProvider>
 );
 
 export default Landing;
