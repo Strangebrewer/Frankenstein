@@ -5,6 +5,7 @@ import DragEnd from './Apps/DragonWriter/components/DragEnd';
 import Landing from './Apps/Portfolio/pages/Landing';
 import DragonWriter from './Apps/DragonWriter/pages/Home';
 import DragonProject from './Apps/DragonWriter/pages/Project';
+import Storyboard from './Apps/DragonWriter/pages/Storyboard';
 
 import { login } from './redux/actions/auth_actions';
 
@@ -34,6 +35,11 @@ class App extends Component {
                      <Route exact path="/dragon-writer/:project">
                         {routeProps => (
                            <DragonProject {...routeProps} {...dragProps} />
+                        )}
+                     </Route>
+                     <Route exact path="/dragon-writer/:project/storyboard">
+                        {routeProps => (
+                           <Storyboard {...routeProps} {...dragProps} />
                         )}
                      </Route>
                   </Switch>
