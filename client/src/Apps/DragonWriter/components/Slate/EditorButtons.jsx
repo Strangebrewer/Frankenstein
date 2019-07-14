@@ -148,7 +148,6 @@ const EditorButtons = props => {
       {renderMarkButton('blue', 'palette')}
       {renderMarkButton('yellow', 'palette')}
       {renderMarkButton('green', 'palette')}
-      {renderMarkButton('purple', 'palette')}
       {renderMarkButton('strikethrough', 'strikethrough')}
       {renderMarkButton('code', 'code')}
       {renderBlockButton('heading-one', 'heading')}

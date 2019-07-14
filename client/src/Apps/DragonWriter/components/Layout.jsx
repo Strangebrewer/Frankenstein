@@ -29,7 +29,7 @@ export const Sidebar = styled.section`
 export const Content = styled.section`
    background: ${props => props.test ? '#ff993312' : 'transparent'};
    display: flex;
-   flex: 1 0 auto;
+   flex: 1 1 auto;
 `;
 
 class Layout extends Component {

@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import styled, { ThemeProvider } from 'styled-components';
 import { Themes } from '../../../styles/Themes';
 import { PageContainer, Main, Sidebar, Content } from '../components/Layout';
+import EditorLogic from '../components/Slate/EditorLogic';
+import NewTextEditor from '../components/Slate/NewTextEditor';
+import { FullText } from '../components/Dragons/FullText';
 
 import texts from '../utils/texts.json';
 
-class Storyboard extends Component {
+class ReadMode extends Component {
    render() {
       return (
          <ThemeProvider theme={Themes.dragons}>
@@ -40,15 +43,17 @@ class Storyboard extends Component {
                   </Sidebar>
 
                   <Content>
-                     <PanelContainer>
-                        {texts.map(text => (
-                           <Panel>
-                              <h3>{text.title}</h3>
-                              {text.img && <img src={text.img} />}
-                              <p>{text.subtitle}</p>
-                           </Panel>
-                        ))}
-                     </PanelContainer>
+                     <TextColumn>
+                        <DragonTextList>
+                           {texts.map((text, index) => (
+                              <FullText
+                                 key={index}
+                                 text={text}
+                                 index={index}
+                              />
+                           ))}
+                        </DragonTextList>
+                     </TextColumn>
                   </Content>
 
                   <Sidebar></Sidebar>
@@ -56,28 +61,11 @@ class Storyboard extends Component {
                <Footer></Footer>
             </PageContainer>
          </ThemeProvider>
-      );
+      )
    }
 }
 
-export default Storyboard;
-
-const LinkContainer = styled.div`
-   padding-bottom: 15px;
-   text-align: center;
-   > button {
-      background: transparent;
-      border: none;
-      border-right: 1px solid white;
-      color: white;
-      cursor: pointer;
-      font-family: ${props => props.theme.font_opensans};
-      outline: transparent;
-   }
-   > button:last-of-type {
-      border-right: none;
-   }
-`;
+export default ReadMode;
 
 const Header = styled.header`
    text-align: center;
@@ -118,6 +106,7 @@ const SidebarLeft = styled.section`
 const ContentHeader = styled.header`
    font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
    font-size: 3rem;
+   height: 65px;
    line-height: 1.2;
    background: ${props => props.test ? '#4666ff15' : 'transparent'};
    text-align: center;
@@ -137,75 +126,35 @@ const Footer = styled.footer`
    }
 `;
 
-const PanelContainer = styled.div`
-   background: transparent;
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(200px, 280px));
-   grid-template-rows: minmax(200px, 280px);
-   height: 100%;
-   width: 100%;
-   button {
-      justify-self: end;
+const LinkContainer = styled.div`
+   padding-bottom: 15px;
+   text-align: center;
+   > button {
+      background: transparent;
+      border: none;
+      border-right: 1px solid white;
+      color: white;
+      cursor: pointer;
+      font-family: ${props => props.theme.font_opensans};
+      outline: transparent;
+   }
+   > button:last-of-type {
+      border-right: none;
    }
 `;
 
-const Panel = styled.div`
-   background: rgba(255, 255, 255, 0.333);
-   border-radius: 2px;
+const TextColumn = styled.div`
    display: flex;
-   height: 260px;
-   margin: 0 10px 10px 10px;
-   padding: 10px;
+   flex-direction: column;
+   padding: 10px 30px;
+   /* width: 100%; */
+   min-height: 100vh;
+   /* max-width: 1500px */
+`;
+
+const DragonTextList = styled.div`
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
    position: relative;
-   width: 260px;
-   img {
-      align-self: center;
-      border: 1px solid black;
-      margin: auto;
-      max-width: 100%;
-      max-height: 100%;
-   }
-   h3, p {
-      color: ${props => props.theme.mainColor};
-      font-family: ${props => props.theme.hTypeface};
-      margin: auto;
-      opacity: 0.1;
-      padding: 0 35px;
-      position: absolute;
-      right: 0;
-      left: 0;
-      text-align: center;
-      text-shadow: 0 0 1px ${props => props.theme.pageBG},
-      0 0 2px ${props => props.theme.pageBG},
-      0 0 3px ${props => props.theme.pageBG},
-      0 0 4px ${props => props.theme.pageBG},
-      0 0 5px ${props => props.theme.pageBG},
-      0 0 10px ${props => props.theme.black},
-      0 0 15px ${props => props.theme.black},
-      0 0 25px ${props => props.theme.black};
-      transition: opacity .2s ease-in-out;
-   }
-   h3 {
-      cursor: grab;
-      font-family: ${props => props.theme.hTypeface};
-      font-size: 2.8rem;
-      font-weight: bold;
-      top: 10px;
-   }
-   h3:active {
-      cursor: grabbing;
-   }
-   p {
-      bottom: 10px;
-      font-family: ${props => props.theme.typeface};
-      font-size: 1.5rem;
-   }
-   &:hover {
-      h3, p, button, .fa-arrows-alt {
-         opacity: 1;
-      }
-      button:disabled {
-         opacity: 0.6;
-      }
-   }
 `;

@@ -4,6 +4,7 @@ import { Editor } from 'slate-react';
 import { plugins } from './utils/HotKeys';
 import { renderMark, renderNode } from './utils/Renderers';
 import EditorButtons from './EditorButtons';
+import { EditorStyles } from "./Styles";
 
 const NewTextEditor = props => {
 
@@ -77,31 +78,29 @@ const NewTextEditor = props => {
 export default NewTextEditor;
 
 const EditorContainer = styled.div`
-   width: 680px;
-   height: 400px;
    margin: 50px;
 `;
 
-const EditorStyles = styled.div`
-   width: 100%;
-   height: 100%;
-   border: 1px solid black;
-   overflow-y: scroll;
-   background: tan;
-   > div {
-      width: 580px;
-      height: 800px;
-      margin: 25px auto;
-      box-shadow: 6px 6px 3px #333;
-      background: white;
-      display: flex;
-      > div {
-         width: calc(100% - 150px);
-         height: calc(100% - 150px);
-         margin: auto;
-      }
-   }
-`;
+// const EditorStyles = styled.div`
+//    width: 100%;
+//    height: 100%;
+//    border: 1px solid black;
+//    overflow-y: scroll;
+//    background: tan;
+//    > div {
+//       width: 580px;
+//       height: 800px;
+//       margin: 25px auto;
+//       box-shadow: 6px 6px 3px #333;
+//       background: white;
+//       display: flex;
+//       > div {
+//          width: calc(100% - 150px);
+//          height: calc(100% - 150px);
+//          margin: auto;
+//       }
+//    }
+// `;
 
 const SaveButtons = styled.div`
    margin: 5px 0;
