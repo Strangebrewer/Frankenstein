@@ -10,7 +10,6 @@ class User {
 
    async login(req_body) {
       const { username, password } = req_body;
-
       const response = await this.User.findOne({ username });
 
       if (!response)
@@ -47,7 +46,7 @@ class User {
 
       return { token, user };
    }
-
+   
    async updateUser(req_body, req_user) {
       if (req_body.username && req_body.username !== req_user.username) {
          this.validateUsername(req_body.username);

@@ -8,25 +8,25 @@ import { renderMark, renderNode } from "../Slate/utils/Renderers";
 import initialValue from "../Slate/utils/value.json";
 import { getInitialText } from "../Slate/utils/initial_text.js";
 
-export const FullText = props => {
+const FullText = props => {
 
    const schema = {
-     document: {
-       last: { type: 'paragraph' },
-       normalize: (editor, { code, node, child }) => {
-         switch (code) {
-           case 'last_child_type_invalid': {
-             const paragraph = Block.create('paragraph');
-             return editor.insertNodeByKey(node.key, node.nodes.size, paragraph);
-           }
+      document: {
+         last: { type: 'paragraph' },
+         normalize: (editor, { code, node, child }) => {
+            switch (code) {
+               case 'last_child_type_invalid': {
+                  const paragraph = Block.create('paragraph');
+                  return editor.insertNodeByKey(node.key, node.nodes.size, paragraph);
+               }
+            }
+         },
+      },
+      blocks: {
+         image: {
+            isVoid: true,
          }
-       },
-     },
-     blocks: {
-       image: {
-         isVoid: true,
-       }
-     }
+      }
    }
 
    const { index, text } = props;
@@ -53,6 +53,8 @@ export const FullText = props => {
       </Container>
    )
 }
+
+export default FullText;
 
 const addedStyles = {
    backgroundColor: "rgba(38, 212, 204, 0.067)",

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import { sign } from '../passport';
 const Schema = mongoose.Schema;
 
 const tempPw = bcrypt.hashSync('1234', bcrypt.genSaltSync(10), null);
@@ -12,4 +13,6 @@ const UserSchema = new Schema({
    last_name: String
 }, { timestamps: true });
 
-export default mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+
+export default User;

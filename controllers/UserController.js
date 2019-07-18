@@ -32,9 +32,9 @@ export async function register(req, res) {
 }
 
 export async function login(req, res) {
-   console.log('Happening Two!');
    try {
       const response = await user_model.login(req.body);
+
       const { _id, username, email, first_name, last_name } = response.user;
 
       const user = { _id, username, email, first_name, last_name };
@@ -54,7 +54,6 @@ export async function put(req, res) {
       const user = await user_model.updateUser(req.body, req.user);
       res.json(user);
    } catch (e) {
-      console.log('This is the shizzle');
       console.log(e);
       res.status(500).send({
          error: e.message
