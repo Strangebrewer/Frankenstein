@@ -6,6 +6,7 @@ import SidebarLeftMenu from '../components/Elements/SidebarLeftMenu';
 import MainHeader from '../components/Elements/MainHeader';
 import ContentHeader from '../components/Elements/ContentHeader';
 import Footer from '../components/Elements/Footer';
+import MainDropzone from '../components/Dragons/MainDropzone';
 
 import subjects from '../utils/subjects.json';
 
@@ -21,9 +22,11 @@ const Project = props => {
             </Sidebar>
 
             <Content>
-               {subjects.map((subject, index) => (
-                  <Column key={index} subject={subject} />
-               ))}
+               <MainDropzone>
+                  {subjects.map((subject, index) => (
+                     <Column key={index} id={index} index={index} subject={subject} />
+                  ))}
+               </MainDropzone>
             </Content>
 
             <Sidebar></Sidebar>

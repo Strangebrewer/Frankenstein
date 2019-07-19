@@ -1,13 +1,26 @@
 import React from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
 const Text = props => {
 
    return (
-      <TextContainer>
-         <h2>{props.text.title}</h2>
-         <p>{props.text.subtitle}</p>
-      </TextContainer>
+      <Draggable
+         draggableId={props.id + 1}
+         index={props.id}
+      >
+         {(provided, snapshot) => (
+            <TextContainer
+               {...provided.draggableProps}
+               ref={provided.innerRef}
+               isDragging={snapshot.isDragging}
+               {...provided.dragHandleProps}
+            >
+               <h2>{props.text.title}</h2>
+               <p>{props.text.subtitle}</p>
+            </TextContainer>
+         )}
+      </Draggable>
    );
 
 }
@@ -37,8 +50,8 @@ const TextContainer = styled.div`
    width: 100%;
    &:hover {
       background: ${props => (
-         props.published ? "rgba(255, 255, 255, 0.36)" : "rgba(22, 136, 130, 0.55)"
-      )};
+      props.published ? "rgba(255, 255, 255, 0.36)" : "rgba(22, 136, 130, 0.55)"
+   )};
    }
    > h2 {
       font-family: ${props => props.theme.font_playfair};

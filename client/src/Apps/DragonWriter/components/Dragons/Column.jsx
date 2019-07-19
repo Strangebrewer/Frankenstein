@@ -1,24 +1,45 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import Text from './Text';
 
 import texts from '../../utils/texts.json';
 
-const Column = props => {
+class Column extends PureComponent {
 
-   return (
-      <ColumnContainer>
-         <ColumnHeader>
-            <h2>{props.subject.subject}</h2>
-            <p>{props.subject.thesis}</p>
-         </ColumnHeader>
+   render() {
+      return (
+         <Draggable draggableId={this.props.id + 1} index={this.props.id + 1}>
+            {(provided, snapshot) => (
+               <ColumnContainer
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  ref={provided.innerRef}
+                  isDragging={snapshot.isDragging}
+                  isDraggingOver={snapshot.draggingOver}
+               >
+                  <ColumnHeader>
+                     <h2>{this.props.subject.subject}</h2>
+                     <p>{this.props.subject.thesis}</p>
+                  </ColumnHeader>
 
-         <TextContainer>
-            {texts.map((text, index) => <Text key={index} text={text} />)}
-         </TextContainer>
-      </ColumnContainer>
-   );
-
+                  <Droppable droppableId={this.props.id + 10} type="text">
+                     {(provided, snapshot) => (
+                        <TextContainer
+                           ref={provided.innerRef}
+                           {...provided.droppableProps}
+                           isDraggingOver={snapshot.isDraggingOver}
+                        >
+                           {texts.map((text, index) => <Text {...provided} key={index} text={text} index={index} id={index} />)}
+                           {provided.placeholder}
+                        </TextContainer>
+                     )}
+                  </Droppable>
+               </ColumnContainer>
+            )}
+         </Draggable>
+      );
+   }
 }
 
 export default Column;

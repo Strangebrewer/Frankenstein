@@ -3,7 +3,6 @@
    "version": "1.0.0",
    "description": "Portfolio - collection of all my apps",
    "main": "index.js",
-   "proxy": "http://localhost:8080/",
    "scripts": {
       "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
       "start:prod": "node index.js",
