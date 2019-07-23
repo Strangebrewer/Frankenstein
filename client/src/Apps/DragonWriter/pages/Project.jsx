@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import { Main, Sidebar, Content } from '../components/Layout';
 import Page from '../components/Elements/Page';
 import Column from '../components/Dragons/Column';
@@ -7,34 +8,61 @@ import MainHeader from '../components/Elements/MainHeader';
 import ContentHeader from '../components/Elements/ContentHeader';
 import Footer from '../components/Elements/Footer';
 import MainDropzone from '../components/Dragons/MainDropzone';
+import { getAllSubjects } from '../../../redux/actions/dragon_writer/subject_actions';
+import { getAllTexts } from '../../../redux/actions/dragon_writer/text_actions';
 
-import subjects from '../utils/subjects.json';
+class Project extends PureComponent {
 
-const Project = props => {
-   return (
-      <Page>
-         <MainHeader />
-         <ContentHeader />
+   componentDidMount() {
+      const { project_id } = this.props.location.state;
+      this.props.getAllSubjects(project_id);
+      this.props.getAllTexts(project_id);
+   }
 
-         <Main>
-            <Sidebar>
-               <SidebarLeftMenu />
-            </Sidebar>
 
-            <Content>
-               <MainDropzone>
-                  {subjects.map((subject, index) => (
-                     <Column key={index} id={index} index={index} subject={subject} />
-                  ))}
-               </MainDropzone>
-            </Content>
+   render() {
+      return (
+         <Page>
+            <MainHeader />
+            <ContentHeader />
 
-            <Sidebar></Sidebar>
-         </Main>
+            <Main>
+               <Sidebar>
+                  <SidebarLeftMenu />
+               </Sidebar>
 
-         <Footer />
-      </Page>
-   );
+               <Content>
+                  <MainDropzone>
+                     {this.props.subjects.map((subject, index) => {
+                        return <Column key={index} id={index} index={index} subject={subject} />
+                     })}
+                  </MainDropzone>
+               </Content>
+
+               <Sidebar></Sidebar>
+            </Main>
+
+            <Footer />
+         </Page>
+      );
+   }
 }
 
-export default Project;
+function mapStateToProps(state) {
+   return {
+      subjects: state.subjects
+   }
+}
+
+function mapDispatchToProps(dispatch) {
+   return {
+      getAllSubjects: project_id => {
+         dispatch(getAllSubjects(project_id));
+      },
+      getAllTexts: project_id => {
+         dispatch(getAllTexts(project_id));
+      }
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Project);

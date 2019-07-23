@@ -5,8 +5,10 @@ import isAuthenticated from '../../policies/isAuthenticated';
 import * as SubjectController from '../../controllers/DragonWriter/SubjectController';
 
 router.route('/')
-   .get(isAuthenticated, SubjectController.index)
    .post(isAuthenticated, SubjectController.post);
+
+router.route('/all/:project_id')
+   .get(isAuthenticated, SubjectController.index);
 
 router.route('/:id')
    .get(isAuthenticated, SubjectController.index)

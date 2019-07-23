@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const Project = props => {
+
+   console.log('project props:::', props);
    return (
       <Container>
          <Buttons>
@@ -12,9 +14,12 @@ const Project = props => {
             <button><i className="fas fa-alicorn" /></button>
          </Buttons>
 
-         <Link to={`/dragon-writer/${props.project.url}`}>
+         <Link to={{
+            pathname: `/dragon-writer/${props.project.link}`,
+            state: { project_id: props.project._id }
+         }}>
             <h2>{props.project.title}</h2>
-            <p>{props.project.subtitle}</p>
+            <p>{props.project.summary}</p>
          </Link>
       </Container>
    );

@@ -1,15 +1,14 @@
 import React, { PureComponent } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Text from './Text';
-
-import texts from '../../utils/texts.json';
 
 class Column extends PureComponent {
 
    render() {
       return (
-         <Draggable draggableId={this.props.id + 1} index={this.props.id + 1}>
+         <Draggable draggableId={this.props.subject._id} index={this.props.index}>
             {(provided, snapshot) => (
                <ColumnContainer
                   {...provided.draggableProps}
@@ -20,17 +19,20 @@ class Column extends PureComponent {
                >
                   <ColumnHeader>
                      <h2>{this.props.subject.subject}</h2>
-                     <p>{this.props.subject.thesis}</p>
+                     <p>{this.props.subject.theme}</p>
                   </ColumnHeader>
 
-                  <Droppable droppableId={this.props.id + 10} type="text">
+                  <Droppable droppableId={this.props.subject._id} type="text">
                      {(provided, snapshot) => (
                         <TextContainer
                            ref={provided.innerRef}
                            {...provided.droppableProps}
                            isDraggingOver={snapshot.isDraggingOver}
                         >
-                           {texts.map((text, index) => <Text {...provided} key={index} text={text} index={index} id={index} />)}
+                           {this.props.texts.map((text, index) => {
+                              if (text.subjectId === this.props.subject._id)
+                                 return <Text {...provided} key={text._id} text={text} index={index} />
+                           })}
                            {provided.placeholder}
                         </TextContainer>
                      )}
@@ -40,9 +42,22 @@ class Column extends PureComponent {
          </Draggable>
       );
    }
+
 }
 
-export default Column;
+function mapStateToProps(state) {
+   return {
+      texts: state.texts
+   }
+}
+
+function mapDispatchToProps(dispatch) {
+   return {
+
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Column);
 
 const ColumnContainer = styled.div`
    background: ${props => (

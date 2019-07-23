@@ -24,7 +24,7 @@ const projectSchema = new Schema({
      type: Schema.Types.ObjectId,
      ref: "Text"
    }],
-   order: String
+   subject_order: String
  },
    {
      timestamps: true

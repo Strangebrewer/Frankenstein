@@ -1,15 +1,13 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Project from './Project';
-
-import projects from '../../utils/projects.json';
 
 const ProjectList = props => {
 
    return (
       <Container>
-         {projects.map((project, index) => (
+         {props.projects.map((project, index) => (
             <Project key={index} project={project} />
          ))}
       </Container>
@@ -17,7 +15,19 @@ const ProjectList = props => {
 
 }
 
-export default ProjectList;
+function mapStateToProps(state) {
+   return {
+      projects: state.projects
+   }
+}
+
+function mapDispatchToProps(dispatch) {
+   return {
+
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);
 
 const Container = styled.div`
    margin: auto;

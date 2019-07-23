@@ -13,6 +13,7 @@ const subjectSchema = new Schema({
    publicId: String,
    subject: String,
    theme: String,
+   text_order: String,
    texts: [{
       type: Schema.Types.ObjectId,
       ref: "Text"

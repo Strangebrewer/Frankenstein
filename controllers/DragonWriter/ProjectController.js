@@ -5,7 +5,8 @@ const project_model = new Project(ProjectSchema);
 
 export async function index(req, res) {
    try {
-
+      const projects = await ProjectSchema.find({ userId: req.user._id });
+      res.json(projects);
    } catch (e) {
       console.log(e);
       res.status(500).send({
@@ -16,7 +17,7 @@ export async function index(req, res) {
 
 export async function post(req, res) {
    try {
-      
+
    } catch (e) {
       console.log(e);
       res.status(500).send({
@@ -27,7 +28,7 @@ export async function post(req, res) {
 
 export async function put(req, res) {
    try {
-      
+
    } catch (e) {
       console.log(e);
       res.status(500).send({
@@ -38,7 +39,7 @@ export async function put(req, res) {
 
 export async function remove(req, res) {
    try {
-      
+
    } catch (e) {
       console.log(e);
       res.status(500).send({

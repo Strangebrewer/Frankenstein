@@ -6,6 +6,7 @@ const Container = styled.div`
   background: transparent;
   display: flex;
   height: calc(100%);
+  max-width: 100%;
   overflow: auto;
   position: relative;
   flex: 1 0 auto;

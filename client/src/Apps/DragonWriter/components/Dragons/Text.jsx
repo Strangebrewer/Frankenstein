@@ -6,8 +6,8 @@ const Text = props => {
 
    return (
       <Draggable
-         draggableId={props.id + 1}
-         index={props.id}
+         draggableId={props.text._id}
+         index={props.index}
       >
          {(provided, snapshot) => (
             <TextContainer
@@ -17,7 +17,7 @@ const Text = props => {
                {...provided.dragHandleProps}
             >
                <h2>{props.text.title}</h2>
-               <p>{props.text.subtitle}</p>
+               <p>{props.text.thesis}</p>
             </TextContainer>
          )}
       </Draggable>

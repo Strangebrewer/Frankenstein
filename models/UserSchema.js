@@ -10,7 +10,12 @@ const UserSchema = new Schema({
    password: { type: String, required: true, default: tempPw },
    email: String,
    first_name: String,
-   last_name: String
+   last_name: String,
+   project_order: String,
+   projects: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Project'
+   }]
 }, { timestamps: true });
 
 const User = mongoose.model('User', UserSchema);

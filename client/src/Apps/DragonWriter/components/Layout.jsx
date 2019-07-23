@@ -11,7 +11,7 @@ export const PageContainer = styled.div`
      linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
      url('/static/assets/images/background-two.jpg');
    background-repeat: repeat;
-   background-attachment: fixed;
+   /* background-attachment: fixed; */
    font-family: ${props => props.theme.font_opensans};
 `;
 
@@ -30,6 +30,7 @@ export const Content = styled.section`
    background: ${props => props.test ? '#ff993312' : 'transparent'};
    display: flex;
    flex: 1 0 auto;
+   max-width: ${props => `calc(100vw - ${props.theme.sidebar_width} - ${props.theme.sidebar_width})`};
 `;
 
 class Layout extends Component {

@@ -6,9 +6,9 @@ import project_routes from './project';
 import subject_routes from './subject';
 import image_routes from './image';
 
-router.use('/text', text_routes);
-router.use('/project', project_routes);
-router.use('/subject', subject_routes);
-router.use('/image', image_routes);
+router.use('/texts', text_routes);
+router.use('/projects', project_routes);
+router.use('/subjects', subject_routes);
+router.use('/images', image_routes);
 
 export default router;

@@ -20,7 +20,7 @@ export default ContentHeader;
 const Header = styled.header`
    font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
    font-size: 3rem;
-   height: 65px;
+   min-height: 65px;
    line-height: 1.2;
    background: ${props => props.test ? '#4666ff15' : 'transparent'};
    text-align: center;
