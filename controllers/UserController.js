@@ -51,6 +51,10 @@ export async function login(req, res) {
 
 export async function put(req, res) {
    try {
+      if (req.body.project_order) {
+         req.body.project_order = JSON.stringify(req.body.project_order);
+      }
+      console.log('req.body:::', req.body);
       const user = await user_model.updateUser(req.body, req.user);
       res.json(user);
    } catch (e) {

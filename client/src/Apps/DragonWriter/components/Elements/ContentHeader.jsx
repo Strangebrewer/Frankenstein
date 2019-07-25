@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ContentHeader = props => {
+const ContentHeader = React.memo(props => {
    return (
       <Header>
-         <h2>Narfing for Biscuits!</h2>
-         <h3>Thoughts &amp; Ideas</h3>
+         <h2>{props.title}</h2>
+         <h3>{props.summary}</h3>
          <LinkContainer>
             <button>overview</button>
             <button>full text view</button>
@@ -13,7 +13,7 @@ const ContentHeader = props => {
          </LinkContainer>
       </Header>
    )
-}
+});
 
 export default ContentHeader;
 

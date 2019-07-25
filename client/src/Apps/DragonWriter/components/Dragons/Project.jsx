@@ -1,29 +1,46 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
-const Project = props => {
+const Project = React.memo(props => {
 
-   console.log('project props:::', props);
+   const { project } = props;
+   const { _id, link, summary, title } = project;
+   console.log('project:::', project);
+   
    return (
-      <Container>
-         <Buttons>
-            <button><i className="fab fa-accessible-icon" /></button>
-            <button><i className="fab fa-500px" /></button>
-            <button><i className="far fa-alarm-clock" /></button>
-            <button><i className="fas fa-alicorn" /></button>
-         </Buttons>
+      <Draggable
+         draggableId={_id}
+         index={props.index}
+      >
+         {(provided, snapshot) => (
+            <Container
+               {...provided.draggableProps}
+               {...provided.dragHandleProps}
+               ref={provided.innerRef}
+               isDragging={snapshot.isDragging}
+            >
+               <Buttons>
+                  <button><i className="fab fa-accessible-icon" /></button>
+                  <button><i className="fab fa-500px" /></button>
+                  <button><i className="far fa-alarm-clock" /></button>
+                  <button><i className="fas fa-alicorn" /></button>
+               </Buttons>
 
-         <Link to={{
-            pathname: `/dragon-writer/${props.project.link}`,
-            state: { project_id: props.project._id }
-         }}>
-            <h2>{props.project.title}</h2>
-            <p>{props.project.summary}</p>
-         </Link>
-      </Container>
+               <Link to={{
+                  pathname: `/dragon-writer/${link}`,
+                  state: { project }
+               }}>
+                  <h2>{title}</h2>
+                  <p>{summary}</p>
+               </Link>
+            </Container>
+         )}
+      </Draggable>
    );
-}
+
+});
 
 export default Project;
 

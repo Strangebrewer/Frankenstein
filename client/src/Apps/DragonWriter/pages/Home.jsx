@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import { getAllProjects } from '../../../redux/actions/dragon_writer/project_actions';
+import { getAllSubjects } from '../../../redux/actions/dragon_writer/subject_actions';
+import { getAllTexts } from '../../../redux/actions/dragon_writer/text_actions';
 
 import { Main, Content } from '../components/Layout';
 import Page from '../components/Elements/Page';
@@ -11,10 +13,6 @@ import Footer from '../components/Elements/Footer';
 import ProjectList from '../components/Dragons/ProjectList';
 
 class DragonWriter extends React.PureComponent {
-
-   componentDidMount() {
-      this.props.getAllProjects();
-   }
 
    render() {
       return (
@@ -34,11 +32,12 @@ class DragonWriter extends React.PureComponent {
          </Page>
       );
    }
+   
 }
 
 function mapStateToProps(state) {
    return {
-      
+      user: state.user
    }
 }
 
@@ -46,6 +45,12 @@ function mapDispatchToProps(dispatch) {
    return {
       getAllProjects: () => {
          dispatch(getAllProjects());
+      },
+      getAllSubjects: () => {
+         dispatch(getAllSubjects());
+      },
+      getAllTexts: () => {
+         dispatch(getAllTexts());
       }
    }
 }

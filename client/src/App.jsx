@@ -10,11 +10,17 @@ import ReadMode from './Apps/DragonWriter/pages/ReadMode';
 import Storyboard from './Apps/DragonWriter/pages/Storyboard';
 
 import { login } from './redux/actions/auth_actions';
+import { getAllProjects } from './redux/actions/dragon_writer/project_actions';
+import { getAllSubjects } from './redux/actions/dragon_writer/subject_actions';
+import { getAllTexts } from './redux/actions/dragon_writer/text_actions';
 
 class App extends Component {
 
    componentDidMount() {
       this.props.login({ username: "Narf", password: '1234' });
+      this.props.getAllProjects();
+      this.props.getAllSubjects();
+      this.props.getAllTexts();
    }
 
    render() {
@@ -77,6 +83,15 @@ function mapDispatchToProps(dispatch) {
    return {
       login: ccredentials => {
          dispatch(login(ccredentials));
+      },
+      getAllProjects: () => {
+         dispatch(getAllProjects());
+      },
+      getAllSubjects: () => {
+         dispatch(getAllSubjects());
+      },
+      getAllTexts: () => {
+         dispatch(getAllTexts());
       }
    }
 }

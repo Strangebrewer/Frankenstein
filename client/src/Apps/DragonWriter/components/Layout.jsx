@@ -31,6 +31,8 @@ export const Content = styled.section`
    display: flex;
    flex: 1 0 auto;
    max-width: ${props => `calc(100vw - ${props.theme.sidebar_width} - ${props.theme.sidebar_width})`};
+   /* border: 1px solid red; */
+   margin: auto;
 `;
 
 class Layout extends Component {

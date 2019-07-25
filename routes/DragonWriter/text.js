@@ -5,9 +5,7 @@ import isAuthenticated from '../../policies/isAuthenticated';
 import * as TextController from '../../controllers/DragonWriter/TextController';
 
 router.route('/')
-   .post(isAuthenticated, TextController.post);
-
-router.route('/all/:project_id')
+   .post(isAuthenticated, TextController.post)
    .get(isAuthenticated, TextController.index);
 
 router.route('/:id')

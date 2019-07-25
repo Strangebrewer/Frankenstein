@@ -1,3 +1,5 @@
 
 
-can't yet get App.jsx talking to the backend yet. Figure that out...
+Set up drag n drop lists to order using order fields from the db
+
+Figure out how to get Project.jsx (the page) to update when subject order updates...

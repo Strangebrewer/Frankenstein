@@ -1,49 +1,50 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Text from './Text';
 
-class Column extends PureComponent {
+const Column = React.memo(props => {
 
-   render() {
-      return (
-         <Draggable draggableId={this.props.subject._id} index={this.props.index}>
-            {(provided, snapshot) => (
-               <ColumnContainer
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                  ref={provided.innerRef}
-                  isDragging={snapshot.isDragging}
-                  isDraggingOver={snapshot.draggingOver}
-               >
-                  <ColumnHeader>
-                     <h2>{this.props.subject.subject}</h2>
-                     <p>{this.props.subject.theme}</p>
-                  </ColumnHeader>
+   const { subject, texts } = props;
+   const { text_order } = subject;
+   const ready_check = !!Object.keys(texts).length && text_order;
+   
+   return (
+      <Draggable draggableId={props.subject._id} index={props.index}>
+         {(provided, snapshot) => (
+            <ColumnContainer
+               {...provided.draggableProps}
+               {...provided.dragHandleProps}
+               ref={provided.innerRef}
+               isDragging={snapshot.isDragging}
+               isDraggingOver={snapshot.draggingOver}
+            >
+               <ColumnHeader>
+                  <h2>{subject.subject}</h2>
+                  <p>{subject.theme}</p>
+               </ColumnHeader>
 
-                  <Droppable droppableId={this.props.subject._id} type="text">
-                     {(provided, snapshot) => (
-                        <TextContainer
-                           ref={provided.innerRef}
-                           {...provided.droppableProps}
-                           isDraggingOver={snapshot.isDraggingOver}
-                        >
-                           {this.props.texts.map((text, index) => {
-                              if (text.subjectId === this.props.subject._id)
-                                 return <Text {...provided} key={text._id} text={text} index={index} />
-                           })}
-                           {provided.placeholder}
-                        </TextContainer>
-                     )}
-                  </Droppable>
-               </ColumnContainer>
-            )}
-         </Draggable>
-      );
-   }
-
-}
+               <Droppable droppableId={subject._id} type="text">
+                  {(provided, snapshot) => (
+                     <TextContainer
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                        isDraggingOver={snapshot.isDraggingOver}
+                     >
+                        {ready_check && text_order.map((text_id, index) => {
+                           const text = texts[text_id];
+                           return <Text {...provided} key={text._id} text={text} index={index} />
+                        })}
+                        {provided.placeholder}
+                     </TextContainer>
+                  )}
+               </Droppable>
+            </ColumnContainer>
+         )}
+      </Draggable>
+   );
+});
 
 function mapStateToProps(state) {
    return {
