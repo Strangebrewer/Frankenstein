@@ -23,7 +23,6 @@ export function login(credentials, history) {
    return function (dispatch) {
       AuthAPI.login(credentials)
          .then(user => {
-            console.log('user:::', user);
             dispatch({ type: Auth.AUTHENTICATED });
             localStorage.setItem('token', user.data.token);
             dispatch({

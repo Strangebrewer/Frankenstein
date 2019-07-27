@@ -38,7 +38,6 @@ class DragEnd extends PureComponent {
    }
 
    render() {
-      console.log('DRAG END RENDERING!');
       return (
          <DragDropContext onDragEnd={this.onDragEnd}>
             {this.props.children({

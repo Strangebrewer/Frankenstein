@@ -1,15 +1,12 @@
 import * as Auth from '../../action_types/auth_types';
 
 export function projectReducer(state = [], action) {
-   console.log('action:::', action);
    switch (action.type) {
       case 'SET_ALL_PROJECTS':
          return { ...action.payload };
       case 'SET_PROJECT_ORDER':
          return { ...state, project_order: action.payload };
       case 'SET_SUBJECT_ORDER':
-         console.log('project_reducer state:::', state);
-         console.log('project_reducer action:::', action);
          return {
             ...state,
             [action.payload.project_id]: {
@@ -17,7 +14,18 @@ export function projectReducer(state = [], action) {
                 subject_order: action.payload.subject_order
              }
          };
-         return state;
+      default: return state;
+   }
+}
+
+export function currentProjectReducer(state = '', action) {
+   switch (action.type) {
+      case 'SET_CURRENT_PROJECT':
+         return { ...action.payload };
+      case 'SET_SUBJECT_ORDER':
+         return { ...state, subject_order: action.payload.subject_order };
+      case 'SET_PROJECT_ORDER':
+         return action.payload;
       default: return state;
    }
 }

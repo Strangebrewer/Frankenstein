@@ -6,16 +6,14 @@ const project_model = new Project(ProjectSchema);
 
 export async function index(req, res) {
    try {
-      const projects = await ProjectSchema.find({ userId: req.user._id });
-      const user_response = await UserSchema.findById(req.user._id);
-      const user = user_response.toObject();
-      const project_object = { project_order: JSON.parse(user.project_order) };
-      for (let i = 0; i < projects.length; i++) {
-         const project = projects[i];
-         project_object[project._id] = project.toObject();
-         project_object[project._id].subject_order = JSON.parse(project.subject_order);
+      if (req.params.id) {
+         const project = await project_model.findOneProject(req.params.id);
+         res.json(project);
+         return;
       }
-      res.json(project_object);
+
+      const projects = await project_model.findProjects(req.user._id);
+      res.json(projects);
    } catch (e) {
       console.log(e);
       res.status(500).send({

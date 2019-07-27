@@ -5,8 +5,20 @@ export function getAllProjects() {
    return async dispatch => {
       try {
          const projects = await ProjectsAPI.getAllProjects();
-         console.log('projects:::', projects);
+         // console.log('projects:::', projects);
          dispatch({ type: 'SET_ALL_PROJECTS', payload: projects.data })
+      } catch (e) {
+         console.log('e:::', e);
+      }
+   }
+}
+
+export function getCurrentProject(project_id) {
+   return async dispatch => {
+      try {
+         const project = await ProjectsAPI.getCurrentProject(project_id);
+         console.log('project:::', project);
+         dispatch({ type: 'SET_CURRENT_PROJECT', payload: project.data });
       } catch (e) {
          console.log('e:::', e);
       }

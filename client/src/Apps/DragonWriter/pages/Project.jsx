@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Main, Sidebar, Content } from '../components/Layout';
@@ -9,38 +9,31 @@ import MainHeader from '../components/Elements/MainHeader';
 import ContentHeader from '../components/Elements/ContentHeader';
 import Footer from '../components/Elements/Footer';
 import MainDropzone from '../components/Dragons/MainDropzone';
-import { getAllSubjects } from '../../../redux/actions/dragon_writer/subject_actions';
-import { getAllTexts } from '../../../redux/actions/dragon_writer/text_actions';
+import { getCurrentProject } from '../../../redux/actions/dragon_writer/project_actions';
 import { ScaleLoader } from 'react-spinners';
 
-class Project extends PureComponent {
-
-   shouldComponentUpdate(nextProps) {
-      console.log('nextProps:::', nextProps);
-      return true;
-   }
+class Project extends Component {
 
    render() {
-      const { _id, title, summary, subject_order } = this.props.location.state.project;
-      const { subjects } = this.props;
-      const ready_check = !!Object.keys(subjects).length && subject_order;
-      
-      
+      const { subjects, projects } = this.props;
+      const base_project = this.props.location.state.project;
+      const project = projects[base_project._id];
+
       return (
          <Page>
             <MainHeader />
-            <ContentHeader title={title} summary={summary} />
+            <ContentHeader title={base_project.title} summary={base_project.summary} />
 
             <Main>
                <Sidebar>
                   <SidebarLeftMenu />
                </Sidebar>
 
-               <Content>
-                  {ready_check
+               <Content style={{ position: 'relative' }}>
+                  {project
                      ? (
-                        <MainDropzone id={_id}>
-                           {subject_order.map((subject_id, index) => {
+                        <MainDropzone id={project._id}>
+                           {project.subject_order.map((subject_id, index) => {
                               const subject = subjects[subject_id];
                               return <Column key={index} id={index} index={index} subject={subject} />
                            })}
@@ -70,22 +63,29 @@ class Project extends PureComponent {
 
 function mapStateToProps(state) {
    return {
+      projects: state.projects,
       subjects: state.subjects
    }
 }
 
 function mapDispatchToProps(dispatch) {
    return {
-      
+      getCurrentProject: project_id => {
+         dispatch(getCurrentProject(project_id));
+      }
    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Project);
 
 const LoadingContainer = styled.div`
+   background: #00000095;
    display: flex;
    justify-content: center;
-   align-items: top;
-   min-height: 50vh;
-   width: 100%;
+   align-items: center;
+   min-height: 100vh;
+   width: 100vw;
+   position: fixed;
+   top: 0;
+   left: 0;
 `;

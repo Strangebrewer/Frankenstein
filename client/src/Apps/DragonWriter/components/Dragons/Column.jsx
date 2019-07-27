@@ -7,11 +7,12 @@ import Text from './Text';
 const Column = React.memo(props => {
 
    const { subject, texts } = props;
+   console.log('props in COlumn:::', props);
    const { text_order } = subject;
    const ready_check = !!Object.keys(texts).length && text_order;
    
    return (
-      <Draggable draggableId={props.subject._id} index={props.index}>
+      <Draggable draggableId={subject._id} index={props.index}>
          {(provided, snapshot) => (
             <ColumnContainer
                {...provided.draggableProps}
@@ -71,7 +72,7 @@ const ColumnContainer = styled.div`
    box-shadow: 4px 4px 4px rgb(0,0,0);
    display: flex;
    flex-direction: column;
-   margin: 20px 10px 10px 10px;
+   margin: 0 10px;
    min-height: 600px;
    min-width: 300px;
    position: relative;

@@ -7,7 +7,7 @@ const Project = React.memo(props => {
 
    const { project } = props;
    const { _id, link, summary, title } = project;
-   console.log('project:::', project);
+   // console.log('project:::', project);
    
    return (
       <Draggable
@@ -30,7 +30,7 @@ const Project = React.memo(props => {
 
                <Link to={{
                   pathname: `/dragon-writer/${link}`,
-                  state: { project }
+                  state: { project: { _id: project._id, title: project.title, summary: project.summary } }
                }}>
                   <h2>{title}</h2>
                   <p>{summary}</p>
