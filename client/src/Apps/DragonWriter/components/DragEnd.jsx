@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { saveProjectOrder } from '../../../redux/actions/dragon_writer/project_actions';
 import { saveSubjectOrder } from '../../../redux/actions/dragon_writer/subject_actions';
+import { saveOneTextOrder, saveTwoTextOrders } from '../../../redux/actions/dragon_writer/text_actions';
 
 class DragEnd extends PureComponent {
    state = {};
 
-   onDragEnd = result => {
-      console.log('Drag end!');
-      console.log('result:::', result);
-      
+   onDragEnd = result => {      
       const { destination, source, draggableId, type } = result;
+      
       if (!destination) return;
       
       if (destination.droppableId === source.droppableId
@@ -35,6 +34,33 @@ class DragEnd extends PureComponent {
          this.props.saveSubjectOrder(project._id, new_subject_order);
          return;
       }
+
+      const start = this.props.subjects[source.droppableId];
+      const finish = this.props.subjects[destination.droppableId];
+
+      if (start === finish) {
+         const text_order = Array.from(start.text_order);
+         text_order.splice(source.index, 1);
+         text_order.splice(destination.index, 0, draggableId);
+         this.props.saveOneTextOrder(start._id, text_order);
+         return;
+      }
+
+      const start_text_order = Array.from(start.text_order);
+      start_text_order.splice(source.index, 1);
+
+      const finish_text_order = Array.from(finish.text_order);
+      finish_text_order.splice(destination.index, 0, draggableId);
+
+      const update_object = {
+         text_id: draggableId,
+         start_text_order,
+         finish_text_order,
+         start_id: start._id,
+         finish_id: finish._id
+      }
+
+      this.props.saveTwoTextOrders(update_object);
    }
 
    render() {
@@ -59,11 +85,17 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
    return {
-      saveProjectOrder: order => {
-         dispatch(saveProjectOrder(order));
+      saveProjectOrder: project_order => {
+         dispatch(saveProjectOrder(project_order));
       },
-      saveSubjectOrder: (project_id, order) => {
-         dispatch(saveSubjectOrder(project_id, order));
+      saveSubjectOrder: (project_id, subject_order) => {
+         dispatch(saveSubjectOrder(project_id, subject_order));
+      },
+      saveOneTextOrder: (subject_id, text_order) => {
+         dispatch(saveOneTextOrder(subject_id, text_order));
+      },
+      saveTwoTextOrders: update => {
+         dispatch(saveTwoTextOrders(update));
       }
    }
 }

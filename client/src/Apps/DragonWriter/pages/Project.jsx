@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Main, Sidebar, Content } from '../components/Layout';
@@ -9,14 +10,18 @@ import MainHeader from '../components/Elements/MainHeader';
 import ContentHeader from '../components/Elements/ContentHeader';
 import Footer from '../components/Elements/Footer';
 import MainDropzone from '../components/Dragons/MainDropzone';
-import { getCurrentProject } from '../../../redux/actions/dragon_writer/project_actions';
 import { ScaleLoader } from 'react-spinners';
 
 class Project extends Component {
 
    render() {
-      const { subjects, projects } = this.props;
-      const base_project = this.props.location.state.project;
+      const { state } = this.props.location;
+      if (!state) {
+         return <Redirect to="/dragon-writer" />
+      }
+
+      const { projects } = this.props;
+      const base_project = state.project;
       const project = projects[base_project._id];
 
       return (
@@ -34,8 +39,7 @@ class Project extends Component {
                      ? (
                         <MainDropzone id={project._id}>
                            {project.subject_order.map((subject_id, index) => {
-                              const subject = subjects[subject_id];
-                              return <Column key={index} id={index} index={index} subject={subject} />
+                              return <Column key={index} index={index} subject_id={subject_id} />
                            })}
                         </MainDropzone>
                      ) : (
@@ -63,16 +67,13 @@ class Project extends Component {
 
 function mapStateToProps(state) {
    return {
-      projects: state.projects,
-      subjects: state.subjects
+      projects: state.projects
    }
 }
 
 function mapDispatchToProps(dispatch) {
    return {
-      getCurrentProject: project_id => {
-         dispatch(getCurrentProject(project_id));
-      }
+
    }
 }
 

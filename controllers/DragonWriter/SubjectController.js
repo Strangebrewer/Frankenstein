@@ -35,7 +35,15 @@ export async function post(req, res) {
 
 export async function put(req, res) {
    try {
+      if (req.body.text_order) {
+         req.body.text_order = JSON.stringify(req.body.text_order);
+      }
+      console.log('req.body in subject controller put:::', req.body);
+      const subject = await SubjectSchema.findByIdAndUpdate(
+         req.params.id, req.body, { new: true }
+      )
 
+      res.json(subject);
    } catch (e) {
       console.log(e);
       res.status(500).send({

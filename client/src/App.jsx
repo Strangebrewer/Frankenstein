@@ -66,6 +66,7 @@ class App extends Component {
                         )}
                      </Route>
                   </Switch>
+                  }
                </Router>
             )}
          </DragEnd>
@@ -75,7 +76,10 @@ class App extends Component {
 
 function mapStateToProps(state) {
    return {
-      user: state.user
+      user: state.user,
+      projects: state.projects,
+      subjects: state.subjects,
+      texts: state.texts
    }
 }
 

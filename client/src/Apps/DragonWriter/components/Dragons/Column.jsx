@@ -6,13 +6,11 @@ import Text from './Text';
 
 const Column = React.memo(props => {
 
-   const { subject, texts } = props;
-   console.log('props in COlumn:::', props);
-   const { text_order } = subject;
-   const ready_check = !!Object.keys(texts).length && text_order;
+   const { subject_id, texts } = props;
+   const subject = props.subjects[subject_id];
    
    return (
-      <Draggable draggableId={subject._id} index={props.index}>
+      <Draggable draggableId={subject_id} index={props.index}>
          {(provided, snapshot) => (
             <ColumnContainer
                {...provided.draggableProps}
@@ -26,16 +24,16 @@ const Column = React.memo(props => {
                   <p>{subject.theme}</p>
                </ColumnHeader>
 
-               <Droppable droppableId={subject._id} type="text">
+               <Droppable droppableId={subject_id} type="text">
                   {(provided, snapshot) => (
                      <TextContainer
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                         isDraggingOver={snapshot.isDraggingOver}
                      >
-                        {ready_check && text_order.map((text_id, index) => {
+                        {subject.text_order && subject.text_order.map((text_id, index) => {
                            const text = texts[text_id];
-                           return <Text {...provided} key={text._id} text={text} index={index} />
+                           return <Text {...provided} key={text_id} text={text} index={index} />
                         })}
                         {provided.placeholder}
                      </TextContainer>
@@ -49,6 +47,7 @@ const Column = React.memo(props => {
 
 function mapStateToProps(state) {
    return {
+      subjects: state.subjects,
       texts: state.texts
    }
 }

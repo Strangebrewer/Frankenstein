@@ -7,15 +7,19 @@ export function getAllSubjects() {
          const response = await SubjectsAPI.getAllSubjects();
          dispatch({ type: 'SET_ALL_SUBJECTS', payload: response.data });
       } catch (e) {
-
+         console.log('e:::', e);
       }
    }
 }
 
 export function saveSubjectOrder(project_id, subject_order) {
-   return async dispatch => {
-      console.log('subject_order:::', subject_order);
-      dispatch({ type: 'SET_SUBJECT_ORDER', payload: { project_id, subject_order } });
-      ProjectsAPI.updateProject(project_id, { subject_order });
+   try {
+      return async dispatch => {
+         console.log('subject_order:::', subject_order);
+         dispatch({ type: 'SET_SUBJECT_ORDER', payload: { project_id, subject_order } });
+         ProjectsAPI.updateProject(project_id, { subject_order });
+      }
+   } catch (e) {
+      console.log('e:::', e);
    }
 }

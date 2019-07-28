@@ -38,7 +38,6 @@ export async function put(req, res) {
       if (req.body.subject_order) {
          req.body.subject_order = JSON.stringify(req.body.subject_order);
       }
-      console.log('req.body:::', req.body);
       const project = await ProjectSchema.findByIdAndUpdate(
          req.params.id, req.body, { new: true }
       );
