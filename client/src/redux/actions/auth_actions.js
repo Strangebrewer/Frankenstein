@@ -5,12 +5,12 @@ import AuthAPI from '../../api/Authentication';
 export function signup(signup_data, history) {
    return async dispatch => {
       try {
-         const user = await AuthAPI.signup(signup_data);
-         localStorage.setItem('token', user.data.token);
+         const response = await AuthAPI.signup(signup_data);
+         localStorage.setItem('token', response.data.token);
          dispatch({ type: Auth.AUTHENTICATED });
          dispatch({
             type: User.SET_CURRENT_USER,
-            payload: user.data.user
+            payload: response.data.user
          });
          // history.push('/home');
       } catch (e) {
@@ -19,27 +19,27 @@ export function signup(signup_data, history) {
    }
 }
 
-export function login(credentials, history) {
-   return function (dispatch) {
-      AuthAPI.login(credentials)
-         .then(user => {
-            dispatch({ type: Auth.AUTHENTICATED });
-            localStorage.setItem('token', user.data.token);
-            dispatch({
-               type: User.SET_CURRENT_USER,
-               payload: user.data.user
-            });
-            // history.push('/home');
-         })
-         .catch(err => {
-            console.log('error:::', err);
-            // adapt the payload to use the message passed from the backend.
-            dispatch({
-               type: Auth.AUTHENTICATION_ERROR,
-               payload: 'invalid username or password'
-            });
+export const login = (credentials) => dispatch => {
+   return new Promise(async (resolve, reject) => {
+      try {
+         const response = await AuthAPI.login(credentials);
+         localStorage.setItem('token', response.data.token);
+         dispatch({ type: Auth.AUTHENTICATED });
+         dispatch({ type: User.SET_CURRENT_USER, payload: response.data.user });
+         dispatch({ type: 'SET_ALL_TEXTS', payload: response.data.texts });
+         dispatch({ type: 'SET_ALL_SUBJECTS', payload: response.data.subjects });
+         dispatch({ type: 'SET_ALL_PROJECTS', payload: response.data.projects });
+         resolve(response);
+      } catch (e) {
+         console.log('error:::', e);
+         // adapt the payload to use the message passed from the backend.
+         dispatch({
+            type: Auth.AUTHENTICATION_ERROR,
+            payload: 'invalid username or password'
          });
-   }
+         reject(e);
+      }
+   });
 }
 
 export function logout() {

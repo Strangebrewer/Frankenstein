@@ -6,6 +6,7 @@ export const PageContainer = styled.div`
    display: flex;
    flex-direction: column;
    min-height: 100vh;
+   width: 100vw;
    color: #fff;
    background: linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
      linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),

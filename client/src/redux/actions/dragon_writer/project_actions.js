@@ -13,13 +13,13 @@ export function getAllProjects() {
 }
 
 export function saveProjectOrder(project_order) {
-   try {
-      return async dispatch => {
+   return async dispatch => {
+      try {
          console.log('project_order:::', project_order);
          dispatch({ type: 'SET_PROJECT_ORDER', payload: project_order });
          UserAPI.updateCurrentUser({ project_order });
+      } catch (e) {
+         console.log('e:::', e);
       }
-   } catch (e) {
-      console.log('e:::', e);
    }
 }

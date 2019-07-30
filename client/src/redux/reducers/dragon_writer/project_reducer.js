@@ -17,15 +17,3 @@ export function projectReducer(state = [], action) {
       default: return state;
    }
 }
-
-export function currentProjectReducer(state = '', action) {
-   switch (action.type) {
-      case 'SET_CURRENT_PROJECT':
-         return { ...action.payload };
-      case 'SET_SUBJECT_ORDER':
-         return { ...state, subject_order: action.payload.subject_order };
-      case 'SET_PROJECT_ORDER':
-         return action.payload;
-      default: return state;
-   }
-}

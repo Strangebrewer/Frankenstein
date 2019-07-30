@@ -66,11 +66,12 @@ class DragEnd extends PureComponent {
    render() {
       return (
          <DragDropContext onDragEnd={this.onDragEnd}>
-            {this.props.children({
-               // executeDragEndStateChanges: '',
-               // executeDragEndToggles: '',
-               // state: this.state
-            })}
+            {/* {this.props.children({
+               executeDragEndStateChanges: '',
+               executeDragEndToggles: '',
+               state: this.state
+            })} */}
+            {this.props.children}
          </DragDropContext>
       )
    }

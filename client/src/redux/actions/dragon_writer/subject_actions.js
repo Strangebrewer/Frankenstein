@@ -15,7 +15,6 @@ export function getAllSubjects() {
 export function saveSubjectOrder(project_id, subject_order) {
    try {
       return async dispatch => {
-         console.log('subject_order:::', subject_order);
          dispatch({ type: 'SET_SUBJECT_ORDER', payload: { project_id, subject_order } });
          ProjectsAPI.updateProject(project_id, { subject_order });
       }

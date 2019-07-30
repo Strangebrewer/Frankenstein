@@ -12,13 +12,16 @@ class User {
       const { username, password } = req_body;
       const response = await this.User.findOne({ username });
 
+         console.log('response 1:::', response);
+
       if (!response)
          throw new Error('That username does not exist.');
 
       const passwordValid = this.checkPassword(password, response.password);
       if (passwordValid) {
+         console.log('response 2:::', response);
+         const token = sign({ id: response._id, username: response.username });
          const { _id, email, first_name, last_name, username } = response;
-         const token = sign({ id: _id, username, });
          const user = { _id, email, first_name, last_name, username };
          return { token, user };
       } else {
@@ -28,9 +31,9 @@ class User {
 
    async register(req_body) {
       const { username, email } = req_body;
-      
+
       this.validateUsername(username);
-      this.checkUsernameAvailble(username);      
+      this.checkUsernameAvailble(username);
       this.validateEmail(email);
       this.checkEmailAvailable(email);
 
@@ -46,7 +49,7 @@ class User {
 
       return { token, user };
    }
-   
+
    async updateUser(req_body, req_user) {
       if (req_body.username && req_body.username !== req_user.username) {
          this.validateUsername(req_body.username);

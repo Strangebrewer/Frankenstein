@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { getAllProjects } from '../../../redux/actions/dragon_writer/project_actions';
-import { getAllSubjects } from '../../../redux/actions/dragon_writer/subject_actions';
-import { getAllTexts } from '../../../redux/actions/dragon_writer/text_actions';
-
 import { Main, Content } from '../components/Layout';
 import Page from '../components/Elements/Page';
 import Footer from '../components/Elements/Footer';
@@ -41,19 +37,7 @@ function mapStateToProps(state) {
    }
 }
 
-function mapDispatchToProps(dispatch) {
-   return {
-      getAllProjects: () => {
-         dispatch(getAllProjects());
-      },
-      getAllSubjects: () => {
-         dispatch(getAllSubjects());
-      },
-      getAllTexts: () => {
-         dispatch(getAllTexts());
-      }
-   }
-}
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DragonWriter);
 

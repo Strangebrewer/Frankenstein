@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Page from './Elements/Page';
 
 // Exported components - useful for layout
-export const PageContainer = styled.div`
-   display: flex;
-   flex-direction: column;
-   min-height: 100vh;
-   color: #fff;
-   background: linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
-     linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
-     url('/static/assets/images/background-two.jpg');
-   background-repeat: repeat;
-   /* background-attachment: fixed; */
-   font-family: ${props => props.theme.font_opensans};
-`;
-
 export const Main = styled.div`
    display: flex;
    flex: 1 0 auto;
@@ -38,7 +26,7 @@ export const Content = styled.section`
 class Layout extends Component {
    render() {
       return (
-         <PageContainer>
+         <Page>
             <Header>
                I am a header!
             </Header>
@@ -64,7 +52,7 @@ class Layout extends Component {
             <Footer>
                I am a footer!
             </Footer>
-         </PageContainer>
+         </Page>
       );
    }
 }
