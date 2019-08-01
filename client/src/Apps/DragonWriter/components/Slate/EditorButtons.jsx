@@ -47,120 +47,120 @@ const EditorBtn = styled.button`
 
 const EditorButtons = props => {
 
-  const renderMarkButton = (type, icon) => {
-    const isActive = props.hasMark(type);
-    let color;
-    if (type === 'red') color = '#bd0000';
-    if (type === 'blue') color = '#1111ff';
-    if (type === 'green') color = '#39ff14';
-    if (type === 'yellow') color = '#fffb00';
-    if (type === 'purple') color = '#660d8a';
+   const renderMarkButton = (type, icon) => {
+      const isActive = props.hasMark(type);
+      let color;
+      if (type === 'red') color = '#bd0000';
+      if (type === 'blue') color = '#1111ff';
+      if (type === 'green') color = '#39ff14';
+      if (type === 'yellow') color = '#fffb00';
+      if (type === 'purple') color = '#660d8a';
 
-    return (
-      <EditorBtn
-        inline={props.inline}
-        isActive={isActive}
-        style={{ color }}
-        key={`icon-${type}`}
-        onClick={() => props.onClickMark(type)}
-      >
-        <i className={`fas fa-${icon}`} />
-      </EditorBtn>
-    )
-  };
+      return (
+         <EditorBtn
+            inline={props.inline}
+            isActive={isActive}
+            style={{ color }}
+            key={`icon-${type}`}
+            onClick={() => props.onClickMark(type)}
+         >
+            <i className={`fas fa-${icon}`} />
+         </EditorBtn>
+      )
+   };
 
-  const renderBlockButton = (type, icon) => {
-    let isActive = props.hasBlock(type);
-    let span;
-    if (type.includes('one')) span = <span>&nbsp;1</span>;
-    if (type.includes('two')) span = <span>&nbsp;2</span>;
-    if (type.includes('three')) span = <span>&nbsp;3</span>;
+   const renderBlockButton = (type, icon) => {
+      let isActive = props.hasBlock(type);
+      let span;
+      if (type.includes('one')) span = <span>&nbsp;1</span>;
+      if (type.includes('two')) span = <span>&nbsp;2</span>;
+      if (type.includes('three')) span = <span>&nbsp;3</span>;
 
-    if (['numbered-list', 'bulleted-list'].includes(type)) {
-      const { value } = props.state;
-      let parent;
-      if (value.blocks.first())
-        parent = value.document.getParent(value.blocks.first().key);
-      isActive = props.hasBlock('list-item') && parent && parent.type === type;
-    }
+      if (['numbered-list', 'bulleted-list'].includes(type)) {
+         const { value } = props.state;
+         let parent;
+         if (value.blocks.first())
+            parent = value.document.getParent(value.blocks.first().key);
+         isActive = props.hasBlock('list-item') && parent && parent.type === type;
+      }
 
-    return (
-      <EditorBtn
-        inline={props.inline}
-        isActive={isActive}
-        key={`icon-${type}`}
-        onClick={() => props.onClickBlock(type)}
-      >
-        <i className={`fas fa-${icon}`} />
-        {span}
-      </EditorBtn>
-    )
-  };
+      return (
+         <EditorBtn
+            inline={props.inline}
+            isActive={isActive}
+            key={`icon-${type}`}
+            onClick={() => props.onClickBlock(type)}
+         >
+            <i className={`fas fa-${icon}`} />
+            {span}
+         </EditorBtn>
+      )
+   };
 
-  const renderLinkButton = (type, icon) => {
-    let isActive = props.hasLinks();
-    return (
-      <EditorBtn
-        inline={props.inline}
-        isActive={isActive}
-        key={`icon-${type}`}
-        onClick={props.onClickLink}
-      >
-        <i className={`fas fa-${icon}`} />
-      </EditorBtn>
-    )
-  }
+   const renderLinkButton = (type, icon) => {
+      let isActive = props.hasLinks();
+      return (
+         <EditorBtn
+            inline={props.inline}
+            isActive={isActive}
+            key={`icon-${type}`}
+            onClick={props.onClickLink}
+         >
+            <i className={`fas fa-${icon}`} />
+         </EditorBtn>
+      )
+   }
 
-  const renderImageLeftButton = (type, icon) => {
-    let isActive = props.hasBlock(type);
-    return (
-      <EditorBtn
-        inline={props.inline}
-        isActive={isActive}
-        key={`icon-${type}`}
-        onClick={() => props.onClickBlock(type)}
-      >
-        <i className="fas fa-arrow-left" /><i className={`far fa-image`} />
-      </EditorBtn>
-    )
-  }
+   const renderImageLeftButton = (type, icon) => {
+      let isActive = props.hasBlock(type);
+      return (
+         <EditorBtn
+            inline={props.inline}
+            isActive={isActive}
+            key={`icon-${type}`}
+            onClick={() => props.onClickBlock(type)}
+         >
+            <i className="fas fa-arrow-left" /><i className={`far fa-image`} />
+         </EditorBtn>
+      )
+   }
 
-  const renderImageRightButton = (type, icon) => {
-    let isActive = props.hasBlock(type);
-    return (
-      <EditorBtn
-        inline={props.inline}
-        isActive={isActive}
-        key={`icon-${type}`}
-        onClick={() => props.onClickBlock(type)}
-      >
-        <i className={`far fa-image`} /><i className="fas fa-arrow-right" />
-      </EditorBtn>
-    )
-  }
+   const renderImageRightButton = (type, icon) => {
+      let isActive = props.hasBlock(type);
+      return (
+         <EditorBtn
+            inline={props.inline}
+            isActive={isActive}
+            key={`icon-${type}`}
+            onClick={() => props.onClickBlock(type)}
+         >
+            <i className={`far fa-image`} /><i className="fas fa-arrow-right" />
+         </EditorBtn>
+      )
+   }
 
-  return (
-    <EditorBtnArray inline={props.inline} style={props.style}>
-      {renderMarkButton('bold', 'bold')}
-      {renderMarkButton('italic', 'italic')}
-      {renderMarkButton('underline', 'underline')}
-      {renderMarkButton('red', 'palette')}
-      {renderMarkButton('blue', 'palette')}
-      {renderMarkButton('yellow', 'palette')}
-      {renderMarkButton('green', 'palette')}
-      {renderMarkButton('strikethrough', 'strikethrough')}
-      {renderMarkButton('code', 'code')}
-      {renderBlockButton('heading-one', 'heading')}
-      {renderBlockButton('heading-two', 'heading')}
-      {renderBlockButton('heading-three', 'heading')}
-      {renderBlockButton('block-quote', 'quote-right')}
-      {renderBlockButton('numbered-list', 'list-ol')}
-      {renderBlockButton('bulleted-list', 'list-ul')}
-      {renderLinkButton('link', 'link')}
-      {renderImageLeftButton('image-left')}
-      {renderImageRightButton('image-right')}
-    </EditorBtnArray>
-  );
+   return (
+      <EditorBtnArray inline={props.inline} style={props.style}>
+         {renderMarkButton('bold', 'bold')}
+         {renderMarkButton('italic', 'italic')}
+         {renderMarkButton('underline', 'underline')}
+         {renderMarkButton('red', 'palette')}
+         {renderMarkButton('blue', 'palette')}
+         {renderMarkButton('yellow', 'palette')}
+         {renderMarkButton('green', 'palette')}
+         {renderMarkButton('strikethrough', 'strikethrough')}
+         {renderMarkButton('code', 'code')}
+         {renderBlockButton('heading-one', 'heading')}
+         {renderBlockButton('heading-two', 'heading')}
+         {renderBlockButton('heading-three', 'heading')}
+         {renderBlockButton('block-quote', 'quote-right')}
+         {renderBlockButton('numbered-list', 'list-ol')}
+         {renderBlockButton('bulleted-list', 'list-ul')}
+         {renderLinkButton('link', 'link')}
+         {renderImageLeftButton('image-left')}
+         {renderImageRightButton('image-right')}
+      </EditorBtnArray>
+   );
 }
 
 export default EditorButtons;

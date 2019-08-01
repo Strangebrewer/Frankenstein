@@ -96,6 +96,7 @@ function renderNode(props, editor, next) {
       case 'bulleted-list':
          return <ul {...attributes}>{children}</ul>
       case 'heading-one':
+         console.log('Heading One, Honky!');
          return <h1 style={{ fontSize: "30px", fontWeight: "bold" }} {...attributes}>{children}</h1>
       case 'heading-two':
          return <h2 style={{ fontSize: "25px", fontWeight: "bold" }} {...attributes}>{children}</h2>

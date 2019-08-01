@@ -42,7 +42,7 @@ class EditorLogic extends Component {
       this.setState({ value });
    };
 
-   ref = editor => this.editor = editor;
+   ref = editor => { this.editor = editor };
 
    isImage = url => !!imageExtensions.some(ext => url.includes(`.${ext}`));
 
@@ -151,6 +151,8 @@ class EditorLogic extends Component {
       const { value } = editor;
       const { document } = value;
 
+      console.log('editor:::', editor);
+
       // Handle everything but list buttons.
       if (type !== 'bulleted-list' && type !== 'numbered-list') {
          const isActive = this.hasBlock(type);
@@ -162,6 +164,7 @@ class EditorLogic extends Component {
                .setBlocks(isActive ? DEFAULT_NODE : type)
                .unwrapBlock('bulleted-list')
                .unwrapBlock('numbered-list');
+
          else if (hasImage)
             editor.setBlocks(isActive ? DEFAULT_NODE : type);
 
@@ -174,8 +177,11 @@ class EditorLogic extends Component {
                .wrapBlock(isActive ? DEFAULT_NODE : { type, data: { src, location } })
             // .unwrapBlock(DEFAULT_NODE)
          }
-         else
+
+         else {
+            console.log('type:::', type);
             editor.setBlocks(isActive ? DEFAULT_NODE : type);
+         }
 
       } else {
          // Handle the extra wrapping required for list buttons.

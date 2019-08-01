@@ -35,6 +35,8 @@ const Container = styled.div`
 
 const Panel = styled.div`
    background: rgba(255, 255, 255, 0.333);
+   border-left: 1px solid ${props => props.published ? 'rgb(18, 110, 106)' : 'rgb(255, 255, 255, 0.183)'};
+   border-top: 1px solid ${props => props.published ? 'rgb(22, 136, 130)' : 'rgb(255, 255, 255, 0.533)'};
    border-radius: 2px;
    display: flex;
    height: 260px;
@@ -44,7 +46,14 @@ const Panel = styled.div`
    width: 260px;
    img {
       align-self: center;
-      border: 1px solid black;
+      border: 2px solid black;
+      border-left: 1px solid ${props => (
+         props.published ? "rgba(255, 255, 255, 0.183)" : "rgb(18, 110, 106)"
+      )};
+      border-top: 1px solid ${props => (
+         props.published ? "rgba(255, 255, 255, 0.533)" : "rgb(22, 136, 130)"
+      )};
+      box-shadow: 2px 2px 5px rgb(5, 5, 5);
       margin: auto;
       max-width: 100%;
       max-height: 100%;

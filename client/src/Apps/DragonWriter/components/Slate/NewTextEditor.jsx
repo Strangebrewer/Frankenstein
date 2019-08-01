@@ -60,7 +60,7 @@ const NewTextEditor = props => {
                      renderNode={renderNode}
                      schema={props.schema}
                      tabIndex={4}
-                     style={{ height: '100%', width: '100%' }} // this makes the clickable space fill the container
+                     style={{ minHeight: '150vh', width: '100%' }} // this makes the clickable space fill the container
                   />
                </div>
             </div>
@@ -81,33 +81,13 @@ const EditorContainer = styled.div`
    margin: 50px;
 `;
 
-// const EditorStyles = styled.div`
-//    width: 100%;
-//    height: 100%;
-//    border: 1px solid black;
-//    overflow-y: scroll;
-//    background: tan;
-//    > div {
-//       width: 580px;
-//       height: 800px;
-//       margin: 25px auto;
-//       box-shadow: 6px 6px 3px #333;
-//       background: white;
-//       display: flex;
-//       > div {
-//          width: calc(100% - 150px);
-//          height: calc(100% - 150px);
-//          margin: auto;
-//       }
-//    }
-// `;
-
 const SaveButtons = styled.div`
-   margin: 5px 0;
+   margin: 15px 0 0 0;
    button {
       border-radius: 5px;
       background: lightgreen;
       border: 1px solid green;
+      box-shadow: 4px 4px 4px rgb(0,0,0);
       padding: 4px 10px;
       margin-right: 5px;
    }
