@@ -33,7 +33,7 @@ const projectSeed = [
       userId: '',
       title: "New Novel",
       link: "novel",
-      summary: "Write a novel, yo.",
+      subtitle: "Write a novel, yo.",
       subjects: [],
       texts: [],
       subject_order: '[]',
@@ -45,7 +45,7 @@ const projectSeed = [
       userId: '',
       title: "Journal",
       link: "journal",
-      summary: "Write my thoughts and experiences...",
+      subtitle: "Write my thoughts and experiences...",
       subjects: [],
       texts: [],
       subject_order: '[]',
@@ -57,7 +57,7 @@ const projectSeed = [
       userId: '',
       title: "To Do List",
       link: "todo",
-      summary: "A to-do list that's customizable and easy to use.",
+      subtitle: "A to-do list that's customizable and easy to use.",
       subjects: [],
       texts: [],
       subject_order: '[]',
@@ -69,20 +69,20 @@ const projectSeed = [
 
 const subjectSeed = [
    {
-      subject: "Scene Ideas",
-      theme: "Ideas for character development, plot progression, plot twists, revealing character traits, etc.",
+      title: "Scene Ideas",
+      subtitle: "Ideas for character development, plot progression, plot twists, revealing character traits, etc.",
       texts: [],
       text_order: '[]'
    },
    {
-      subject: "Philosophy",
-      theme: "Philosophical underpinnings of the story or of parts of the story.",
+      title: "Philosophy",
+      subtitle: "Philosophical underpinnings of the story or of parts of the story.",
       texts: [],
       text_order: '[]'
    },
    {
-      subject: "Story Snippets",
-      theme: "Pieces of writing that may or may not make it into the final story.",
+      title: "Story Snippets",
+      subtitle: "Pieces of writing that may or may not make it into the final story.",
       texts: [],
       text_order: '[]'
    },
@@ -123,25 +123,25 @@ const textStrings = [
 const textSeed = [
    {
       title: "This is a Text",
-      thesis: "This text is awesome!",
+      subtitle: "This text is awesome!",
       errant: false,
       text: buildText(0)
    },
    {
       title: "This also is a Text",
-      thesis: "This text is amazing!",
+      subtitle: "This text is amazing!",
       errant: false,
       text: buildText(1)
    },
    {
       title: "This Text lost its shoe and she don't know where she put it.",
-      thesis: "This text is sad!",
+      subtitle: "This text is sad!",
       errant: false,
       text: buildText(2)
    },
    {
       title: "This Text made me cry.",
-      thesis: "This text is a jerk!",
+      subtitle: "This text is a jerk!",
       errant: false,
       text: buildText(3)
    }

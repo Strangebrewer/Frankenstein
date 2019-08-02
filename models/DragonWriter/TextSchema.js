@@ -13,7 +13,7 @@ const textSchema = new Schema({
    publicId: String,
    text: { type: String, required: true },
    title: { type: String, required: true },
-   thesis: { type: String, required: true },
+   subtitle: { type: String, required: true },
    errant: { type: Boolean, default: true }
 },
    {

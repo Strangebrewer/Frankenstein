@@ -27,10 +27,9 @@ export default ReadModeColumn;
 const Column = styled.div`
    display: flex;
    flex-direction: column;
-   padding: 10px 30px;
-   /* width: 100%; */
-   min-height: 100vh;
-   /* max-width: 1500px */
+   padding: 10px 0;
+   min-height: 80vh;
+   max-width: 1300px
 `;
 
 const TextList = styled.div`

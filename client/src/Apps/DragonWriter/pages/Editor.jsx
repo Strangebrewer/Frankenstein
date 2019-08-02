@@ -7,6 +7,7 @@ import { EditorWrapper, Header } from '../components/Slate/Styles';
 
 class Editor extends Component {
    render() {
+   console.log('Editor Component this.props:::', this.props);
       return (
          <Page>
             <Main>
@@ -15,10 +16,10 @@ class Editor extends Component {
                <Content>
                   <EditorWrapper style={{ maxWidth: '1100px' }}>
                      <Header>
-                        <p>Create New Text</p>
+                        <p>New Text</p>
                      </Header>
 
-                     <EditorLogic>
+                     <EditorLogic project={this.props.project}>
                         {provided => (
                            <NewTextEditor {...provided} />
                         )}

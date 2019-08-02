@@ -61,13 +61,14 @@ class App extends Component {
                         })}
 
                         {this.props.projects.project_order.map((project_id, index) => {
-                           const link = this.props.projects[project_id].link;
+                           const project = this.props.projects[project_id];
+                           const { link } = project;
                            return (
                               <Route exact path={`/dragon-writer/${link}/editor`} key={index}>
                                  {routeProps => (
                                     <Editor
                                        {...routeProps}
-                                       project_id={project_id}
+                                       project={project}
                                     />
                                  )}
                               </Route>

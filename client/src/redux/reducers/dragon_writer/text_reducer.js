@@ -11,6 +11,11 @@ export function textReducer(state = [], action) {
                ...state[action.payload.text_id],
                subjectId: action.payload.finish_id
             }
+         };
+      case 'SAVE_NEW_TEXT':
+         return {
+            ...state,
+            [action.payload._id]: action.payload
          }
       default: return state;
    }

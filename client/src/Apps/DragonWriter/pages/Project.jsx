@@ -23,7 +23,7 @@ class Project extends Component {
 
             <Main>
                <Sidebar>
-                  <SidebarLeftMenu />
+                  <SidebarLeftMenu link={project.link} />
                </Sidebar>
 
                <Content style={{ position: 'relative' }}>

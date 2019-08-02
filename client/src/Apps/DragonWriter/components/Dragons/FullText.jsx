@@ -3,7 +3,7 @@ import { Editor } from "slate-react";
 import { Block, Selection, Value } from "slate";
 import styled from 'styled-components';
 import EditorButtons from "../Slate/EditorButtons";
-import { plugins } from "../Slate/utils/HotKeys";
+import { plugins } from "../Slate/utils/Plugins";
 import { renderMark, renderNode } from "../Slate/utils/Renderers";
 import initialValue from "../Slate/utils/value.json";
 import { getInitialText } from "../Slate/utils/initial_text.js";
@@ -44,8 +44,7 @@ const FullText = props => {
                key={text._id}
                index={index}
                readOnly
-               renderMark={renderMark}
-               renderNode={renderNode}
+               plugins={plugins}
                schema={schema}
                value={Value.fromJSON(thisValue)}
             />
@@ -56,14 +55,7 @@ const FullText = props => {
 
 export default FullText;
 
-const addedStyles = {
-   backgroundColor: "rgba(38, 212, 204, 0.067)",
-   color: "#bbb",
-   cursor: 'text'
-}
-
 const Container = styled.div`
-   /* background: ${props => props.isDragging && '#ffffff17'}; */
    border-top-left-radius: 10px;
    border-bottom-left-radius: 10px;
    display: flex;
@@ -73,22 +65,21 @@ const Container = styled.div`
    outline: transparent;
    position: relative;
    transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out;
-   /* max-width: 800px; */
 `;
 
 const MetaDataContainer = styled.div`
    max-width: 240px;
    min-width: 240px;
-   padding: 10px 30px 0 30px;
+   padding: 10px 15px 0 30px;
    text-align: right;
    h3 {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       font-weight: bold;
       line-height: 1;
       margin: 0;
    }
    p {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       line-height: 1;
       margin: 0;
       padding: 4px 0 6px 0;
@@ -97,21 +88,16 @@ const MetaDataContainer = styled.div`
 
 const EditorStyles = styled.div`
    background: ${props => props.isDragging ? '#ffffff17' : "#000000aa"};
-   /* background: #000000aa; */
    border: none;
-   /* border-radius: 8px; */
    box-shadow: none;
    color: ${props => props.theme.editorColor};
    font-family: Arial, Helvetica, sans-serif;
-   line-height: 1.4;
-   overflow: auto;
-   padding: 0 40px;
+   padding: 0 35px 0 40px;
    position: relative;
    transition: background-color .2s ease-in-out, height .4s ease-in-out;
    width: 100%;
    p {
-      font-size: 2.2rem;
-      font-family: Arial, Helvetica, sans-serif;
+      font-size: 2rem;
       margin: 0;
       text-indent: 25px;
    }

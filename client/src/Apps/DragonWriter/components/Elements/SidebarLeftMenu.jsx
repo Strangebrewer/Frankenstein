@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const SidebarLeftMenu = props => {
@@ -6,7 +7,7 @@ const SidebarLeftMenu = props => {
    return (
       <Container>
          <h2>
-            Columns <i className="fas fa-plus-circle" />
+            Columns <Link to={`/dragon-writer/${props.link}/editor`}><i className="fas fa-plus-circle" /></Link>
          </h2>
          <ul>
             <li>Thoughts &amp; Ideas</li>
@@ -28,7 +29,7 @@ const Container = styled.div`
       font-size: 2.4rem;
       font-family: ${props => props.theme.font_playfair};
       margin-bottom: 10px;
-      > i {
+      > a {
          color: #62c2ee ;
          cursor: pointer;
          font-size: 2rem;

@@ -15,7 +15,7 @@ const projectSchema = new Schema({
    midImage: String,
    thumbnail: String,
    publicId: String,
-   summary: String,
+   subtitle: String,
    subjects: [{
      type: Schema.Types.ObjectId,
      ref: "Subject"

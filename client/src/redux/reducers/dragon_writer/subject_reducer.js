@@ -24,6 +24,14 @@ export function subjectReducer(state = '', action) {
                text_order: action.payload.finish_text_order
             }
          }
+      case 'ADD_TEXT_TO_ORDER':
+         return {
+            ...state,
+            [action.payload.subject_id]: {
+               ...state[action.payload.subject_id],
+               
+            }
+         }
       default: return state;
    }
 }

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Editor } from 'slate-react';
-import { plugins } from './utils/HotKeys';
-import { renderMark, renderNode } from './utils/Renderers';
+import { plugins } from './utils/Plugins';
 import EditorButtons from './EditorButtons';
 import { EditorStyles } from "./Styles";
 
@@ -22,18 +21,33 @@ const NewTextEditor = props => {
    const saveAndClose = () => {
       if (saveType === 'create') {
          props.createText();
-         setSaveType('update');
+         this.close();
       } else {
          props.updateText();
+         this.close();
       }
    }
 
    const close = () => {
-      // passed in logic to close the editor and return to whatever page.
+      // logic to close the editor and return to whatever page.
    }
 
    return (
       <EditorContainer>
+         <div>
+            <label>Title</label>
+            <input type="text" value={props.title} name="title" onChange={props.handleInputChange}/>
+            <label>Subtitle</label>
+            <input type="text" value={props.subtitle} name="subtitle" onChange={props.handleInputChange}/>
+            <label>Subject</label>
+            <select name="subject" value={props.state.subject} onChange={props.handleInputChange}>
+               <option value="">Select a column:</option>
+               {props.state.subjects.map(subject => {
+                  const { _id } = subject;
+                  return <option key={_id} value={_id}>{subject.title}</option>
+               })}
+            </select>
+         </div>
          <EditorButtons
             inline={false}
             state={props.state}
@@ -56,8 +70,6 @@ const NewTextEditor = props => {
                      onChange={props.onChange}
                      onDrop={props.onDropOrPaste}
                      onPaste={props.onDropOrPaste}
-                     renderMark={renderMark}
-                     renderNode={renderNode}
                      schema={props.schema}
                      tabIndex={4}
                      style={{ minHeight: '150vh', width: '100%' }} // this makes the clickable space fill the container
@@ -78,7 +90,7 @@ const NewTextEditor = props => {
 export default NewTextEditor;
 
 const EditorContainer = styled.div`
-   margin: 50px;
+   margin: 0 50px 40px 50px;
 `;
 
 const SaveButtons = styled.div`

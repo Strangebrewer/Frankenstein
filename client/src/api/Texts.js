@@ -7,3 +7,7 @@ export function getAllTexts() {
 export function updateText(text_id, update) {
    return API().put(`/dragons/texts/${text_id}`, update);
 }
+
+export function saveNewText(text) {
+   return API().post(`/dragons/texts`, text);
+}

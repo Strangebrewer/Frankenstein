@@ -17,7 +17,7 @@ const Text = props => {
                {...provided.dragHandleProps}
             >
                <h2>{props.text.title}</h2>
-               <p>{props.text.thesis}</p>
+               <p>{props.text.subtitle}</p>
             </TextContainer>
          )}
       </Draggable>

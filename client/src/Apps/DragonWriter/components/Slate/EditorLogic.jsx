@@ -1,9 +1,11 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import { Block, Selection, Value } from "slate";
 import { getEventRange, getEventTransfer } from "slate-react";
 import imageExtensions from 'image-extensions';
 import isUrl from "is-url";
 import initialValue from "./utils/value.json";
+import { saveNewText } from '../../../../redux/actions/dragon_writer/text_actions';
 
 const DEFAULT_NODE = 'paragraph';
 
@@ -28,9 +30,12 @@ const schema = {
 
 class EditorLogic extends Component {
    state = {
+      _id: this.props._id || '',
       value: Value.fromJSON(this.props.text ? this.props.text : initialValue),
       title: this.props.title || '',
-      thesis: this.props.thesis || ''
+      subtitle: this.props.subtitle || '',
+      subjects: this.props.project.subjects.map((subject_id, index) => this.props.subjects[subject_id]),
+      subject: this.props.subject || ''
    };
 
    handleInputChange = event => {
@@ -151,8 +156,6 @@ class EditorLogic extends Component {
       const { value } = editor;
       const { document } = value;
 
-      console.log('editor:::', editor);
-
       // Handle everything but list buttons.
       if (type !== 'bulleted-list' && type !== 'numbered-list') {
          const isActive = this.hasBlock(type);
@@ -179,7 +182,6 @@ class EditorLogic extends Component {
          }
 
          else {
-            console.log('type:::', type);
             editor.setBlocks(isActive ? DEFAULT_NODE : type);
          }
 
@@ -208,10 +210,12 @@ class EditorLogic extends Component {
       }
    };
 
-   updateText = async id => {
+   updateText = async () => {
       const text_object = {
+         _id: this.state._id,
+         subject_id: this.state.subject,
          title: this.state.title,
-         thesis: this.state.thesis,
+         subtitle: this.state.subtitle,
          text: JSON.stringify(this.state.value.toJSON())
       }
       console.log('update text object:::', text_object);
@@ -219,11 +223,20 @@ class EditorLogic extends Component {
 
    createText = async () => {
       const text_object = {
+         projectId: this.props.project._id,
+         subjectId: this.state.subject,
          title: this.state.title,
-         thesis: this.state.thesis,
+         subtitle: this.state.subtitle,
          text: JSON.stringify(this.state.value.toJSON())
       }
+      console.log('this.props.project:::', this.props.project);
       console.log('create text object:::', text_object);
+      // call redux action, have it return the new text, and then setState with the _id of the new text
+      // it shouldn't rerender anything by doing that, so everything should still be in the fields and editor
+      // thus, you can keep on typing and saving for as long as you want
+      const text = await this.props.saveNewText(text_object);
+      console.log('text:::', text);
+      this.setState({ _id: text._id });
    };
 
    render() {
@@ -248,4 +261,14 @@ class EditorLogic extends Component {
    };
 }
 
-export default EditorLogic;
+function mapStateToProps(state) {
+   return {
+      subjects: state.subjects
+   }
+}
+
+const mapDispatchToProps = {
+   saveNewText
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditorLogic);

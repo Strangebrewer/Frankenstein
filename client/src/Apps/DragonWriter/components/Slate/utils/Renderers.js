@@ -23,7 +23,7 @@ const ImageFloat = styled.img`
    float: ${props => props.loc};
 `;
 
-function renderNode(props, editor, next) {
+export function renderNode(props, editor, next) {
    const { attributes, children, node, isFocused } = props;
 
    switch (node.type) {
@@ -111,7 +111,7 @@ function renderNode(props, editor, next) {
    }
 };
 
-function renderMark(props, editor, next) {
+export function renderMark(props, editor, next) {
    const { children, mark, attributes } = props;
    switch (mark.type) {
       case "red":
@@ -139,4 +139,4 @@ function renderMark(props, editor, next) {
    }
 };
 
-export { renderNode, renderMark };
+// export { renderNode, renderMark };

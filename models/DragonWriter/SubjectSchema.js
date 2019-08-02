@@ -11,8 +11,8 @@ const subjectSchema = new Schema({
    thumbnail: String,
    published: { type: Boolean, default: false },
    publicId: String,
-   subject: String,
-   theme: String,
+   title: String,
+   subtitle: String,
    text_order: String,
    texts: [{
       type: Schema.Types.ObjectId,

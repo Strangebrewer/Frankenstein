@@ -37,7 +37,7 @@ export const EditorStyles = styled.div`
    flex-grow: 1;
    font-family: Arial, Helvetica, sans-serif;
    line-height: 1.4;
-   height: 35vh;
+   height: 40vh;
    overflow: auto;
    padding: 4% 0;
    transition: background-color .2s ease-in-out;

@@ -20,8 +20,8 @@ const Column = React.memo(props => {
                isDraggingOver={snapshot.draggingOver}
             >
                <ColumnHeader>
-                  <h2>{subject.subject}</h2>
-                  <p>{subject.theme}</p>
+                  <h2>{subject.title}</h2>
+                  <p>{subject.subtitle}</p>
                </ColumnHeader>
 
                <Droppable droppableId={subject_id} type="text">

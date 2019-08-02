@@ -14,7 +14,7 @@ class Text {
          const text = texts[i];
          text_object[text._id] = text;
       }
-      
+
       return text_object;
    }
 }
