@@ -25,7 +25,14 @@ export function saveNewText(text) {
                //       subject_id: response.data.subjectId
                //    }
                // });
-               dispatch({ type: 'SET_ALL_SUBJECTS', payload: response.data.subjects });
+               // dispatch({ type: 'SET_ALL_SUBJECTS', payload: response.data.subjects });
+               dispatch({
+                  type: 'SET_ONE_TEXT_ORDER',
+                  payload: {
+                     subject_id: response.data.text.subjectId,
+                     text_order: response.data.text_order
+                  }
+               })
                deliver(response.data.text);
             })
             .catch(err => {

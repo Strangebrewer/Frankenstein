@@ -69,11 +69,9 @@ const ColumnContainer = styled.div`
    border-left: 1px solid ${props => props.published ? 'rgb(18, 110, 106)' : 'rgb(255, 255, 255, 0.183)'};
    border-top: 1px solid ${props => props.published ? 'rgb(22, 136, 130)' : 'rgb(255, 255, 255, 0.533)'};
    box-shadow: 4px 4px 4px rgb(0,0,0);
-   display: flex;
-   flex-direction: column;
    margin: 0 10px;
-   min-height: 600px;
-   min-width: 300px;
+   min-width: 320px;
+   max-width: 320px;
    position: relative;
    text-shadow: 2px 2px 2px rgb(0,0,0);
    width: ${props => props.theme.column_width};
@@ -81,18 +79,16 @@ const ColumnContainer = styled.div`
 
 const ColumnHeader = styled.div`
    position: absolute;
-   top: 20px;
    width: 100%;
    h2 {
       font-family: ${props => props.theme.font_playfair};
       font-size: 2.4rem;
       margin: 8px 0 2px 0;
       overflow: hidden;
-      padding: 10px 8px 5px 8px;
+      padding: 30px 20px 5px 20px;
       text-align: center;
       text-overflow: ellipsis;
       white-space: nowrap;
-      width: 300px;
    }
    p {
       border-top: 1px solid ${props => props.theme.mainColor};

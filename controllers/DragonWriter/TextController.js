@@ -1,8 +1,8 @@
 import Text from '../../models/DragonWriter/Text';
 import TextSchema from '../../models/DragonWriter/TextSchema';
-import Subject from './Subject';
-import SubjectSchema from './SubjectSchema';
-import ProjectSchema from './ProjectSchema';
+import Subject from '../../models/DragonWriter/Subject';
+import SubjectSchema from '../../models/DragonWriter/SubjectSchema';
+import ProjectSchema from '../../models/DragonWriter/ProjectSchema';
 
 const text_model = new Text(TextSchema);
 const subject_model = new Subject(SubjectSchema);
@@ -23,7 +23,7 @@ export async function post(req, res) {
    try {
       const { subjectId, projectId } = req.body;
       req.body.userId = req.user._id;
-      
+
       const text = await TextSchema.create(req.body);
 
       const subject = await SubjectSchema.findByIdAndUpdate(subjectId, {
@@ -33,14 +33,15 @@ export async function post(req, res) {
       const text_order = JSON.parse(subject.text_order);
       text_order.push(text._id);
 
-      await SubjectSchema.findByIdAndUpdate(subjectId, { text_order: JSON.stringify(text_order) });
-      const subjects = await subject_model.findSubjects(req.user._id);
+      const re_subject = await SubjectSchema.findByIdAndUpdate(subjectId, {
+         text_order: JSON.stringify(text_order)
+      }, { new: true });
 
       ProjectSchema.findByIdAndUpdate(projectId, {
          $push: { texts: text._id }
       }, { new: true });
 
-      const response = { subjects, text };
+      const response = { text, subject: re_subject, text_order };
 
       res.json(response);
    } catch (e) {

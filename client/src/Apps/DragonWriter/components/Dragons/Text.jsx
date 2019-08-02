@@ -47,7 +47,7 @@ const TextContainer = styled.div`
    padding: 20px;
    position: relative;
    transition: background-color .2s ease-in-out;
-   width: 100%;
+   /* width: 100%; */
    &:hover {
       background: ${props => (
       props.published ? "rgba(255, 255, 255, 0.36)" : "rgba(22, 136, 130, 0.55)"
