@@ -2,6 +2,7 @@ import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import ColumnButtons from './Elements/ColumnButtons';
 import Text from './Text';
 
 const Column = React.memo(props => {
@@ -19,6 +20,8 @@ const Column = React.memo(props => {
                isDragging={snapshot.isDragging}
                isDraggingOver={snapshot.draggingOver}
             >
+               <ColumnButtons subject_id={subject_id} />
+
                <ColumnHeader>
                   <h2>{subject.title}</h2>
                   <p>{subject.subtitle}</p>

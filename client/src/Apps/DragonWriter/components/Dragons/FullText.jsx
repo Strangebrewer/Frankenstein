@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 import { Editor } from "slate-react";
 import { Block, Selection, Value } from "slate";
 import styled from 'styled-components';
@@ -33,23 +34,35 @@ const FullText = props => {
    const thisValue = text.text ? getInitialText(text.text) : initialValue;
 
    return (
-      <Container>
-         <MetaDataContainer>
-            <h3>{text.title}</h3>
-            <p>{text.subtitle}</p>
-         </MetaDataContainer>
+      <Draggable draggableId={text._id} index={index}>
+         {(provided, snapshot) => (
+            <Container
+               {...provided.draggableProps}
+               ref={provided.innerRef}
+               isDragging={snapshot.isDragging}
+               {...provided.dragHandleProps}
+            >
+               <MetaDataContainer>
+                  <h3>{text.title}</h3>
+                  <p>{text.subtitle}</p>
+               </MetaDataContainer>
 
-         <EditorStyles>
-            <Editor
-               key={text._id}
-               index={index}
-               readOnly
-               plugins={plugins}
-               schema={schema}
-               value={Value.fromJSON(thisValue)}
-            />
-         </EditorStyles>
-      </Container>
+               <EditorStyles
+                  {...provided.dragHandleProps}
+                  isDragging={snapshot.isDragging}
+               >
+                  <Editor
+                     key={text._id}
+                     index={index}
+                     readOnly
+                     plugins={plugins}
+                     schema={schema}
+                     value={Value.fromJSON(thisValue)}
+                  />
+               </EditorStyles>
+            </Container>
+         )}
+      </Draggable>
    )
 }
 
