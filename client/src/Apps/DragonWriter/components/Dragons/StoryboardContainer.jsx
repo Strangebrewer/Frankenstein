@@ -1,25 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-
-import texts from '../../utils/texts.json';
 
 const StoryboardContainer = props => {
 
+   const subject = props.subjects[props.subjectId];
+   const { text_order } = subject;
+
    return (
       <Container>
-         {texts.map((text, index) => (
-            <Panel key={index}>
-               <h3>{text.title}</h3>
-               {text.img && <img src={text.img} />}
-               <p>{text.subtitle}</p>
-            </Panel>
-         ))}
+         {text_order.map((text_id, index) => {
+            const text = props.texts[text_id];
+            return (
+               <Panel key={index}>
+                  <h3>{text.title}</h3>
+                  {text.img && <img src={text.img} />}
+                  <p>{text.subtitle}</p>
+               </Panel>
+            )
+         })}
       </Container>
    );
 
 }
 
-export default StoryboardContainer;
+function mapStateToProps(state) {
+   return {
+      subjects: state.subjects,
+      texts: state.texts
+   }
+}
+
+function mapDispatchToProps(dispatch) {
+   return {
+
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoryboardContainer);
 
 const Container = styled.div`
    background: transparent;
@@ -48,11 +66,11 @@ const Panel = styled.div`
       align-self: center;
       border: 2px solid black;
       border-left: 1px solid ${props => (
-         props.published ? "rgba(255, 255, 255, 0.183)" : "rgb(18, 110, 106)"
-      )};
+      props.published ? "rgba(255, 255, 255, 0.183)" : "rgb(18, 110, 106)"
+   )};
       border-top: 1px solid ${props => (
-         props.published ? "rgba(255, 255, 255, 0.533)" : "rgb(22, 136, 130)"
-      )};
+      props.published ? "rgba(255, 255, 255, 0.533)" : "rgb(22, 136, 130)"
+   )};
       box-shadow: 2px 2px 5px rgb(5, 5, 5);
       margin: auto;
       max-width: 100%;

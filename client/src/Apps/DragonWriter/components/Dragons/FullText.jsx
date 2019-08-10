@@ -31,7 +31,9 @@ const FullText = props => {
    }
 
    const { index, text } = props;
-   const thisValue = text.text ? getInitialText(text.text) : initialValue;
+   const thisValue = text.text ? JSON.parse(text.text) : initialValue;
+
+   console.log('thisValue:::', thisValue);
 
    return (
       <Draggable draggableId={text._id} index={index}>
@@ -72,7 +74,6 @@ const Container = styled.div`
    border-top-left-radius: 10px;
    border-bottom-left-radius: 10px;
    display: flex;
-   margin: auto;
    min-height: 140px;
    min-width: 600px;
    outline: transparent;

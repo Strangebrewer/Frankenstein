@@ -20,7 +20,7 @@ const Column = React.memo(props => {
                isDragging={snapshot.isDragging}
                isDraggingOver={snapshot.draggingOver}
             >
-               <ColumnButtons subject_id={subject_id} />
+               <ColumnButtons subject_id={subject_id} title={subject.title} />
 
                <ColumnHeader>
                   <h2>{subject.title}</h2>
@@ -82,6 +82,7 @@ const ColumnContainer = styled.div`
 
 const ColumnHeader = styled.div`
    position: absolute;
+   top: 0;
    width: 100%;
    h2 {
       font-family: ${props => props.theme.font_playfair};
@@ -116,4 +117,9 @@ const TextContainer = styled.div`
    padding: 8px;
    padding-top: 136px;
    transition: box-shadow .2s ease-in-out;
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   min-height: 100%;
 `;

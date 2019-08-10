@@ -8,6 +8,9 @@ import Page from '../components/Elements/Page';
 import Footer from '../components/Elements/Footer';
 
 const Storyboard = props => {
+   
+   const { subject_id } = props.location.state;
+
    return (
       <Page>
          <MainHeader />
@@ -19,7 +22,7 @@ const Storyboard = props => {
             </Sidebar>
 
             <Content>
-               <StoryboardContainer />
+               <StoryboardContainer subjectId={subject_id} />
             </Content>
 
             <Sidebar></Sidebar>

@@ -5,11 +5,12 @@ const ContentHeader = React.memo(props => {
    return (
       <Header>
          <h2>{props.title}</h2>
-         <h3>{props.summary}</h3>
+         {props.summary ? <h3>{props.summary}</h3> : null}
          <LinkContainer>
             <button>overview</button>
-            <button>full text view</button>
-            <button>print view</button>
+            <button>full text</button>
+            <button>storyboard</button>
+            <button>print</button>
          </LinkContainer>
       </Header>
    )
@@ -32,6 +33,7 @@ const Header = styled.header`
 
 const LinkContainer = styled.div`
    padding-bottom: 15px;
+   margin-top: -5px;
    text-align: center;
    > button {
       background: transparent;
@@ -41,6 +43,8 @@ const LinkContainer = styled.div`
       cursor: pointer;
       font-family: ${props => props.theme.font_opensans};
       outline: transparent;
+      margin: 0;
+      padding: 0 10px;
    }
    > button:last-of-type {
       border-right: none;

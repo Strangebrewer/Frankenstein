@@ -8,10 +8,13 @@ import ContentHeader from '../components/Elements/ContentHeader';
 import Footer from '../components/Elements/Footer';
 
 const ReadMode = props => {
+
+   const { subject_id, title } = props.location.state;
+
    return (
       <Page>
          <MainHeader />
-         <ContentHeader />
+         <ContentHeader title={title} />
 
          <Main>
             <Sidebar>
@@ -19,7 +22,7 @@ const ReadMode = props => {
             </Sidebar>
 
             <Content>
-               <ReadModeColumn />
+               <ReadModeColumn subjectId={subject_id} title={title} />
             </Content>
 
             <Sidebar></Sidebar>
