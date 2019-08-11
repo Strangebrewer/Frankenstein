@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import FullText from './FullText';
 
-// import texts from '../../utils/texts.json';
-
 const ReadModeColumn = props => {
 
-   console.log('props:::', props);
    const subject = props.subjects[props.subject_id];
    const { text_order } = subject;
 

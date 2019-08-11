@@ -39,6 +39,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {};
 
+// Doesn't currently need access to the store, but may as things move along. Leave for now.
 export default connect(mapStateToProps, mapDispatchToProps)(DragonWriter);
 
 const Header = styled.header`

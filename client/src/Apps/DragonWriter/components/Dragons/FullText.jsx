@@ -33,8 +33,6 @@ const FullText = props => {
    const { index, text } = props;
    const thisValue = text.text ? JSON.parse(text.text) : initialValue;
 
-   console.log('thisValue:::', thisValue);
-
    return (
       <Draggable draggableId={text._id} index={index}>
          {(provided, snapshot) => (

@@ -1,29 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
-export default function (WrappedComponent) {
+export default function (WrappedComponent, passedProps) {
    class Authentication extends Component {
+
       componentWillMount() {
-         if (!this.props.authenticated) {
-            this.props.history.push('/signin');
-         }
+         const { required } = passedProps;
+         const { authenticated } = this.props;
+         if (required && !authenticated) this.props.history.push('/signin');
+         if (!required && authenticated) this.props.history.push('/');
       }
 
       componentWillUpdate(nextProps) {
-         if (!nextProps.authenticated) {
-            this.props.history.push('/signin');
-         }
-      }
-
-      PropTypes = {
-         router: PropTypes.object,
+         const { required } = passedProps;
+         const { authenticated } = nextProps;
+         if (required && !authenticated) this.props.history.push('/signin');
+         if (!required && authenticated) this.props.history.push('/');
       }
 
       render() {
-         return (
-            <WrappedComponent {...this.props} />
-         );
+         return <WrappedComponent {...this.props} {...passedProps} />;
       }
    }
 

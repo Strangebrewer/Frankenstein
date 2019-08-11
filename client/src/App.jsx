@@ -13,9 +13,7 @@ import Page from './Apps/DragonWriter/components/Elements/Page';
 import MainHeader from './Apps/DragonWriter/components/Elements/MainHeader';
 import Spinner from './Apps/DragonWriter/components/Elements/Spinner';
 
-import requireAuth from './utils/Authentication';
-import requireNotAuth from './utils/NotAuthentication';
-import addProps from './utils/AddPropsToRoute';
+import Authentication from './utils/Authentication';
 
 import { getCurrentUser, login } from './redux/actions/auth_actions';
 
@@ -41,8 +39,6 @@ class App extends Component {
 
       const { ready_check } = this.state;
 
-      // let ready_check = Object.keys(this.props.projects).length;
-
       return (
          <DragEnd>
             <Router>
@@ -63,50 +59,50 @@ class App extends Component {
                         </Route>
 
                         {this.props.projects.project_order.map((project_id, index) => {
-                           const link = this.props.projects[project_id].link;
+                           const { link } = this.props.projects[project_id];
                            return (
                               <Route
                                  exact
                                  key={index}
                                  path={`/dragon-writer/${link}`}
-                                 component={requireAuth(addProps(DragonProject, { project_id }))}
+                                 component={Authentication(DragonProject, { project_id, required: true })}
                               />
                            )
                         })}
 
                         {this.props.projects.project_order.map((project_id, index) => {
                            const project = this.props.projects[project_id];
-                           const project_link = project.link;
+                           const { link } = project
                            return (
                               <Route
                                  exact
                                  key={index}
-                                 path={`/dragon-writer/${project_link}/editor`}
-                                 component={requireAuth(addProps(Editor, { project, project_link }))}
+                                 path={`/dragon-writer/${link}/editor`}
+                                 component={Authentication(Editor, { project, link, required: true })}
                               />
                            )
                         })}
 
                         {this.props.projects.project_order.map((project_id, index) => {
-                           const project_link = this.props.projects[project_id].link;
+                           const { link } = this.props.projects[project_id];
                            return (
                               <Route
                                  exact
                                  key={index}
-                                 path={`/dragon-writer/${project_link}/readmode`}
-                                 component={requireAuth(addProps(ReadMode, { project_id, project_link }))}
+                                 path={`/dragon-writer/${link}/readmode`}
+                                 component={Authentication(ReadMode, { project_id, link })}
                               />
                            )
                         })}
 
                         {this.props.projects.project_order.map((project_id, index) => {
-                           const project_link = this.props.projects[project_id].link;
+                           const { link } = this.props.projects[project_id];
                            return (
                               <Route
                                  exact
                                  key={index}
-                                 path={`/dragon-writer/${project_link}/storyboard`}
-                                 component={requireAuth(addProps(Storyboard, { project_id, project_link }))}
+                                 path={`/dragon-writer/${link}/storyboard`}
+                                 component={Authentication(Storyboard, { project_id, link, required: true })}
                               />
                            )
                         })}

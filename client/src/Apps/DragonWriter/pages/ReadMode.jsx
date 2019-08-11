@@ -10,14 +10,14 @@ import Footer from '../components/Elements/Footer';
 
 const ReadMode = props => {
 
-   if (!props.location.state) return <Redirect to={`/dragon-writer/${props.project_link}`} />
+   if (!props.location.state) return <Redirect to={`/dragon-writer/${props.link}`} />
 
    const { subject_id, title } = props.location.state;
 
    return (
       <Page>
          <MainHeader />
-         <ContentHeader project_link={props.project_link} subject_id={subject_id} title={title} />
+         <ContentHeader link={props.link} subject_id={subject_id} title={title} />
 
          <Main>
             <Sidebar>
