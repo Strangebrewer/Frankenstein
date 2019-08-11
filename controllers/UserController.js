@@ -13,8 +13,9 @@ const subject_model = new Subject(SubjectSchema);
 const text_model = new Text(TextSchema);
 
 export async function getCurrentUser(req, res) {
+   console.log('req.user:::', req.user);
    try {
-      const response = await UserSchema.findById(req.user.id);
+      const response = await UserSchema.findById(req.user._id);
       
       const { _id, username, email, first_name, last_name } = response;
       const user = { _id, username, email, first_name, last_name };

@@ -1,6 +1,42 @@
 import * as Auth from '../action_types/auth_types';
-import * as User from '../action_types/user_types';
+import * as Misc from '../action_types/misc_types';
 import AuthAPI from '../../api/Authentication';
+
+export const getCurrentUser = () => dispatch => {
+   return new Promise(async (deliver, reneg) => {
+      try {
+         const response = await AuthAPI.getCurrentUser();
+         // dispatch({ type: Auth.TOGGLE_LOGGED_IN });
+         dispatch({ type: Auth.AUTHENTICATED });
+         dispatch({ type: Auth.SET_CURRENT_USER, payload: response.data.user });
+         dispatch({ type: 'SET_ALL_TEXTS', payload: response.data.texts });
+         dispatch({ type: 'SET_ALL_SUBJECTS', payload: response.data.subjects });
+         dispatch({ type: 'SET_ALL_PROJECTS', payload: response.data.projects });
+         // dispatch({ type: Misc.TOGGLE_LOADING });
+         deliver(response)
+      } catch (e) {
+         dispatch({ type: Auth.UNAUTHENTICATED });
+         reneg(e);
+      }
+   })
+}
+
+// export function getCurrentUser() {
+//    return async dispatch => {
+//       try {
+//          const response = await AuthAPI.getCurrentUser();
+//          // dispatch({ type: Auth.TOGGLE_LOGGED_IN });
+//          dispatch({ type: Auth.AUTHENTICATED });
+//          dispatch({ type: Auth.SET_CURRENT_USER, payload: response.data.user });
+//          dispatch({ type: 'SET_ALL_TEXTS', payload: response.data.texts });
+//          dispatch({ type: 'SET_ALL_SUBJECTS', payload: response.data.subjects });
+//          dispatch({ type: 'SET_ALL_PROJECTS', payload: response.data.projects });
+//          // dispatch({ type: Misc.TOGGLE_LOADING });
+//       } catch (e) {
+//          dispatch({ type: Auth.UNAUTHENTICATED });
+//       }
+//    }
+// }
 
 export function signup(signup_data, history) {
    return async dispatch => {
@@ -9,7 +45,7 @@ export function signup(signup_data, history) {
          localStorage.setItem('token', response.data.token);
          dispatch({ type: Auth.AUTHENTICATED });
          dispatch({
-            type: User.SET_CURRENT_USER,
+            type: Auth.SET_CURRENT_USER,
             payload: response.data.user
          });
          // history.push('/home');
@@ -25,7 +61,7 @@ export const login = (credentials) => dispatch => {
          const response = await AuthAPI.login(credentials);
          localStorage.setItem('token', response.data.token);
          dispatch({ type: Auth.AUTHENTICATED });
-         dispatch({ type: User.SET_CURRENT_USER, payload: response.data.user });
+         dispatch({ type: Auth.SET_CURRENT_USER, payload: response.data.user });
          dispatch({ type: 'SET_ALL_TEXTS', payload: response.data.texts });
          dispatch({ type: 'SET_ALL_SUBJECTS', payload: response.data.subjects });
          dispatch({ type: 'SET_ALL_PROJECTS', payload: response.data.projects });
