@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
-import { authReducer } from './auth_reducer';
+import { authReducer, userReducer } from './auth_reducer';
 import { imageReducer } from './dragon_writer/image_reducer'
 import { loadingReducer } from './misc_reducers';
 import { projectReducer } from './dragon_writer/project_reducer'
 import { subjectReducer } from './dragon_writer/subject_reducer'
 import { textReducer } from './dragon_writer/text_reducer'
-import { userReducer } from './user_reducer';
 import * as Auth from '../action_types/auth_types';
 
 const appReducer = combineReducers({
