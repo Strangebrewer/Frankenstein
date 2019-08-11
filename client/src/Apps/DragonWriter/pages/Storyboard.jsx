@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from "react-router-dom";
 import { Main, Sidebar, Content } from '../components/Layout';
 import StoryboardContainer from '../components/Dragons/StoryboardContainer';
 import SidebarLeftMenu from '../components/Elements/SidebarLeftMenu';
@@ -8,13 +9,18 @@ import Page from '../components/Elements/Page';
 import Footer from '../components/Elements/Footer';
 
 const Storyboard = props => {
-   
-   const { subject_id } = props.location.state;
+   console.log('Storyboard props:::', props);
+
+   if (!props.location.state) return <Redirect to={`/dragon-writer/${props.project_link}`} />
+
+   const { subject_id, title } = props.location.state;
+
+   console.log('props:::', props);
 
    return (
       <Page>
          <MainHeader />
-         <ContentHeader />
+         <ContentHeader project_link={props.project_link} subject_id={subject_id} title={title} />
 
          <Main>
             <Sidebar>
@@ -22,7 +28,7 @@ const Storyboard = props => {
             </Sidebar>
 
             <Content>
-               <StoryboardContainer subjectId={subject_id} />
+               <StoryboardContainer subject_id={subject_id} />
             </Content>
 
             <Sidebar></Sidebar>

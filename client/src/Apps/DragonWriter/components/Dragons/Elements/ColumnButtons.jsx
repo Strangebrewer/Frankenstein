@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import Icon from '../../Elements/Icon';
 
 const ColumnButtons = React.memo(props => {
-   const { subject_id, title } = props;
+   
+   const { project_link, subject_id, title } = props;
 
    return (
       <>
@@ -13,7 +14,7 @@ const ColumnButtons = React.memo(props => {
                <span className="column-btn-plus">+</span><i className="far fa-file-alt" />
             </Icon>
 
-            <Link to={{ pathname: "/dragon-writer/novel/readmode", state: { subject_id, title } }}>
+            <Link to={{ pathname: `/dragon-writer/${project_link}/readmode`, state: { subject_id, title } }}>
                <i className="fas fa-expand" />
             </Link>
 
@@ -29,7 +30,7 @@ const ColumnButtons = React.memo(props => {
                <i className="fas fa-upload" />
             </Icon>
 
-            <Link to={{ pathname: "/dragon-writer/novel/storyboard", state: { subject_id, title } }}>
+            <Link to={{ pathname: `/dragon-writer/${project_link}/storyboard`, state: { subject_id, title } }}>
                <i className="fas fa-th" />
             </Link>
 

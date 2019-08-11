@@ -20,7 +20,7 @@ const Column = React.memo(props => {
                isDragging={snapshot.isDragging}
                isDraggingOver={snapshot.draggingOver}
             >
-               <ColumnButtons subject_id={subject_id} title={subject.title} />
+               <ColumnButtons subject_id={subject_id} title={subject.title} project_link={props.project_link} />
 
                <ColumnHeader>
                   <h2>{subject.title}</h2>

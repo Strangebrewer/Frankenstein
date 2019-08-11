@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from "react-router-dom";
 import { Main, Sidebar, Content } from '../components/Layout';
 import Page from '../components/Elements/Page';
 import ReadModeColumn from '../components/Dragons/ReadModeColumn';
@@ -9,12 +10,14 @@ import Footer from '../components/Elements/Footer';
 
 const ReadMode = props => {
 
+   if (!props.location.state) return <Redirect to={`/dragon-writer/${props.project_link}`} />
+
    const { subject_id, title } = props.location.state;
 
    return (
       <Page>
          <MainHeader />
-         <ContentHeader title={title} />
+         <ContentHeader project_link={props.project_link} subject_id={subject_id} title={title} />
 
          <Main>
             <Sidebar>
@@ -22,7 +25,7 @@ const ReadMode = props => {
             </Sidebar>
 
             <Content>
-               <ReadModeColumn subjectId={subject_id} title={title} />
+               <ReadModeColumn subject_id={subject_id} title={title} />
             </Content>
 
             <Sidebar></Sidebar>

@@ -9,11 +9,11 @@ import FullText from './FullText';
 const ReadModeColumn = props => {
 
    console.log('props:::', props);
-   const subject = props.subjects[props.subjectId];
+   const subject = props.subjects[props.subject_id];
    const { text_order } = subject;
 
    return (
-      <Droppable droppableId={props.subjectId} type="text">
+      <Droppable droppableId={props.subject_id} type="text">
          {(provided, snapshot) => (
             <Column
                {...provided.droppableProps}

@@ -1,17 +1,22 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const ContentHeader = React.memo(props => {
+
+   const { overview, project_link, subject_id, summary, title } = props;
    return (
       <Header>
-         <h2>{props.title}</h2>
-         {props.summary ? <h3>{props.summary}</h3> : null}
-         <LinkContainer>
-            <button>overview</button>
-            <button>full text</button>
-            <button>storyboard</button>
-            <button>print</button>
-         </LinkContainer>
+         <h2>{title}</h2>
+         {summary ? <h3>{summary}</h3> : null}
+         {!overview && (
+            <LinkContainer>
+               <button><Link to={`/dragon-writer/${project_link}`}>overview</Link></button>
+               <button><Link to={{ pathname: `/dragon-writer/${project_link}/readmode`, state: { subject_id, title } }}>full text</Link></button>
+               <button><Link to={{ pathname: `/dragon-writer/${project_link}/storyboard`, state: { subject_id, title } }}>storyboard</Link></button>
+               <button><Link to={{ pathname: `/dragon-writer/${project_link}/print`, state: { subject_id, title } }}>print</Link></button>
+            </LinkContainer>
+         )}
       </Header>
    )
 });
@@ -21,7 +26,7 @@ export default ContentHeader;
 const Header = styled.header`
    font-family: 'Playfair Display SC', 'Times New Roman', Times, serif;
    font-size: 3rem;
-   min-height: 65px;
+   min-height: 75px;
    line-height: 1.2;
    background: ${props => props.test ? '#4666ff15' : 'transparent'};
    text-align: center;

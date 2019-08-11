@@ -19,17 +19,17 @@ class Project extends Component {
       return (
          <Page>
             <MainHeader />
-            <ContentHeader title={project.title} summary={project.summary} />
+            <ContentHeader overview title={project.title} summary={project.summary} />
 
             <Main>
                <Sidebar>
-                  <SidebarLeftMenu link={project.link} />
+                  <SidebarLeftMenu project_link={project.link} />
                </Sidebar>
 
                <Content style={{ position: 'relative' }}>
                   <MainDropzone id={project._id}>
                      {project.subject_order.map((subject_id, index) => {
-                        return <Column key={index} index={index} subject_id={subject_id} />
+                        return <Column key={index} index={index} subject_id={subject_id} project_link={project.link} />
                      })}
                   </MainDropzone>
                </Content>

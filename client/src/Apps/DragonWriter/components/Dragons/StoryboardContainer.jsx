@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const StoryboardContainer = props => {
 
-   const subject = props.subjects[props.subjectId];
+   const subject = props.subjects[props.subject_id];
    const { text_order } = subject;
 
    return (

@@ -16,21 +16,29 @@ import Spinner from './Apps/DragonWriter/components/Elements/Spinner';
 import { login } from './redux/actions/auth_actions';
 
 class App extends Component {
+   state = {
+      ready_check: 0
+   }
 
    async componentDidMount() {
       await this.props.login({ username: "Narf", password: '1234' });
+      setTimeout(() => {
+         this.setState({
+            // a new user with no projects will never trigger this to be truthy
+            // so, when ready, replace it with something that will allow for new users
+            ready_check: Object.keys(this.props.projects).length
+         })
+      }, 1500)
    }
 
    render() {
 
-      const ready_check = Object.keys(this.props.projects).length;
-
-      console.log('this.props:::', this.props);
+      // let ready_check = Object.keys(this.props.projects).length;
 
       return (
          <DragEnd>
             <Router>
-               {!ready_check
+               {!this.state.ready_check
                   ? (
                      <Page>
                         <MainHeader />
@@ -69,6 +77,7 @@ class App extends Component {
                                     <Editor
                                        {...routeProps}
                                        project={project}
+                                       project_link={link}
                                     />
                                  )}
                               </Route>
@@ -83,6 +92,7 @@ class App extends Component {
                                     <ReadMode
                                        {...routeProps}
                                        project_id={project_id}
+                                       project_link={link}
                                     />
                                  )}
                               </Route>
@@ -97,6 +107,7 @@ class App extends Component {
                                     <Storyboard
                                        {...routeProps}
                                        project_id={project_id}
+                                       project_link={link}
                                     />
                                  )}
                               </Route>

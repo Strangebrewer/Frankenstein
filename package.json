@@ -5,8 +5,7 @@
    "main": "index.js",
    "scripts": {
       "fnord": "npm run build && npm run start:prod || npm run start:dev",
-      "og_start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-      "start": "npm run build && if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+      "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
       "start:prod": "node index.js",
       "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
       "client": "cd client && npm run start",
