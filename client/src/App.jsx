@@ -13,7 +13,11 @@ import Page from './Apps/DragonWriter/components/Elements/Page';
 import MainHeader from './Apps/DragonWriter/components/Elements/MainHeader';
 import Spinner from './Apps/DragonWriter/components/Elements/Spinner';
 
-import { login } from './redux/actions/auth_actions';
+import requireAuth from './utils/Authentication';
+import requireNotAuth from './utils/NotAuthentication';
+import addProps from './utils/AddPropsToRoute';
+
+import { getCurrentUser, login } from './redux/actions/auth_actions';
 
 class App extends Component {
    state = {
@@ -21,24 +25,28 @@ class App extends Component {
    }
 
    async componentDidMount() {
-      await this.props.login({ username: "Narf", password: '1234' });
-      setTimeout(() => {
-         this.setState({
-            // a new user with no projects will never trigger this to be truthy
-            // so, when ready, replace it with something that will allow for new users
-            ready_check: Object.keys(this.props.projects).length
-         })
-      }, 1500)
+      if (localStorage.getItem('token'))
+         await this.props.getCurrentUser();
+      else
+         await this.props.login({ username: "Narf", password: '1234' });
+
+      this.setState({
+         // a new user with no projects will never trigger this to be truthy
+         // so, when ready, replace it with something that will allow for new users
+         ready_check: Object.keys(this.props.projects).length
+      });
    }
 
    render() {
+
+      const { ready_check } = this.state;
 
       // let ready_check = Object.keys(this.props.projects).length;
 
       return (
          <DragEnd>
             <Router>
-               {!this.state.ready_check
+               {!ready_check
                   ? (
                      <Page>
                         <MainHeader />
@@ -57,60 +65,49 @@ class App extends Component {
                         {this.props.projects.project_order.map((project_id, index) => {
                            const link = this.props.projects[project_id].link;
                            return (
-                              <Route exact path={`/dragon-writer/${link}`} key={index}>
-                                 {routeProps => (
-                                    <DragonProject
-                                       {...routeProps}
-                                       project_id={project_id}
-                                    />
-                                 )}
-                              </Route>
+                              <Route
+                                 exact
+                                 key={index}
+                                 path={`/dragon-writer/${link}`}
+                                 component={requireAuth(addProps(DragonProject, { project_id }))}
+                              />
                            )
                         })}
 
                         {this.props.projects.project_order.map((project_id, index) => {
                            const project = this.props.projects[project_id];
-                           const { link } = project;
+                           const project_link = project.link;
                            return (
-                              <Route exact path={`/dragon-writer/${link}/editor`} key={index}>
-                                 {routeProps => (
-                                    <Editor
-                                       {...routeProps}
-                                       project={project}
-                                       project_link={link}
-                                    />
-                                 )}
-                              </Route>
+                              <Route
+                                 exact
+                                 key={index}
+                                 path={`/dragon-writer/${project_link}/editor`}
+                                 component={requireAuth(addProps(Editor, { project, project_link }))}
+                              />
                            )
                         })}
 
                         {this.props.projects.project_order.map((project_id, index) => {
-                           const link = this.props.projects[project_id].link;
+                           const project_link = this.props.projects[project_id].link;
                            return (
-                              <Route exact path={`/dragon-writer/${link}/readmode`} key={index}>
-                                 {routeProps => (
-                                    <ReadMode
-                                       {...routeProps}
-                                       project_id={project_id}
-                                       project_link={link}
-                                    />
-                                 )}
-                              </Route>
+                              <Route
+                                 exact
+                                 key={index}
+                                 path={`/dragon-writer/${project_link}/readmode`}
+                                 component={requireAuth(addProps(ReadMode, { project_id, project_link }))}
+                              />
                            )
                         })}
 
                         {this.props.projects.project_order.map((project_id, index) => {
-                           const link = this.props.projects[project_id].link;
+                           const project_link = this.props.projects[project_id].link;
                            return (
-                              <Route exact path={`/dragon-writer/${link}/storyboard`} key={index}>
-                                 {routeProps => (
-                                    <Storyboard
-                                       {...routeProps}
-                                       project_id={project_id}
-                                       project_link={link}
-                                    />
-                                 )}
-                              </Route>
+                              <Route
+                                 exact
+                                 key={index}
+                                 path={`/dragon-writer/${project_link}/storyboard`}
+                                 component={requireAuth(addProps(Storyboard, { project_id, project_link }))}
+                              />
                            )
                         })}
                      </Switch>
@@ -131,6 +128,6 @@ function mapStateToProps(state) {
    }
 }
 
-const mapDispatchToProps = { login };
+const mapDispatchToProps = { getCurrentUser, login };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
