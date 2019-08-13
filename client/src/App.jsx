@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import DragEnd from './Apps/DragonWriter/components/DragEnd';
+import NoMatch from './utils/NoMatch';
 import Landing from './Apps/Portfolio/pages/Landing';
 import DragonWriter from './Apps/DragonWriter/pages/Home';
 import DragonProject from './Apps/DragonWriter/pages/Project';
@@ -19,30 +20,33 @@ import { getCurrentUser, login } from './redux/actions/auth_actions';
 
 class App extends Component {
    state = {
-      ready_check: 0
+      loading: true
    }
 
    async componentDidMount() {
       if (localStorage.getItem('token'))
          await this.props.getCurrentUser();
-      else
-         await this.props.login({ username: "Narf", password: '1234' });
+      // else
+      //    await this.props.login({ username: "Narf", password: '1234' });
 
       this.setState({
          // a new user with no projects will never trigger this to be truthy
          // so, when ready, replace it with something that will allow for new users
-         ready_check: Object.keys(this.props.projects).length
+         loading: false
       });
    }
 
    render() {
 
-      const { ready_check } = this.state;
+      const { projects, user } = this.props;
+
+      const userIs = Object.keys(user).length;
+      const hasProjects = Object.keys(projects).length;
 
       return (
          <DragEnd>
             <Router>
-               {!ready_check
+               {this.state.loading
                   ? (
                      <Page>
                         <MainHeader />
@@ -58,8 +62,8 @@ class App extends Component {
                            {routeProps => <DragonWriter {...routeProps} />}
                         </Route>
 
-                        {this.props.projects.project_order.map((project_id, index) => {
-                           const { link } = this.props.projects[project_id];
+                        {userIs && hasProjects && projects.project_order.map((project_id, index) => {
+                           const { link } = projects[project_id];
                            return (
                               <Route
                                  exact
@@ -70,8 +74,8 @@ class App extends Component {
                            )
                         })}
 
-                        {this.props.projects.project_order.map((project_id, index) => {
-                           const project = this.props.projects[project_id];
+                        {userIs && hasProjects && projects.project_order.map((project_id, index) => {
+                           const project = projects[project_id];
                            const { link } = project
                            return (
                               <Route
@@ -83,20 +87,20 @@ class App extends Component {
                            )
                         })}
 
-                        {this.props.projects.project_order.map((project_id, index) => {
-                           const { link } = this.props.projects[project_id];
+                        {userIs && hasProjects && projects.project_order.map((project_id, index) => {
+                           const { link } = projects[project_id];
                            return (
                               <Route
                                  exact
                                  key={index}
                                  path={`/dragon-writer/${link}/readmode`}
-                                 component={Authentication(ReadMode, { project_id, link })}
+                                 component={Authentication(ReadMode, { project_id, link, required: true })}
                               />
                            )
                         })}
 
-                        {this.props.projects.project_order.map((project_id, index) => {
-                           const { link } = this.props.projects[project_id];
+                        {userIs && hasProjects && projects.project_order.map((project_id, index) => {
+                           const { link } = projects[project_id];
                            return (
                               <Route
                                  exact
@@ -106,6 +110,8 @@ class App extends Component {
                               />
                            )
                         })}
+
+                        <Route path="*" component={NoMatch} />
                      </Switch>
                   )
                }

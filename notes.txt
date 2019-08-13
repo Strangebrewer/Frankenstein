@@ -1,5 +1,5 @@
 
 
-Set up drag n drop lists to order using order fields from the db
 
-Figure out how to get Project.jsx (the page) to update when subject order updates...
+The authentication and NoMatch logic work for now, but
+   you should set up something that will go to a published page if there is one. Later...

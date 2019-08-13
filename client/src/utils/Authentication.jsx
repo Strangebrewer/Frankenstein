@@ -7,18 +7,19 @@ export default function (WrappedComponent, passedProps) {
       componentWillMount() {
          const { required } = passedProps;
          const { authenticated } = this.props;
-         if (required && !authenticated) this.props.history.push('/signin');
+         if (required && !authenticated) this.props.history.push('/dragon-writer');
          if (!required && authenticated) this.props.history.push('/');
       }
 
       componentWillUpdate(nextProps) {
          const { required } = passedProps;
          const { authenticated } = nextProps;
-         if (required && !authenticated) this.props.history.push('/signin');
+         if (required && !authenticated) this.props.history.push('/dragon-writer');
          if (!required && authenticated) this.props.history.push('/');
       }
 
       render() {
+         console.log('this.props.authenticated:::', this.props.authenticated);
          return <WrappedComponent {...this.props} {...passedProps} />;
       }
    }
