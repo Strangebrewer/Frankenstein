@@ -7,6 +7,9 @@ import { subjectReducer } from './dragon_writer/subject_reducer'
 import { textReducer } from './dragon_writer/text_reducer'
 import * as Auth from '../action_types/auth_types';
 
+
+import { calcDisplayReducer } from './misc_reducers';
+
 const appReducer = combineReducers({
    auth: authReducer,
    images: imageReducer,
@@ -15,6 +18,7 @@ const appReducer = combineReducers({
    subjects: subjectReducer,
    texts: textReducer,
    user: userReducer,
+   calcDisplay: calcDisplayReducer
 });
 
 const rootReducer = (state, action) => {

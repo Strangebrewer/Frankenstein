@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import DragEnd from './Apps/DragonWriter/components/DragEnd';
 import NoMatch from './utils/NoMatch';
 import Landing from './Apps/Portfolio/pages/Landing';
+import Calculatorium from './Apps/DragonWriter/pages/Calculatorium'
 import DragonWriter from './Apps/DragonWriter/pages/Home';
 import DragonProject from './Apps/DragonWriter/pages/Project';
 import Editor from './Apps/DragonWriter/pages/Editor';
@@ -110,6 +111,8 @@ class App extends Component {
                               />
                            )
                         })}
+
+                        <Route exact path="/calculatorium" component={Calculatorium} />
 
                         <Route path="*" component={NoMatch} />
                      </Switch>

@@ -1,0 +1,102 @@
+[
+   {
+      "label": "CE",
+      "type": "function",
+      "id": "clear-entry"
+   },
+   {
+      "label": "C",
+      "type": "function",
+      "id": "clear"
+   },
+   {
+      "label": "fal fa-backspace",
+      "type": "icon",
+      "id": "back-one-number"
+   },
+   {
+      "label": "fal fa-divide",
+      "type": "icon",
+      "id": "divide"
+   },
+   {
+      "label": "7",
+      "type": "number",
+      "id": "seven"
+   },
+   {
+      "label": "8",
+      "type": "number",
+      "id": "eight"
+   },
+   {
+      "label": "9",
+      "type": "number",
+      "id": "nine"
+   },
+   {
+      "label": "fal fa-times",
+      "type": "icon",
+      "id": "multiply"
+   },
+   {
+      "label": "4",
+      "type": "number",
+      "id": "four"
+   },
+   {
+      "label": "5",
+      "type": "number",
+      "id": "five"
+   },
+   {
+      "label": "6",
+      "type": "number",
+      "id": "six"
+   },
+   {
+      "label": "fal fa-minus",
+      "type": "icon",
+      "id": "minus"
+   },
+   {
+      "label": "1",
+      "type": "number",
+      "id": "one"
+   },
+   {
+      "label": "2",
+      "type": "number",
+      "id": "two"
+   },
+   {
+      "label": "3",
+      "type": "number",
+      "id": "three"
+   },
+   {
+      "label": "fal fa-plus",
+      "type": "icon",
+      "id": "plus"
+   },
+   {
+      "label": "fad fa-minus-square",
+      "type": "icon",
+      "id": "negative"
+   },
+   {
+      "label": "0",
+      "type": "number",
+      "id": "zero"
+   },
+   {
+      "label": ".",
+      "type": "number",
+      "id": "decimal"
+   },
+   {
+      "label": "fal fa-equals",
+      "type": "icon",
+      "id": "equals"
+   }
+]
