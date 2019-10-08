@@ -10,8 +10,6 @@ import DragonProject from './Apps/DragonWriter/pages/Project';
 import Editor from './Apps/DragonWriter/pages/Editor';
 import ReadMode from './Apps/DragonWriter/pages/ReadMode';
 import Storyboard from './Apps/DragonWriter/pages/Storyboard';
-import Page from './Apps/DragonWriter/components/Elements/Page';
-import MainHeader from './Apps/DragonWriter/components/Elements/MainHeader';
 import Spinner from './Apps/DragonWriter/components/Elements/Spinner';
 
 import Authentication from './utils/Authentication';

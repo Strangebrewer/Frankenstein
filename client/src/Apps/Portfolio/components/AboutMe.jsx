@@ -13,7 +13,7 @@ const AboutMe = () => (
          I completed a six-month web development bootcamp at the University of Utah in July 2018 and then spent the next 8 months building web apps and building up my skills before being hired by by a local digital signage company. I've been lucky enough to land a job using exactly the skills I learned in bootcamp, and then some.
       </p>
       <p>
-         I'm primarily a MERN stack developer, but in the last three months at my new job, I've learned to use <span>Redux</span>, <span>Vue</span> and <span>Vuex</span> along with more in-depth parts of many other things, like Git, Linux, testing, agile, debugging, and better research habits. It's great to work in a team of smart, curious, and skilled coders. (Buncha NERDBAGS!)
+         I'm primarily a MERN stack developer, but in the last several months at my job I've learned to use <span>Redux</span>, <span>Vue</span> and <span>Vuex</span> along with more in-depth parts of many other things, like Git, Linux, testing, agile, debugging, and better research habits. It's great to work in a team of smart, curious, and skilled coders. (Buncha NERDBAGS!)
       </p>
       <p>
          The rest of my experience includes <span>MongoDB</span>, Mongoose, Sequelize, <span>MySQL</span>, Materialize, <span>HTML</span> &amp; <span>CSS</span>, Bootstrap, jQuery, <span>React</span>, Swagger, <span>Node</span>, and <span>JavaScript</span>(ES6+) .
