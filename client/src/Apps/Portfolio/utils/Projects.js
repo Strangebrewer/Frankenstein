@@ -5,7 +5,7 @@ export const projects = [
       fillImage: "andromedaFour",
       identifier: "dragon",
       image: "/static/assets/images/cloud.png",
-      linkto: "/dragon-writer",
+      linkto: "https://dragon-writer.herokuapp.com",
       lineOne: "Node, Express,",
       lineTwo: "React, & MongoDB",
       offset: "20",
