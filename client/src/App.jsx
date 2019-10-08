@@ -48,10 +48,10 @@ class App extends Component {
             <Router>
                {this.state.loading
                   ? (
-                     <Page>
-                        <MainHeader />
+                     <div>
+                        {/* <MainHeader /> */}
                         <Spinner />
-                     </Page>
+                     </div>
                   ) : (
                      <Switch>
                         <Route exact path="/">
