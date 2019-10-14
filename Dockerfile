@@ -7,6 +7,7 @@ WORKDIR /app
 COPY package.json ./
 
 ENV NODE_ENV=production
+ENV REACT_APP_NODE_ENV=production
 
 RUN npm install
 
