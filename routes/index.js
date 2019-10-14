@@ -8,8 +8,9 @@ router.use('/users', user_routes);
 router.use('/dragons', dragon_routes);
 
 // If no API routes are hit, send the React app
-// Without this, if you refresh the page on anything but the base url (i.e. "/")
-// It will respond with a 'Cannot GET' error because the server
+// Without this, if you refresh or load the page
+//    on anything but the base url (i.e. "/")
+//    it will respond with a 'Cannot GET' error because the server
 //    is trying to respond to that url from the back end
 //    rather than letting react-router handle it on the front end
 // So this ensures the routing will work properly;

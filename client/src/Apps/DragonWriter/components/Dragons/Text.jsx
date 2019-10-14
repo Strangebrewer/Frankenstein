@@ -1,6 +1,7 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import TextButtons from './DragonElements/TextButtons';
 
 const Text = props => {
 
@@ -16,6 +17,7 @@ const Text = props => {
                isDragging={snapshot.isDragging}
                {...provided.dragHandleProps}
             >
+               <TextButtons />
                <h2>{props.text.title}</h2>
                <p>{props.text.subtitle}</p>
             </TextContainer>

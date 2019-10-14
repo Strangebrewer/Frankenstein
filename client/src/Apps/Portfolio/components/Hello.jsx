@@ -5,7 +5,7 @@ const Hello = () => (
    <Container id="hello">
       <h2>Hello</h2>
       <p>
-         Thanks for checking out my website. I originally built it as a portfolio to help me land a web developer job. Now, it's just for fun and learning. And since the creative impulse usually brings with it a desire to show off, I guess showing off is what it's for, too.
+         Thanks for checking out my website. I originally built it as a portfolio to help me find a web developer job. Now, it's just for personal interests and learning. And since the creative impulse usually brings with it a desire to show off, I guess showing off is what it's for, too.
       </p>
    </Container>
 );

@@ -29,7 +29,7 @@ class User {
       }
    }
 
-   async register(req_body) {
+   async signup(req_body) {
       const { username, email } = req_body;
 
       this.validateUsername(username);

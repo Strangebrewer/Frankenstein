@@ -35,14 +35,10 @@ export async function getCurrentUser(req, res) {
    }
 }
 
-export async function register(req, res) {
+export async function signup(req, res) {
    try {
-      const response = await user_model.register(req.body);
-
-      const { _id, username, email, first_name, last_name } = response;
-      const user = { _id, username, email, first_name, last_name };
-
-      res.json(user);
+      const response = await user_model.signup(req.body);
+      res.json(response);
    } catch (e) {
       console.log(e);
       res.status(418).send({

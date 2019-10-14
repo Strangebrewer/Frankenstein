@@ -8,10 +8,10 @@ const Projects = () => (
    <Container id="projects">
       <h3>Projects</h3>
       <p>
-         These are all fully functional, and you can create a login and use them if you'd like, but none are supported for serious use. Please consider these apps for demo purposes only.
+         These are all fully functional, and you can create a login and use them if you'd like, but none are supported for serious use.
       </p>
       <p>
-         (And if you're actually interested in using one for real, let me know - it might be fun to set up.)
+         (if you're actually interested in using one for real, let me know - it might be fun to set up.)
       </p>
 
       {projects

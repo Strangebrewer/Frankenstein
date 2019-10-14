@@ -1,8 +1,8 @@
 import API from './API';
 
 export default {
-   register(credentials) {
-      return API().post('/users/register', credentials);
+   signup(credentials) {
+      return API().post('/users/signup', credentials);
    },
    login(credentials) {
       return API().post('/users/login', credentials);

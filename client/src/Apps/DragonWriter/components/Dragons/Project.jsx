@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import ProjectButtons from './DragonElements/ProjectButtons';
 
 const Project = React.memo(props => {
 
@@ -21,12 +22,7 @@ const Project = React.memo(props => {
                ref={provided.innerRef}
                isDragging={snapshot.isDragging}
             >
-               <Buttons>
-                  <button><i className="fab fa-accessible-icon" /></button>
-                  <button><i className="fab fa-500px" /></button>
-                  <button><i className="far fa-alarm-clock" /></button>
-                  <button><i className="fas fa-alicorn" /></button>
-               </Buttons>
+               <ProjectButtons />
 
                <Link to={{
                   pathname: `/dragon-writer/${link}`,
@@ -81,18 +77,5 @@ const Container = styled.div`
       padding-top: 5px;
       text-indent: 25px;
       text-shadow: 2px 2px 3px rgb(0,0,0);
-   }
-`;
-
-const Buttons = styled.div`
-   position: absolute;
-   top: 8px;
-   right: 8px;
-   button {
-      padding: 0 4px 4px 4px;
-      background: transparent;
-      outline: transparent;
-      border: none;
-      color: #fff;
    }
 `;

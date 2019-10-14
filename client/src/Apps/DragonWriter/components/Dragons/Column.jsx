@@ -2,7 +2,7 @@ import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import ColumnButtons from './Elements/ColumnButtons';
+import ColumnButtons from './DragonElements/ColumnButtons';
 import Text from './Text';
 
 const Column = React.memo(props => {

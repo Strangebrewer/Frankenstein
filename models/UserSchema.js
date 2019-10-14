@@ -11,7 +11,7 @@ const UserSchema = new Schema({
    email: String,
    first_name: String,
    last_name: String,
-   project_order: String,
+   project_order: { type: String, required: true, default: "[]" },
    projects: [{
       type: Schema.Types.ObjectId,
       ref: 'Project'

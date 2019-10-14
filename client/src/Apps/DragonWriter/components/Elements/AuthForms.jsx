@@ -1,54 +1,78 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
+import { Login, Signup } from "./Forms";
+import styled from 'styled-components';
 
-import { getCurrentUser, login } from '../../../../redux/actions/auth_actions';
+import { login, signup } from '../../../../redux/actions/auth_actions';
 
-const LoginForm = props => {
+const AuthForms = props => {
 
+   const [email, setEmail] = useState('');
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
+   const [confirmPw, setConfirmPw] = useState('');
+   const [flag, setFlag] = useState(false);
 
    const handleInputChange = event => {
       const { name, value } = event.target;
       switch (name) {
-         case 'username':
-            setUsername(value); break;
-         default:
-            setPassword(value); break;
+         case 'email': setEmail(value); break;
+         case 'username': setUsername(value); break;
+         case 'password': setPassword(value); break;
+         case 'confirmPw': setConfirmPw(value); break;
       }
-   }
+   };
+
+   const toggleSignupForm = () => setFlag(!flag);
 
    const youShouldLogin = (e) => {
       e.preventDefault();
       props.login({ username, password });
    }
 
+   const youShouldSignup = (e) => {
+      e.preventDefault();
+      props.signup({ email, username, password });
+   }
+
    return (
-      <form onSubmit={(e) => youShouldLogin(e)}>
-         <label>Username</label>
-         <input
-            name="username"
-            type="text"
-            value={username}
-            onChange={handleInputChange}
-         />
-         <label>Password</label>
-         <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={handleInputChange}
-         />
-         <button onClick={youShouldLogin}>Submit</button>
-      </form>
+      <FormWrapper>
+         {flag
+            ? (
+               <Signup
+                  confirmPw={confirmPw}
+                  email={email}
+                  handleInputChange={handleInputChange}
+                  password={password}
+                  signup={youShouldSignup}
+                  toggleSignupForm={toggleSignupForm}
+                  username={username}
+               />
+            ) : (
+               <Login
+                  handleInputChange={handleInputChange}
+                  login={youShouldLogin}
+                  password={password}
+                  toggleSignupForm={toggleSignupForm}
+                  username={username}
+               />
+            )
+         }
+      </FormWrapper>
    )
 }
 
 function mapStateToProps(state) {
    return {
-      user: state.user   }
+      user: state.user
+   }
 }
 
-const mapDispatchToProps = { login };
+const mapDispatchToProps = { login, signup };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthForms);
+
+const FormWrapper = styled.div`
+   width: 100%;
+   height: 100%;
+`;

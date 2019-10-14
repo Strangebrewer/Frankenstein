@@ -44,10 +44,7 @@ export function signup(signup_data, history) {
          const response = await AuthAPI.signup(signup_data);
          localStorage.setItem('token', response.data.token);
          dispatch({ type: Auth.AUTHENTICATED });
-         dispatch({
-            type: Auth.SET_CURRENT_USER,
-            payload: response.data.user
-         });
+         dispatch({ type: Auth.SET_CURRENT_USER, payload: response.data.user });
          // history.push('/home');
       } catch (e) {
 
