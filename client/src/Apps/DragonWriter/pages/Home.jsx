@@ -8,6 +8,8 @@ import AuthForms from '../components/Elements/AuthForms';
 import MainHeader from '../components/Elements/MainHeader';
 import ProjectList from '../components/Dragons/ProjectList';
 
+import Modal from '../components/Elements/Modal';
+
 class DragonWriter extends React.PureComponent {
 
    render() {
@@ -19,7 +21,15 @@ class DragonWriter extends React.PureComponent {
 
             <Main>
                <Content>
-                  {!!this.props.user._id ? <ProjectList /> : <AuthForms />}
+                  {!!this.props.user._id
+                     ? (
+                        <Modal>
+                           {modalProps => (
+                              <ProjectList {...modalProps} />
+                           )}
+                        </Modal>
+                     )
+                     : <AuthForms />}
                </Content>
             </Main>
 
@@ -27,7 +37,7 @@ class DragonWriter extends React.PureComponent {
          </Page>
       );
    }
-   
+
 }
 
 function mapStateToProps(state) {

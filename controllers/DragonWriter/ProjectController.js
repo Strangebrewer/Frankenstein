@@ -23,8 +23,10 @@ export async function index(req, res) {
 }
 
 export async function post(req, res) {
+   console.log('req.body in ProjectController:::', req.body);
    try {
-
+      const project = await ProjectSchema.create(req.body);
+      res.json(project);
    } catch (e) {
       console.log(e);
       res.status(500).send({

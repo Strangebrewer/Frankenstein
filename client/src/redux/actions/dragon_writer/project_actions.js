@@ -23,3 +23,15 @@ export function saveProjectOrder(project_order) {
       }
    }
 }
+
+export function createNewProject(project) {
+   return async dispatch => {
+      try {
+         await ProjectsAPI.postNewProject(project);
+         const projects = await ProjectsAPI.getAllProjects();
+         dispatch({ type: 'SET_ALL_PROJECTS', payload: projects.data })
+      } catch (e) {
+         console.log('e:::', e);
+      }
+   }
+}
