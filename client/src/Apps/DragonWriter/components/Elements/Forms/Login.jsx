@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import styled from "styled-components";
 import { Button, Form, Input, Label } from "./FormElements";
 import { LinkBtn } from "../LinkBtn";
-import AuthForms from '../AuthForms';
 
 const Paragraph = styled.p`
   font-size: 1.2rem;

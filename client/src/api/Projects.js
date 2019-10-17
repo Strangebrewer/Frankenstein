@@ -15,3 +15,7 @@ export function postNewProject(project) {
 export function updateProject(project_id, update) {
    return API().put(`/dragons/projects/${project_id}`, update);
 }
+
+export function deleteProject(project_id) {
+   return API().delete(`/dragons/projects/${project_id}`);
+}

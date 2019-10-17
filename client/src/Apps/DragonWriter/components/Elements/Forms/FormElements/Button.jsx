@@ -8,10 +8,12 @@ const FormButton = styled.button`
    color: #fff;
    display: ${props => props.center ? 'block' : 'inline'};
    font-size: ${props => props.full && '1.8rem'};
-   height: ${props => props.full && '40px'};
+   height: ${props => props.full ? '40px' : '35px'};
    margin: ${props => props.center ? '10px auto 0 auto' : '10px 10px 0 0'};
+   min-width: ${props => props.full ? '100%' : '80px'};
    outline: transparent;
-   padding: 8px 12px;
+   padding: 0;
+   position: relative;
    text-shadow: 0 0 5px #000;
    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
    width: ${props => props.full ? '100%' : props.width};

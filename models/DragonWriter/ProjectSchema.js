@@ -8,8 +8,8 @@ const projectSchema = new Schema({
    image: String,
    imageId: String,
    published: [{
-     type: Schema.Types.ObjectId,
-     ref: "Subject"
+      type: Schema.Types.ObjectId,
+      ref: "Subject"
    }],
    largeImage: String,
    midImage: String,
@@ -17,20 +17,20 @@ const projectSchema = new Schema({
    publicId: String,
    subtitle: String,
    subjects: [{
-     type: Schema.Types.ObjectId,
-     ref: "Subject"
+      type: Schema.Types.ObjectId,
+      ref: "Subject"
    }],
    texts: [{
-     type: Schema.Types.ObjectId,
-     ref: "Text"
+      type: Schema.Types.ObjectId,
+      ref: "Text"
    }],
-   subject_order: String
- },
+   subject_order: { type: String, required: true, default: '[]' }
+},
    {
-     timestamps: true
+      timestamps: true
    }
- );
- 
- const Project = mongoose.model('Project', projectSchema);
+);
 
- export default Project;
+const Project = mongoose.model('Project', projectSchema);
+
+export default Project;

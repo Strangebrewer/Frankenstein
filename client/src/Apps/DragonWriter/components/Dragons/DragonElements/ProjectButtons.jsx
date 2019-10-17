@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import Icon from '../../Elements/Icon';
-import { IconSpinner } from '../../Elements/IconSpinner';
+import Spinner from '../../Elements/Spinner';
 
 const ProjectButtons = React.memo(props => {
+   const [loading, setLoading] = useState(false);
+
    return (
-      props.loading
-         ? <IconSpinner top="6px" right="38px" size="10px" black />
+      loading
+         ? <Spinner top="6px" right="38px" size="10px" black />
          : (
             <Buttons>
                <Icon>
@@ -22,7 +24,7 @@ const ProjectButtons = React.memo(props => {
                   <i className="far fa-alarm-clock" />
                </Icon>
 
-               <Icon>
+               <Icon delete onClick={() => props.deleteProjectModal(props.project._id)}>
                   <i className="fas fa-alicorn" />
                </Icon>
             </Buttons>

@@ -119,6 +119,29 @@ class User {
    hashPassword(plain_text_password) {
       return bcrypt.hashSync(plain_text_password, bcrypt.genSaltSync(10), null);
    }
+
+   async addProjectToUser(project_id, user) {
+      const projectOrder = JSON.parse(user.project_order);
+      projectOrder.push(project_id);
+      const new_order = JSON.stringify(projectOrder);
+      const updated_user = await this.User.findByIdAndUpdate(user._id, {
+         project_order: new_order,
+         $push: { projects: project_id }
+      }, { new: true });
+      return updated_user;
+   }
+
+   async removeProjectFromUser(project_id, user) {
+      const projectOrder = JSON.parse(user.project_order);
+      const index = projectOrder.indexOf(project_id);
+      projectOrder.splice(index, 1);
+      const new_order =JSON.stringify(projectOrder);
+      const updated_user = await this.User.findByIdAndUpdate(user._id, {
+         project_order: new_order,
+         $pull: { projects: project_id }
+      }, { new: true });
+      return updated_user;
+   }
 }
 
 export default User;

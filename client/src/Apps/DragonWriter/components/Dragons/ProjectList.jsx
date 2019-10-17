@@ -1,66 +1,49 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import Project from './Project';
-import { Button, Input, Label, TextArea } from '../Elements/Forms/FormElements';
-import { createNewProject } from '../../../../redux/actions/dragon_writer/project_actions';
+import { Button } from '../Elements/Forms/FormElements';
+import NewProjectForm from '../Elements/Forms/NewProject';
+
+import { deleteProject } from '../../../../redux/actions/dragon_writer/project_actions';
 
 const ProjectList = props => {
-
-   const [link, setLink] = useState('');
-   const [subtitle, setSubtitle] = useState('');
-   const [title, setTitle] = useState('');
-
-   function handleInputChange(event) {
-      const { name, value } = event.target;
-      console.log('value:::', value);
-      if (name === 'link') setLink(value);
-      if (name === 'subtitle') setSubtitle(value);
-      if (name === 'title') setTitle(value);
-   }
 
    const { projects, project_order } = props;
 
    const newProjectModal = () => {
       props.setModal({
-         body: (
-            <form style={{ margin: 'auto', justifyContent: 'center' }}>
-               <h2>New Project</h2>
-               <Label>Project Title:</Label>
-               <Input
-                  name="title"
-                  type="text"
-                  maxLength="40"
-                  onChange={handleInputChange}
-                  placeholder="40-character limit"
-               />
-               <Label>Project subtitle:</Label>
-               <TextArea
-                  name="subtitle"
-                  type="text"
-                  maxLength="140"
-                  onChange={handleInputChange}
-                  placeholder="140-character limit"
-               />
-               <Label>Project Keyword:</Label>
-               <Input
-                  name="link"
-                  type="text"
-                  maxLength="12"
-                  onChange={handleInputChange}
-                  placeholder="12-character limit"
-               />
-               <Button onClick={e => createProject(e)}>Submit</Button>
-               <Button style={{ margin: "10px auto 0 auto" }} onClick={(e) => props.closeModal(e)}>Cancel</Button>
-            </form>
-         )
+         body: <NewProjectForm closeModal={props.closeModal} />
       })
    }
 
-   const createProject = (e) => {
-      e.preventDefault();
-      props.createNewProject({ title, subtitle, link });
+   const deleteProjectModal = id => {
+      props.setModal({
+         body: (
+            <Fragment>
+               <h3>Are you sure you want to delete this entire project?</h3>
+               <p>(and all associated texts and topics)</p>
+            </Fragment>
+         ),
+         buttons: (
+            <div>
+               <Button onClick={() => deleteProject(id)}>
+                  Yes, delete it
+               </Button>
+               <Button onClick={props.closeModal}>
+                  Cancel
+               </Button>
+            </div>
+         ),
+         style: { textAlign: "center" }
+      })
+   }
+
+   const deleteProject = async project_id => {
+      console.log('deleteProject project_id:::', project_id);
+      await props.deleteProject(project_id);
+      props.closeModal();
    }
 
    return (
@@ -73,7 +56,14 @@ const ProjectList = props => {
             >
                {project_order ? project_order.map((project_id, index) => {
                   const project = projects[project_id];
-                  return <Project key={index} project={project} index={index} />
+                  return (
+                     <Project
+                        key={index}
+                        project={project}
+                        index={index}
+                        deleteProjectModal={deleteProjectModal}
+                     />
+                  )
                }) : null}
                {provided.placeholder}
 
@@ -96,14 +86,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-   createNewProject
+   deleteProject
 }
-
-// function mapDispatchToProps(dispatch) {
-//    return {
-//       createNewProject
-//    }
-// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import Icon from '../../Elements/Icon';
-import { IconSpinner } from '../../Elements/IconSpinner';
+import Spinner from '../../Elements/Spinner';
 
 const ColumnButtons = React.memo(props => {
 
@@ -10,7 +10,7 @@ const ColumnButtons = React.memo(props => {
 
    return (
       props.loading
-         ? <IconSpinner top="6px" right="38px" size="10px" black />
+         ? <Spinner top="6px" right="38px" size="10px" black />
          : (
             <>
                <Buttons>

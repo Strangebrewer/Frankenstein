@@ -10,7 +10,7 @@ import DragonProject from './Apps/DragonWriter/pages/Project';
 import Editor from './Apps/DragonWriter/pages/Editor';
 import ReadMode from './Apps/DragonWriter/pages/ReadMode';
 import Storyboard from './Apps/DragonWriter/pages/Storyboard';
-import Spinner from './Apps/DragonWriter/components/Elements/Spinner';
+import Loader from './Apps/DragonWriter/components/Elements/Loader';
 
 import Authentication from './utils/Authentication';
 
@@ -48,7 +48,7 @@ class App extends Component {
                   ? (
                      <div>
                         {/* <MainHeader /> */}
-                        <Spinner />
+                        <Loader />
                      </div>
                   ) : (
                      <Switch>

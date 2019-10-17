@@ -22,7 +22,7 @@ const Project = React.memo(props => {
                ref={provided.innerRef}
                isDragging={snapshot.isDragging}
             >
-               <ProjectButtons />
+               <ProjectButtons project={project} deleteProjectModal={props.deleteProjectModal} />
 
                <Link to={{
                   pathname: `/dragon-writer/${link}`,
