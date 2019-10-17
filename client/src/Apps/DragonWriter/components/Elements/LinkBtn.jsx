@@ -41,8 +41,10 @@ const Button = styled.button`
 `;
 
 
-export const LinkBtn = props => {
+const LinkBtn = props => {
    return (
       <Button {...props}>{props.children}</Button>
    )
 };
+
+export default LinkBtn;

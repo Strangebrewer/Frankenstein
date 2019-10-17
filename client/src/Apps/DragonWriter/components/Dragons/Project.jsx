@@ -9,7 +9,7 @@ const Project = React.memo(props => {
    const { project } = props;
    const { _id, link, summary, title } = project;
    // console.log('project:::', project);
-   
+
    return (
       <Draggable
          draggableId={_id}
@@ -22,7 +22,12 @@ const Project = React.memo(props => {
                ref={provided.innerRef}
                isDragging={snapshot.isDragging}
             >
-               <ProjectButtons project={project} deleteProjectModal={props.deleteProjectModal} />
+               <ProjectButtons
+                  project={project}
+                  loading={props.loading}
+                  deleteProjectModal={props.deleteProjectModal}
+                  updateProjectModal={props.updateProjectModal}
+               />
 
                <Link to={{
                   pathname: `/dragon-writer/${link}`,

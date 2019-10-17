@@ -1,18 +1,36 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import LinkBtn from './LinkBtn';
 
 const SidebarLeftMenu = props => {
+
+   const linkStyle = {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      textAlign: "left",
+      whiteSpace: "nowrap",
+      width: "140px"
+   }
 
    return (
       <Container>
          <h2>
-            Columns <Link to={`/dragon-writer/${props.link}/editor`}><i className="fas fa-plus-circle" /></Link>
+            Columns <Link to={`/dragon-writer/${props.project_link}/editor`}><i className="fas fa-plus-circle" /></Link>
          </h2>
          <ul>
-            <li>Thoughts &amp; Ideas</li>
-            <li>Chapter 1</li>
-            <li>Philosophy</li>
+            {props.subjects.map(subject => (
+               <li key={subject._id}>
+                  <LinkBtn
+                     underline
+                     size="1.25rem"
+                     lineHeight="1.5"
+                     style={linkStyle}
+                  >
+                     {subject.title}
+                  </LinkBtn>
+               </li>
+            ))}
          </ul>
       </Container>
    );

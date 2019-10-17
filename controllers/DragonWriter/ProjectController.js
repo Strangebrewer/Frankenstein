@@ -31,8 +31,6 @@ export async function index(req, res) {
 }
 
 export async function post(req, res) {
-   console.log('req.body in ProjectController:::', req.body);
-   console.log('req.user in ProjectController post:::', req.user);
    try {
       req.body.userId = req.user._id;
       const project = await ProjectSchema.create(req.body);
@@ -66,17 +64,9 @@ export async function put(req, res) {
 
 export async function remove(req, res) {
    try {
-      console.log('req.params.id in ProjectController remove:::', req.params.id);
-      // logic to remove project and its subjects and texts
-      // also remove all references to it
-      // TODO:
-      // remove project_id from user projects and project_order fields
       user_model.removeProjectFromUser(req.params.id, req.user);
-      // Find and delete all texts and subjects with the project_id
-      //    - deleteMany({ projectId: project_id }) on each
       await SubjectSchema.deleteMany({ projectId: req.params.id });
       await TextSchema.deleteMany({ projectId: req.params.id });
-      // Delete the project
       await ProjectSchema.findByIdAndDelete(req.params.id);
       res.status(200).send('Project successfully deleted.');
    } catch (e) {

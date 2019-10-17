@@ -5,16 +5,25 @@ import styled from 'styled-components';
 import Project from './Project';
 import { Button } from '../Elements/Forms/FormElements';
 import NewProjectForm from '../Elements/Forms/NewProject';
+import UpdateProjectForm from '../Elements/Forms/UpdateProject';
 
 import { deleteProject } from '../../../../redux/actions/dragon_writer/project_actions';
 
 const ProjectList = props => {
+
+   const [loading, setLoading] = useState(false);
 
    const { projects, project_order } = props;
 
    const newProjectModal = () => {
       props.setModal({
          body: <NewProjectForm closeModal={props.closeModal} />
+      })
+   }
+
+   const updateProjectModal = project => {
+      props.setModal({
+         body: <UpdateProjectForm project={project} closeModal={props.closeModal} />
       })
    }
 
@@ -41,9 +50,11 @@ const ProjectList = props => {
    }
 
    const deleteProject = async project_id => {
+      setLoading(true);
       console.log('deleteProject project_id:::', project_id);
       await props.deleteProject(project_id);
       props.closeModal();
+      setLoading(false);
    }
 
    return (
@@ -61,7 +72,9 @@ const ProjectList = props => {
                         key={index}
                         project={project}
                         index={index}
+                        loading={loading}
                         deleteProjectModal={deleteProjectModal}
+                        updateProjectModal={updateProjectModal}
                      />
                   )
                }) : null}

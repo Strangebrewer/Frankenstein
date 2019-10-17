@@ -15,6 +15,10 @@ class Project extends Component {
 
       const { projects, project_id } = this.props;
       const project = projects[project_id];
+      const subjects = project.subject_order.map(subject_id =>  this.props.subjects[subject_id]);
+
+      console.log('project in Project component:::', project);
+      console.log('subjects in Project component:::', subjects);
 
       return (
          <Page>
@@ -23,7 +27,7 @@ class Project extends Component {
 
             <Main>
                <Sidebar>
-                  <SidebarLeftMenu project_link={project.link} />
+                  <SidebarLeftMenu project_link={project.link} subjects={subjects} />
                </Sidebar>
 
                <Content style={{ position: 'relative' }}>
@@ -45,7 +49,8 @@ class Project extends Component {
 
 function mapStateToProps(state) {
    return {
-      projects: state.projects
+      projects: state.projects,
+      subjects: state.subjects
    }
 }
 

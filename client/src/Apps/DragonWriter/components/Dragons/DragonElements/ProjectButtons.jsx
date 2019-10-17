@@ -5,10 +5,9 @@ import Icon from '../../Elements/Icon';
 import Spinner from '../../Elements/Spinner';
 
 const ProjectButtons = React.memo(props => {
-   const [loading, setLoading] = useState(false);
 
    return (
-      loading
+      props.loading
          ? <Spinner top="6px" right="38px" size="10px" black />
          : (
             <Buttons>
@@ -20,7 +19,7 @@ const ProjectButtons = React.memo(props => {
                   <i className="fab fa-500px" />
                </Icon>
 
-               <Icon>
+               <Icon onClick={() => props.updateProjectModal(props.project)}>
                   <i className="far fa-alarm-clock" />
                </Icon>
 

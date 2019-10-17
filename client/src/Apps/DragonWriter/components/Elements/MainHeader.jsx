@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { logout } from '../../../../redux/actions/auth_actions';
 
 const MainHeader = props => {
-   console.log('props.user:::', props.user);
+   // console.log('props.user:::', props.user);
    return (
       <Header>
          <Link title="back to portfolio" to="/"><i className="fas fa-home" /></Link>
