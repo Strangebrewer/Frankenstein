@@ -26,6 +26,21 @@ class Project {
       }
       return projects_object;
    }
+
+   async addSubjectToProject(project_id, subject_id) {
+      const project = await this.Project.findById(project_id);
+      const project_order = JSON.parse(project.subject_order);
+      project_order.push(subject_id);
+      const new_order = JSON.stringify(project_order);
+      const updated_project = await this.Project.findByIdAndUpdate(
+         project_id,
+         {
+             subject_order: new_order,
+             $push: { subjects: subject_id }
+         }
+      );
+      return updated_project;
+   }
 }
 
 export default Project;

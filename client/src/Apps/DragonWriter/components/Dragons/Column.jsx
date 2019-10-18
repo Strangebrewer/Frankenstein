@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import ColumnButtons from './DragonElements/ColumnButtons';
 import Text from './Text';
 
-const Column = React.memo(props => {
+const Column = props => {
 
    const { subject_id, texts } = props;
    const subject = props.subjects[subject_id];
@@ -46,7 +46,7 @@ const Column = React.memo(props => {
          )}
       </Draggable>
    );
-});
+};
 
 function mapStateToProps(state) {
    return {

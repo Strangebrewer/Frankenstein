@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import NewSubjectForm from './Forms/NewSubject';
 import LinkBtn from './LinkBtn';
 
 const SidebarLeftMenu = props => {
@@ -13,24 +14,33 @@ const SidebarLeftMenu = props => {
       width: "140px"
    }
 
+   const newSubjectModal = () => {
+      props.setModal({
+         body: <NewSubjectForm project_id={props.project_id} closeModal={props.closeModal} />
+      })
+   }
+
    return (
       <Container>
          <h2>
-            Columns <Link to={`/dragon-writer/${props.project_link}/editor`}><i className="fas fa-plus-circle" /></Link>
+            Columns <i  onClick={newSubjectModal} className="fas fa-plus-circle" />
          </h2>
          <ul>
-            {props.subjects.map(subject => (
-               <li key={subject._id}>
-                  <LinkBtn
-                     underline
-                     size="1.25rem"
-                     lineHeight="1.5"
-                     style={linkStyle}
-                  >
-                     {subject.title}
-                  </LinkBtn>
-               </li>
-            ))}
+            {props.subjects.map(subject => {
+               console.log('subject in SideBarLeftMenu:::', subject);
+               return (
+                  <li key={subject._id}>
+                     <LinkBtn
+                        underline
+                        size="1.25rem"
+                        lineHeight="1.5"
+                        style={linkStyle}
+                     >
+                        {subject.title}
+                     </LinkBtn>
+                  </li>
+               )
+            })}
          </ul>
       </Container>
    );
@@ -47,13 +57,13 @@ const Container = styled.div`
       font-size: 2.4rem;
       font-family: ${props => props.theme.font_playfair};
       margin-bottom: 10px;
-      > a {
-         color: #62c2ee ;
+      > i {
+         color: #62c2ee;
          cursor: pointer;
          font-size: 2rem;
          position: absolute;
-         top: 5px;
-         right: 30px;
+         top: 15px;
+         right: 35px;
       }
    }
    li {

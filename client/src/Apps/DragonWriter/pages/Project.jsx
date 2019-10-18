@@ -8,6 +8,7 @@ import MainHeader from '../components/Elements/MainHeader';
 import ContentHeader from '../components/Elements/ContentHeader';
 import Footer from '../components/Elements/Footer';
 import MainDropzone from '../components/Dragons/MainDropzone';
+import Modal from '../components/Elements/Modal';
 
 class Project extends Component {
 
@@ -15,7 +16,7 @@ class Project extends Component {
 
       const { projects, project_id } = this.props;
       const project = projects[project_id];
-      const subjects = project.subject_order.map(subject_id =>  this.props.subjects[subject_id]);
+      const subjects = project.subject_order.map(subject_id => this.props.subjects[subject_id]);
 
       console.log('project in Project component:::', project);
       console.log('subjects in Project component:::', subjects);
@@ -27,7 +28,16 @@ class Project extends Component {
 
             <Main>
                <Sidebar>
-                  <SidebarLeftMenu project_link={project.link} subjects={subjects} />
+                  <Modal>
+                     {modalProps => (
+                        <SidebarLeftMenu
+                           {...modalProps}
+                           project_id={project_id}
+                           project_link={project.link}
+                           subjects={subjects}
+                        />
+                     )}
+                  </Modal>
                </Sidebar>
 
                <Content style={{ position: 'relative' }}>

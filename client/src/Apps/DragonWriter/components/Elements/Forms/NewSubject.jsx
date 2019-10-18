@@ -2,34 +2,32 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Input, Label, TextArea } from './FormElements';
 import Spinner from '../Spinner';
-import { createNewProject } from '../../../../../redux/actions/dragon_writer/project_actions';
+import { createNewSubject } from '../../../../../redux/actions/dragon_writer/subject_actions';
 
-const NewProjectForm = props => {
+const NewSubjectForm = props => {
 
-   const [link, setLink] = useState('');
-   const [subtitle, setSubtitle] = useState('');
    const [title, setTitle] = useState('');
+   const [subtitle, setSubtitle] = useState('');
    const [saving, setSaving] = useState(false);
 
    function handleInputChange(event) {
       const { name, value } = event.target;
-      if (name === 'link') setLink(value);
       if (name === 'subtitle') setSubtitle(value);
       if (name === 'title') setTitle(value);
    }
 
-   const createProject = async (e) => {
+   const createSubject = async (e) => {
       e.preventDefault();
       setSaving(true);
-      await props.createNewProject({ title, subtitle, link });
+      await props.createNewSubject({ title, subtitle, projectId: props.project_id });
       props.closeModal();
       setSaving(false);
    }
 
    return (
       <form style={{ margin: 'auto', justifyContent: 'center' }}>
-         <h2>New Project</h2>
-         <Label>Project Title:</Label>
+         <h2>New Subject</h2>
+         <Label>Subject Title:</Label>
          <Input
             name="title"
             value={title}
@@ -38,7 +36,7 @@ const NewProjectForm = props => {
             onChange={handleInputChange}
             placeholder="40-character limit"
          />
-         <Label>Project subtitle:</Label>
+         <Label>Subject subtitle:</Label>
          <TextArea
             name="subtitle"
             value={subtitle}
@@ -47,16 +45,7 @@ const NewProjectForm = props => {
             onChange={handleInputChange}
             placeholder="140-character limit"
          />
-         <Label>Project Keyword:</Label>
-         <Input
-            name="link"
-            value={link}
-            type="text"
-            maxLength="12"
-            onChange={handleInputChange}
-            placeholder="12-character limit"
-         />
-         <Button disabled={saving} width="80px" onClick={e => createProject(e)}>
+         <Button disabled={saving} width="80px" onClick={e => createSubject(e)}>
             {saving ? <Spinner size="20px" margin="auto" /> : 'Submit'}
          </Button>
          <Button disabled={saving} width="80px" style={{ margin: "10px auto 0 auto" }} onClick={(e) => props.closeModal(e)}>
@@ -67,7 +56,7 @@ const NewProjectForm = props => {
 }
 
 const mapDispatchToProps = {
-   createNewProject
+   createNewSubject
 }
 
-export default connect(() => ({ }), mapDispatchToProps)(NewProjectForm);
+export default connect(() => ({ }), mapDispatchToProps)(NewSubjectForm);

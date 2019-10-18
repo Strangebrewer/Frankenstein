@@ -13,7 +13,7 @@ const subjectSchema = new Schema({
    publicId: String,
    title: String,
    subtitle: String,
-   text_order: String,
+   text_order: { type: String, require: true, default: '[]' },
    texts: [{
       type: Schema.Types.ObjectId,
       ref: "Text"
