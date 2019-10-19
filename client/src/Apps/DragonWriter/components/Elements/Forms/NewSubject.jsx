@@ -20,8 +20,6 @@ const NewSubjectForm = props => {
       e.preventDefault();
       setSaving(true);
       await props.createNewSubject({ title, subtitle, projectId: props.project_id });
-      props.closeModal();
-      setSaving(false);
    }
 
    return (

@@ -52,7 +52,9 @@ export async function put(req, res) {
 
 export async function remove(req, res) {
    try {
-
+      const subject = await SubjectSchema.findByIdAndRemove(req.params.id);
+      await project_model.removeSubjectFromProject(req.params.id, subject.projectId);
+      res.json("Success.");
    } catch (e) {
       console.log(e);
       res.status(500).send({
