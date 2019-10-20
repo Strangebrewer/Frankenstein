@@ -67,3 +67,14 @@ export function saveTwoTextOrders(update_object) {
       console.log('e in saveTwoTextOrders, text_actions:::', e);
    }
 }
+
+export const deleteText = text_id => dispatch => {
+   return new Promise(async (deliver, reneg) => {
+      try {
+
+      } catch (e) {
+         console.log('e:::', e);
+         reneg(e);
+      }
+   })
+}

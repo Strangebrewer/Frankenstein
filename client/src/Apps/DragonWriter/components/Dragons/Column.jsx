@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import DeleteSubjectModal from '../Elements/Modals/DeleteSubject';
 import ColumnButtons from './DragonElements/ColumnButtons';
 import Text from './Text';
+
+import { deleteSubject } from '../../../../redux/actions/dragon_writer/subject_actions';
 
 const Column = props => {
 
    const { subject_id, texts } = props;
    const subject = props.subjects[subject_id];
-   
+
+   const deleteSubjectModal = () => {
+      props.setModal({
+         body: (
+            <DeleteSubjectModal subject_id={subject_id} closeModal={props.closeModal} />
+         )
+      })
+   }
+
    return (
       <Draggable draggableId={subject_id} index={props.index}>
          {(provided, snapshot) => (
@@ -20,7 +31,12 @@ const Column = props => {
                isDragging={snapshot.isDragging}
                isDraggingOver={snapshot.draggingOver}
             >
-               <ColumnButtons subject_id={subject_id} title={subject.title} project_link={props.project_link} />
+               <ColumnButtons
+                  subject_id={subject_id}
+                  title={subject.title}
+                  project_link={props.project_link}
+                  deleteSubjectModal={deleteSubjectModal}
+               />
 
                <ColumnHeader>
                   <h2>{subject.title}</h2>
@@ -55,10 +71,8 @@ function mapStateToProps(state) {
    }
 }
 
-function mapDispatchToProps(dispatch) {
-   return {
-
-   }
+const mapDispatchToProps = {
+   deleteSubject
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Column);

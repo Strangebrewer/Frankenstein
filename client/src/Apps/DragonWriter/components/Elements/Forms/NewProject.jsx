@@ -23,7 +23,6 @@ const NewProjectForm = props => {
       setSaving(true);
       await props.createNewProject({ title, subtitle, link });
       props.closeModal();
-      setSaving(false);
    }
 
    return (

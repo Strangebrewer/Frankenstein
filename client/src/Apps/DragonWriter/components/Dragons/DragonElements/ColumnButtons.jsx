@@ -60,7 +60,7 @@ const ColumnButtons = React.memo(props => {
                      <i className="fas fa-book-open" />
                   </Icon>
 
-                  <Icon delete>
+                  <Icon delete onClick={props.deleteSubjectModal}>
                      <i className="fas fa-trash-alt" />
                   </Icon>
                </Buttons>

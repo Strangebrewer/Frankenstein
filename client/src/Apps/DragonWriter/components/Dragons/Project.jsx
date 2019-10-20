@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import DeleteProjectModal from '../Elements/Modals/DeleteProject';
 import ProjectButtons from './DragonElements/ProjectButtons';
 
-const Project = React.memo(props => {
+import { deleteProject } from '../../../../redux/actions/dragon_writer/project_actions';
+
+const Project = props => {
 
    const { project } = props;
    const { _id, link, summary, title } = project;
-   // console.log('project:::', project);
+
+   const deleteProjectModal = () => {
+      props.setModal({
+         body: <DeleteProjectModal project_id={_id} closeModal={props.closeModal} />
+      })
+   }
 
    return (
       <Draggable
@@ -25,7 +34,7 @@ const Project = React.memo(props => {
                <ProjectButtons
                   project={project}
                   loading={props.loading}
-                  deleteProjectModal={props.deleteProjectModal}
+                  deleteProjectModal={deleteProjectModal}
                   updateProjectModal={props.updateProjectModal}
                />
 
@@ -41,9 +50,9 @@ const Project = React.memo(props => {
       </Draggable>
    );
 
-});
+};
 
-export default Project;
+export default connect(() => ({}), { deleteProject })(Project);
 
 const Container = styled.div`
    background: ${props => props.isDragging

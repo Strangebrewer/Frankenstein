@@ -8,9 +8,9 @@ import AuthForms from '../components/Elements/AuthForms';
 import MainHeader from '../components/Elements/MainHeader';
 import ProjectList from '../components/Dragons/ProjectList';
 
-import Modal from '../components/Elements/Modal';
+import ModalLogic from '../components/Elements/ModalLogic';
 
-class DragonWriter extends React.PureComponent {
+class DragonWriter extends React.Component {
 
    render() {
 
@@ -21,15 +21,17 @@ class DragonWriter extends React.PureComponent {
 
             <Main>
                <Content>
-                  {!!this.props.user._id
-                     ? (
-                        <Modal>
-                           {modalProps => (
-                              <ProjectList {...modalProps} />
-                           )}
-                        </Modal>
-                     )
-                     : <AuthForms />}
+                  {
+                     !!this.props.user._id
+                        ? (
+                           <ModalLogic>
+                              {modalProps => (
+                                 <ProjectList {...modalProps} />
+                              )}
+                           </ModalLogic>
+                        )
+                        : <AuthForms />
+                  }
                </Content>
             </Main>
 

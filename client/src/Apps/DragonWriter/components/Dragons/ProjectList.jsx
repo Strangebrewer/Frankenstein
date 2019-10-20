@@ -6,12 +6,11 @@ import Project from './Project';
 import { Button } from '../Elements/Forms/FormElements';
 import NewProjectForm from '../Elements/Forms/NewProject';
 import UpdateProjectForm from '../Elements/Forms/UpdateProject';
+import ModalLogic from '../Elements/ModalLogic';
 
 import { deleteProject } from '../../../../redux/actions/dragon_writer/project_actions';
 
 const ProjectList = props => {
-
-   const [loading, setLoading] = useState(false);
 
    const { projects, project_order } = props;
 
@@ -27,63 +26,36 @@ const ProjectList = props => {
       })
    }
 
-   const deleteProjectModal = id => {
-      props.setModal({
-         body: (
-            <Fragment>
-               <h3>Are you sure you want to delete this entire project?</h3>
-               <p>(and all associated texts and topics)</p>
-            </Fragment>
-         ),
-         buttons: (
-            <div>
-               <Button onClick={() => deleteProject(id)}>
-                  Yes, delete it
-               </Button>
-               <Button onClick={props.closeModal}>
-                  Cancel
-               </Button>
-            </div>
-         ),
-         style: { textAlign: "center" }
-      })
-   }
-
-   const deleteProject = async project_id => {
-      setLoading(true);
-      console.log('deleteProject project_id:::', project_id);
-      await props.deleteProject(project_id);
-      props.closeModal();
-      setLoading(false);
-   }
-
    return (
       <Droppable droppableId="42" type="project">
          {(provided, snapshot) => (
-            <Container
-               {...provided.droppableProps}
-               ref={provided.innerRef}
-               isDraggingOver={snapshot.isDraggingOver}
-            >
-               {project_order ? project_order.map((project_id, index) => {
-                  const project = projects[project_id];
-                  return (
-                     <Project
-                        key={index}
-                        project={project}
-                        index={index}
-                        loading={loading}
-                        deleteProjectModal={deleteProjectModal}
-                        updateProjectModal={updateProjectModal}
-                     />
-                  )
-               }) : null}
-               {provided.placeholder}
+            <ModalLogic>
+               {modalProps => (
+                  <Container
+                     {...provided.droppableProps}
+                     ref={provided.innerRef}
+                     isDraggingOver={snapshot.isDraggingOver}
+                  >
+                     {project_order ? project_order.map((project_id, index) => {
+                        const project = projects[project_id];
+                        return (
+                           <Project
+                              {...modalProps}
+                              key={index}
+                              project={project}
+                              index={index}
+                              updateProjectModal={updateProjectModal}
+                           />
+                        )
+                     }) : null}
+                     {provided.placeholder}
 
-               <Button full onClick={newProjectModal}>
-                  New Project
-               </Button>
-            </Container>
+                     <Button full onClick={newProjectModal}>
+                        New Project
+                     </Button>
+                  </Container>
+               )}
+            </ModalLogic>
          )}
       </Droppable>
    );
@@ -102,7 +74,7 @@ const mapDispatchToProps = {
    deleteProject
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);
+export default connect(mapStateToProps)(ProjectList);
 
 const Container = styled.div`
    margin: auto;

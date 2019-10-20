@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 
-class Modal extends Component {
+class ModalLogic extends Component {
    state = {
       isOpen: false,
       body: "",
@@ -54,7 +54,7 @@ class Modal extends Component {
    }
 }
 
-export default Modal;
+export default ModalLogic;
 
 const Outer = styled.div`
    background-color: rgba(0, 0, 0, 0.4);

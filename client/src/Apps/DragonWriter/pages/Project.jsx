@@ -8,7 +8,7 @@ import MainHeader from '../components/Elements/MainHeader';
 import ContentHeader from '../components/Elements/ContentHeader';
 import Footer from '../components/Elements/Footer';
 import MainDropzone from '../components/Dragons/MainDropzone';
-import Modal from '../components/Elements/Modal';
+import ModalLogic from '../components/Elements/ModalLogic';
 
 class Project extends Component {
 
@@ -26,30 +26,38 @@ class Project extends Component {
             <MainHeader />
             <ContentHeader overview title={project.title} summary={project.summary} />
 
-            <Main>
-               <Sidebar>
-                  <Modal>
-                     {modalProps => (
+            <ModalLogic>
+               {modalProps => (
+                  <Main>
+                     <Sidebar>
                         <SidebarLeftMenu
                            {...modalProps}
                            project_id={project_id}
                            project_link={project.link}
                            subjects={subjects}
                         />
-                     )}
-                  </Modal>
-               </Sidebar>
+                     </Sidebar>
 
-               <Content style={{ position: 'relative' }}>
-                  <MainDropzone id={project._id}>
-                     {project.subject_order.map((subject_id, index) => {
-                        return <Column key={index} index={index} subject_id={subject_id} project_link={project.link} />
-                     })}
-                  </MainDropzone>
-               </Content>
+                     <Content style={{ position: 'relative' }}>
+                        <MainDropzone id={project._id}>
+                           {project.subject_order.map((subject_id, index) => {
+                              return (
+                                 <Column
+                                    {...modalProps}
+                                    key={index}
+                                    index={index}
+                                    subject_id={subject_id}
+                                    project_link={project.link}
+                                 />
+                              )
+                           })}
+                        </MainDropzone>
+                     </Content>
 
-               <Sidebar></Sidebar>
-            </Main>
+                     <Sidebar></Sidebar>
+                  </Main>
+               )}
+            </ModalLogic>
 
             <Footer />
          </Page>
