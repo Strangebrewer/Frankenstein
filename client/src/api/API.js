@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-let BASE_URL = 'http://localhost:3001';
-// let BASE_URL = 'https://bkashambhala.com';
+// let BASE_URL = 'http://localhost:3001';
+let BASE_URL = 'https://bkashambhala.com';
 
 export default () => {
    return axios.create({
