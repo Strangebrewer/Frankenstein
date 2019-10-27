@@ -14,6 +14,14 @@ const SidebarLeftMenu = props => {
       width: "140px"
    }
 
+   const handleClick = id => {
+      console.log('id in Sidebar handleClick:::', id);
+      if (props.overview) {
+         return props.toggleSubjectVisible(id);
+      }
+      props.switchSubjects(id);
+   }
+
    const newSubjectModal = () => {
       props.setModal({
          body: <NewSubjectForm project_id={props.project_id} closeModal={props.closeModal} />
@@ -35,6 +43,7 @@ const SidebarLeftMenu = props => {
                         size="1.25rem"
                         lineHeight="1.5"
                         style={linkStyle}
+                        onClick={() => handleClick(subject._id)}
                      >
                         {subject.title}
                      </LinkBtn>

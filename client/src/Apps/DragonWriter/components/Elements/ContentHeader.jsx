@@ -4,16 +4,16 @@ import styled from 'styled-components';
 
 const ContentHeader = React.memo(props => {
 
-   const { overview, link, subject_id, summary, title } = props;
+   const { overview, link, subject_id, column_title, title } = props;
    return (
       <Header>
          <h2>{title}</h2>
-         {summary ? <h3>{summary}</h3> : null}
+         {column_title ? <h3>{column_title}</h3> : null}
          {!overview && (
             <LinkContainer>
-               <button><Link to={`/dragon-writer/${link}`}>overview</Link></button>
-               <button><Link to={{ pathname: `/dragon-writer/${link}/readmode`, state: { subject_id, title } }}>full text</Link></button>
-               <button><Link to={{ pathname: `/dragon-writer/${link}/storyboard`, state: { subject_id, title } }}>storyboard</Link></button>
+               <button onClick={props.toggleOverview}>overview</button>
+               <button onClick={() => props.toggleReadMode(subject_id)}>full text</button>
+               <button onClick={() => props.toggleStoryboardMode(subject_id)}>storyboard</button>
                <button><Link to={{ pathname: `/dragon-writer/${link}/print`, state: { subject_id, title } }}>print</Link></button>
             </LinkContainer>
          )}

@@ -19,14 +19,7 @@ const ColumnButtons = React.memo(props => {
                   </Icon>
 
                   <Icon>
-                     <Link
-                        to={{
-                           pathname: `/dragon-writer/${project_link}/readmode`,
-                           state: { subject_id, title }
-                        }}
-                     >
-                        <i className="fas fa-expand" />
-                     </Link>
+                        <i className="fas fa-expand" onClick={() => props.toggleReadMode(subject_id)} />
                   </Icon>
 
                   <Icon>
@@ -42,14 +35,7 @@ const ColumnButtons = React.memo(props => {
                   </Icon>
 
                   <Icon>
-                     <Link
-                        to={{
-                           pathname: `/dragon-writer/${project_link}/storyboard`,
-                           state: { subject_id, title }
-                        }}
-                     >
-                        <i className="fas fa-th" />
-                     </Link>
+                        <i className="fas fa-th" onClick={() => props.toggleStoryboardMode(subject_id)} />
                   </Icon>
 
                   <Icon>

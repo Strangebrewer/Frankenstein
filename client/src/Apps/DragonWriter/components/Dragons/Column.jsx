@@ -36,6 +36,9 @@ const Column = props => {
                   title={subject.title}
                   project_link={props.project_link}
                   deleteSubjectModal={deleteSubjectModal}
+                  toggleSubjectVisible={props.toggleSubjectVisible}
+                  toggleStoryboardMode={props.toggleStoryboardMode}
+                  toggleReadMode={props.toggleReadMode}
                />
 
                <ColumnHeader>
