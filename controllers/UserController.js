@@ -16,10 +16,10 @@ export async function getCurrentUser(req, res) {
    console.log('req.user:::', req.user);
    try {
       const response = await UserSchema.findById(req.user._id);
-      
+
       const { _id, username, email, first_name, last_name } = response;
       const user = { _id, username, email, first_name, last_name };
-      
+
       const projects = await project_model.findProjects(req.user._id);
       const subjects = await subject_model.findSubjects(req.user._id);
       const texts = await text_model.findTexts(req.user._id);
@@ -27,11 +27,9 @@ export async function getCurrentUser(req, res) {
       const user_data = { user, projects, subjects, texts };
 
       res.json(user_data);
-   } catch (e) {
-      console.log(e);
-      res.status(500).send({
-         error: e.message
-      });
+   } catch (error) {
+      console.log(error);
+      res.status(500).send({ error });
    }
 }
 
@@ -51,11 +49,11 @@ export async function login(req, res) {
    try {
       const response = await user_model.login(req.body);
       const { user, token } = response;
-      
+
       const projects = await project_model.findProjects(user._id);
       const subjects = await subject_model.findSubjects(user._id);
       const texts = await text_model.findTexts(user._id);
-      
+
       const user_data = { user, token, projects, subjects, texts };
 
       res.json(user_data);

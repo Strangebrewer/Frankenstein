@@ -22,16 +22,16 @@ class App extends Component {
    }
 
    async componentDidMount() {
-      if (localStorage.getItem('token'))
-         await this.props.getCurrentUser();
-      // else
-      //    await this.props.login({ username: "Narf", password: '1234' });
-
-      this.setState({
-         // a new user with no projects will never trigger this to be truthy
-         // so, when ready, replace it with something that will allow for new users
-         loading: false
-      });
+      try {
+         if (localStorage.getItem('token'))
+            await this.props.getCurrentUser();
+      } catch (e) {
+         localStorage.removeItem('token');
+      } finally {
+         this.setState({
+            loading: false
+         });
+      }
    }
 
    render() {

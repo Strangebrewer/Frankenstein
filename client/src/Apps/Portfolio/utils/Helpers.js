@@ -66,15 +66,19 @@ export const Helpers = {
       case "dragon":
         body =
           <Fragment>
-            <p>Dragon Writer is a customizable drag-and-drop app with a rich text editor and image storyboarding. It was conceived as a rearrangeable storboarding tool for writing fiction, but I realized by making it customizable it could be used for any writing project, or even just a to-do list, if that’s all you need.</p>
-            <p>In additionn to MERN stack, this project is built with react-beautiful-dnd and slate.js. Current development includes smoother user experience when logging in, a landing page, a tutorial, and a public-facing page where you can publish whatever pieces you wish, whether as a blog, serial fiction, or whatever else you can make of it. Login with user 'Demo' and pw 'cangetin'.</p>
+            <p>Dragon Writer was my last learning project before finding employment as a developer. It's functional as-is, but there are a few incomplete features, such as user public pages and some parts of the text editor. It was conceived as a rearrangeable storboarding tool for writing fiction, but it's flexible enough to be used for any writing project--even just a to-do list if that’s all you want.</p>
+            <p>In addition to MERN stack, this project is built with react-beautiful-dnd and slate.js. Plans for future tinkering include smoother user experience when logging in, a landing page, a tutorial, and a public-facing page where you can publish whatever pieces you wish. Login with user 'Demo' and pw 'cangetin'.</p>
             <div className="modal-links">
               <a href="https://github.com/Strangebrewer/dragon-writer"
                 target="_blank" rel="noopener noreferrer">
                 &#10511;  &nbsp;&nbsp;code on GitHub
               </a>
+              <a href="https://dragon-writer.herokuapp.com"
+                target="_blank" rel="noopener noreferrer">
+                &#10511;  &nbsp;&nbsp;deployed on Heroku
+              </a>
               <Link to="/dragon-writer">
-                &#10511;  &nbsp;&nbsp;deployed here - check it out!
+                &#10511;  &nbsp;&nbsp;partial rewrite w/Redux
               </Link>
             </div>
           </Fragment>;
