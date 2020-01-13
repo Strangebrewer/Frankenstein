@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 
 class NoMatch extends Component {
    render() {
+      const style = {
+         margin: '100px auto',
+         textAlign: 'center'
+      }
       return (
          <div>
-            <h3>WTF, H0nky!</h3>
-            <p>Perhaps you should <Link style={{ color: 'red' }} to="/dragon-writer">login</Link> before you try to access private shizzle, dawg.</p>
+            <p style={style}>You look lost. <Link style={{ color: 'red' }} to="/">Start over?</Link></p>
          </div>
       );
    }

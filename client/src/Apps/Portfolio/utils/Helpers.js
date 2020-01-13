@@ -77,9 +77,6 @@ export const Helpers = {
                 target="_blank" rel="noopener noreferrer">
                 &#10511;  &nbsp;&nbsp;deployed on Heroku
               </a>
-              <Link to="/dragon-writer">
-                &#10511;  &nbsp;&nbsp;partial rewrite w/Redux
-              </Link>
             </div>
           </Fragment>;
         break;
