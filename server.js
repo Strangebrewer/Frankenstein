@@ -3,7 +3,8 @@ import express from 'express';
 import './connection';
 const app = express();
 import routes from './routes';
-const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 import bodyParser from 'body-parser';
 
 app.use(bodyParser.urlencoded({ extended: true }));
